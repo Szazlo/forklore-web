@@ -4,7 +4,7 @@ AI Recipe App
 ## How to install
 1. Install BunJS. see https://bun.sh
 2. Install dependencies with `npm i`
-3. todo: maybe you have to run `npm i` in the functions folder too
+3. Change to the `functions` folder and `npm i`.
 4. If you don't have `firebase-tools`, install with `npm i -g firebase-tools`
 
 ## Run emulators
@@ -40,3 +40,4 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+        
