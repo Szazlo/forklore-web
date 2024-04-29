@@ -16,10 +16,13 @@ function Index() {
 						className="h-60 pointer-events-none"
 						alt="logo"
 					/>
-					<img src={viteLogo} className="h-60 pointer-events-none" alt="vite" />
+					<img src={viteLogo} className="h-60 pointer-events-none" alt="vite"/>
 					<p>
 						Edit <code>App.tsx</code> and save to test HMR updates.
 					</p>
+					<h1>
+						david fat
+					</h1>
 					<Button onClick={() => setCount((count) => count + 1)}>
 						count is: {count}
 					</Button>
