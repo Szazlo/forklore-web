@@ -1,5 +1,5 @@
 # Forklore
-AI Recipe App
+AI powers recipe website and cooking assistant
 
 ## How to install
 1. Install BunJS. see https://bun.sh
