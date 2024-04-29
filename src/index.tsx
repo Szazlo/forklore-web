@@ -16,6 +16,9 @@ function Index() {
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>
+        <h1>
+          david fat
+        </h1>
         <Button onClick={() => setCount((count) => count + 1)}>
           count is: {count}
         </Button>
