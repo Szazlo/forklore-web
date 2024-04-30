@@ -17,4 +17,12 @@
 		--secondary: #2d6241;
 		--accent: #3a925c;
 	}
+	.login-icon {
+		color: var(--primary);
+		transition: color 0.3s ease, transform 0.3s ease;
+	}
+	.login-icon:hover {
+		color: var(--accent);
+		transform: scale(1.1);
+	}
 }

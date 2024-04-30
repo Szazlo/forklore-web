@@ -25,7 +25,7 @@ function LoginForm() {
                         <button className="w-1/2 p-2 bg-primary text-white rounded-full hover:bg-accent"
                                 type="submit">Submit
                         </button>
-                        <a className="mt-4 text-primary" href="#">Forgot Password?</a>
+                        <a className="mt-4 text-primary hover:text-accent hover:underline" href="#">Forgot Password?</a>
                         <div className="flex items-center w-full mt-4">
                             <hr className="flex-grow border-t border-secondary"/>
                             <p className="mx-4 text-secondary">OR</p>
@@ -33,20 +33,20 @@ function LoginForm() {
                         </div>
                         <p className="mt-4 text-primary">Login with:</p>
                         <div className="flex w-full justify-center mt-4">
-                            <a href="/auth/facebook" className="mx-2">
-                                <FontAwesomeIcon icon={['fab', 'facebook']} color="var(--primary)" size="2x"/>
+                            <a href="/auth/facebook" className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'facebook']} size="2x"/>
                             </a>
-                            <a href="/auth/google" className="mx-2">
-                                <FontAwesomeIcon icon={['fab', 'google']} color="var(--primary)" size="2x"/>
+                            <a href="/auth/google" className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'google']} size="2x"/>
                             </a>
-                            <a href="/auth/github" className="mx-2">
-                                <FontAwesomeIcon icon={['fab', 'microsoft']} color="var(--primary)" size="2x"/>
+                            <a href="/auth/github" className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'microsoft']} size="2x"/>
                             </a>
-                            <a href="/auth/twitter" className="mx-2">
-                                <FontAwesomeIcon icon={['fab', 'twitter']} color="var(--primary)" size="2x"/>
+                            <a href="/auth/twitter" className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'twitter']} size="2x"/>
                             </a>
-                            <a href="/auth/apple" className="mx-2">
-                                <FontAwesomeIcon icon={['fab', 'apple']} color="var(--primary)" size="2x"/>
+                            <a href="/auth/apple" className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'apple']} size="2x"/>
                             </a>
                         </div>
                     </form>
