@@ -5,10 +5,10 @@ function SignUpForm() {
     return (
         <div className="lg:flex h-screen bg-primary">
             <div className="w-full bg-white flex items-start justify-start p-4 lg:hidden">
-                <img src='/public/logo.png' alt="Forklore logo" className="h-10 mx-auto"/>
+                <img src='/Logo.png' alt="Forklore logo" className="h-10 mx-auto"/>
             </div>
             <div className="hidden lg:block lg:w-1/2 bg-secondary flex items-start justify-start p-4">
-                <img src='/public/logo.png' alt="Forklore logo" className="hidden lg:block h-10"/>
+                <img src='/Logo.png' alt="Forklore logo" className="hidden lg:block h-10"/>
             </div>
             <div className="w-full lg:w-1/2 bg-white flex items-center justify-center">
                 <div className="flex items-center justify-center h-screen">

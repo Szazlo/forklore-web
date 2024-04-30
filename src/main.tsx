@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Index from "./index.tsx";
+import SignUpForm from "./register.tsx";
 import "./main.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -9,7 +9,7 @@ import "./main.css";
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Index />,
+		element: <SignUpForm />,
 	},
 ]);
 
