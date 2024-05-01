@@ -1,4 +1,8 @@
 # Project change log
+===================
+
+### 0.0.4 2024-05-01
+* Added navigation bar (for desktop view)
 
 ### 0.0.3 2024-05-01
 * Added Sign in with Google
