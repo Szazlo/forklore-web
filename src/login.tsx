@@ -1,14 +1,35 @@
 import "./main.css";
+import { auth } from "./firebase";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fab} from '@fortawesome/free-brands-svg-icons'
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "./store";
+import { login } from "./store/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 library.add(fab)
 
 function LoginForm() {
-    const googleProvider = new GoogleAuthProvider();
-    googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+		// Access current user with this
+		const user = useSelector(selectUser);
+		const dispatch = useDispatch();
+		const navigate = useNavigate();
+
+    // Signs the user in with google
+    const signInWithGoogle = () => {
+			const provider = new GoogleAuthProvider();
+			signInWithPopup(auth, provider)
+				.then(result => {
+					// Redirect to home page on success
+					dispatch(login(result.user));
+					navigate('/');
+				})
+				.catch(err => {
+					console.log(err);
+				})
+    }
 
     return (
         <div className="flex flex-col lg:flex-row h-screen bg-primary">
@@ -37,18 +58,18 @@ function LoginForm() {
                         </div>
                         <p className="mt-4 text-primary">Login with:</p>
                         <div className="flex w-full justify-center mt-4">
-                            <a href="#" className="mx-2 login-icon">
+                            <button className="mx-2 login-icon" >
                                 <FontAwesomeIcon icon={['fab', 'facebook']} size="2x"/>
-                            </a>
-                            <a href="#" className="mx-2 login-icon">
-                                <FontAwesomeIcon icon={['fab', 'google']} size="2x"/>
-                            </a>
-                            <a href="#" className="mx-2 login-icon">
+                            </button>
+                            <button className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'google']} onClick={signInWithGoogle} size="2x"/>
+                            </button>
+                            <button className="mx-2 login-icon">
                                 <FontAwesomeIcon icon={['fab', 'microsoft']} size="2x"/>
-                            </a>
-                            <a href="#" className="mx-2 login-icon">
+                            </button>
+                            <button className="mx-2 login-icon">
                                 <FontAwesomeIcon icon={['fab', 'twitter']} size="2x"/>
-                            </a>
+                            </button>
                             <a href="#" className="mx-2 login-icon">
                                 <FontAwesomeIcon icon={['fab', 'apple']} size="2x"/>
                             </a>
