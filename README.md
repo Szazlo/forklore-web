@@ -1,13 +1,16 @@
 # Forklore
+
 AI powers recipe website and cooking assistant
 
 ## How to install
+
 1. Install BunJS. see https://bun.sh
 2. Install dependencies with `npm i`
 3. Change to the `functions` folder and `npm i`.
 4. If you don't have `firebase-tools`, install with `npm i -g firebase-tools`
 
 ## Run emulators
+
 Running the emulators is strongly recommended. Run `firebase emulators:start` to use them.
 
 # React + TypeScript + Vite
@@ -27,17 +30,16 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+	// other rules...
+	parserOptions: {
+		ecmaVersion: "latest",
+		sourceType: "module",
+		project: ["./tsconfig.json", "./tsconfig.node.json"],
+		tsconfigRootDir: __dirname,
+	},
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-        
