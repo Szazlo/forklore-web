@@ -31,7 +31,12 @@
 		"redux": "^5.0.1",
 		"styled-components": "^6.1.8",
 		"tailwind-merge": "^2.3.0",
-		"tailwindcss-animate": "^1.0.7"
+		"tailwindcss-animate": "^1.0.7",
+		"@fortawesome/fontawesome-svg-core": "^6.5.2",
+		"@fortawesome/free-brands-svg-icons": "^6.5.2",
+		"@fortawesome/free-regular-svg-icons": "^6.5.2",
+		"@fortawesome/free-solid-svg-icons": "^6.5.2",
+		"@fortawesome/react-fontawesome": "^0.2.0"
 	},
 	"devDependencies": {
 		"@firebase/rules-unit-testing": "^3.0.2",

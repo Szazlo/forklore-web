@@ -1,4 +1,11 @@
 import "./main.css";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {fab} from '@fortawesome/free-brands-svg-icons'
+// import { selectUser } from "./store";
+
+library.add(fab)
+
 
 
 function SignUpForm() {
@@ -13,11 +20,13 @@ function SignUpForm() {
             <div className="w-full lg:w-1/2 bg-white flex items-center justify-center">
                 <div className="flex items-center justify-center h-screen">
                     <form className="flex flex-col w-4/5 max-w-lg mx-auto items-center">
-                            <h2 className="mb-4 text-2xl text-primary">Sign up</h2>
-                            <div className="flex flex-row items-stretch justify-center w-full">
-                                <input className="mb-4 mr-1 w-full p-2 border border-primary rounded-full" type="text" placeholder="First Name" required/>
-                                <input className="mb-4 ml-1 w-full p-2 border border-primary rounded-full" type="text" placeholder="Last Name" required/>
-                            </div>
+                        <h2 className="mb-4 text-2xl text-primary">Sign up</h2>
+                        <div className="flex flex-row items-stretch justify-center w-full">
+                            <input className="mb-4 mr-1 w-full p-2 border border-primary rounded-full" type="text"
+                                   placeholder="First Name" required/>
+                            <input className="mb-4 ml-1 w-full p-2 border border-primary rounded-full" type="text"
+                                   placeholder="Last Name" required/>
+                        </div>
                         <input className="mb-4 w-full p-2 border border-primary rounded-full" type="text"
                                placeholder="Username" required/>
                         <input className="mb-4 w-full p-2 border border-primary rounded-full" type="password"
@@ -25,12 +34,36 @@ function SignUpForm() {
                         <button className="w-1/2 p-2 bg-primary text-white rounded-full hover:bg-accent"
                                 type="submit">Submit
                         </button>
+                        <div className="flex items-center w-full mt-4">
+                            <hr className="flex-grow border-t border-secondary"/>
+                            <p className="mx-4 text-secondary">OR</p>
+                            <hr className="flex-grow border-t border-secondary"/>
+                        </div>
+                        <p className="mt-4 text-primary">Sign Up with:</p>
+                        <div className="flex w-full justify-center mt-4">
+                            <button className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'facebook']} size="2x"/>
+                            </button>
+                            <button className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'google']} size="2x"/>
+                            </button>
+                            <button className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'microsoft']} size="2x"/>
+                            </button>
+                            <button className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'twitter']} size="2x"/>
+                            </button>
+                            <a href="#" className="mx-2 login-icon">
+                                <FontAwesomeIcon icon={['fab', 'apple']} size="2x"/>
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     );
 }
+
 export default SignUpForm;
 
 
