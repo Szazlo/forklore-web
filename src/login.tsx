@@ -4,8 +4,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fab} from '@fortawesome/free-brands-svg-icons'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "./store";
+import { useDispatch, /* useSelector */ } from "react-redux";
+// import { selectUser } from "./store";
 import { login } from "./store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ library.add(fab)
 
 function LoginForm() {
 		// Access current user with this
-		const user = useSelector(selectUser);
+		// const user = useSelector(selectUser);
 		const dispatch = useDispatch();
 		const navigate = useNavigate();
 
