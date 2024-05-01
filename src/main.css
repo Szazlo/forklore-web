@@ -9,6 +9,7 @@
 		--primary: #5ea67b;
 		--secondary: #9dd2b1;
 		--accent: #6dc58f;
+		font-family: "Inter", sans-serif;
 	}
 	.dark {
 		--text: #eaf0ec;
