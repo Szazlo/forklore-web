@@ -1,6 +1,10 @@
 # Project change log
 ===================
 
+### 0.0.6 2024-05-02
+* Added footer
+* Added 404 page
+
 ### 0.0.5 2024-05-01
 * Added navigation bar (for desktop view)
 
