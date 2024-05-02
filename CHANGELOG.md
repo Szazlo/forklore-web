@@ -1,6 +1,9 @@
 # Project change log
 ===================
 
+### 0.06 2024-05-02
+* Added animation on scroll for navigation bar
+
 ### 0.0.5 2024-05-01
 * Added navigation bar (for desktop view)
 

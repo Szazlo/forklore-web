@@ -1,4 +1,4 @@
-import { CssBaseline, PaletteMode, ThemeProvider, createTheme, useMediaQuery } from "@mui/material";
+import { CssBaseline, PaletteMode, ThemeProvider, createTheme } from "@mui/material";
 import { ReactNode, createContext, useMemo, useState } from "react";
 import { getDesignTokens } from "./theme";
 
