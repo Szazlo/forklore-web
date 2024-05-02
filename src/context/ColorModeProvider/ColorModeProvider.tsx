@@ -6,8 +6,8 @@ import { getDesignTokens } from "./theme";
 export const ColorModeContext = createContext({ toggleColorMode: () => {}});
 
 export function ColorModeProvider({ children }: { children: ReactNode }) {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark");
-  const [mode, setMode] = useState<PaletteMode>(prefersDarkMode ? "dark": "light");
+  // const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark");
+  const [mode, setMode] = useState<PaletteMode>(/*prefersDarkMode ? "dark": */ "light");
 
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
