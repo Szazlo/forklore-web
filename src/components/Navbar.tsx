@@ -1,15 +1,12 @@
-import {Link} from "react-router-dom";
-import {useNavigate} from "react-router-dom";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import '../main.css'
 import {useSelector} from 'react-redux';
 import {selectUser} from "@/store";
-import {Avatar, IconButton, useTheme } from '@mui/material';
+import {Avatar, Box, IconButton, useTheme} from '@mui/material';
 import useColorMode from "@/context/ColorModeProvider";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { Box } from "@mui/material";
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
 import LogoShort from "./logos/LogoShort";
 
 const Navbar = () => {
@@ -23,17 +20,16 @@ const Navbar = () => {
 
   // Listen for scroll event and animate the header appropriately
   useEffect(() => {
-    const scrollListener = window.addEventListener('scroll' , () => {
+    return window.addEventListener('scroll', () => {
       setScrolled(window.scrollY > 30);
-    })
-    return scrollListener;
+    });
   }, []);
 
   return (
       <nav className={`sticky top-0 flex justify-between items-center rounded-full py-1 mx-auto px-4  transition-all duration-200 ${scrolled ? "w-3/5 bg-gray-200 border border-slate-500 backdrop-blur-sm top-1" : "w-full"}`}>
         {scrolled ?
           <LogoShort />
-        : 
+        :
           <a href="/"><img src="/logo.png" alt="Forklore logo" className="h-8" /></a>
         }
         <ul className="flex">
