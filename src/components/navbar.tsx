@@ -4,9 +4,15 @@ import {useLocation} from "react-router-dom";
 import '../main.css'
 import {useSelector} from 'react-redux';
 import {selectUser} from "@/store";
-import {Avatar, IconButton} from '@mui/material';
+import {Avatar, IconButton, useTheme } from '@mui/material';
+import useColorMode from "@/context/ColorModeProvider";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { Box } from "@mui/material";
 
 const Navbar = () => {
+  const theme = useTheme();
+  const colorMode = useColorMode();
   const navigate = useNavigate();
   const location = useLocation();
   const user = useSelector(selectUser);
@@ -21,14 +27,19 @@ const Navbar = () => {
           <li className="p-4"><Link className={location.pathname == "/tips" ? "underline" : ""} to="/tips">Cooking
             Tips</Link></li>
         </ul>
+        <Box>
         {/* TODO: Search component*/}
-        {user
-            ?
-            <IconButton>
-              <Avatar src={user.photoURL || ""} alt={user.uid}/>
-            </IconButton>
-            : <button className="btn bg-primary py-2 px-4 rounded" onClick={() => navigate("/login")}>Sign In</button>
-        }
+          <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+            {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+          {user
+              ?
+              <IconButton color="primary">
+                <Avatar sx={{ bgcolor: "primary.main" }} src={user.photoURL || ""} alt={user.uid}/>
+              </IconButton>
+              : <button className="btn bg-primary py-2 px-4 rounded" onClick={() => navigate("/login")}>Sign In</button>
+            }
+          </Box>
       </nav>
   );
 };

@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import "./main.css";
+import { ColorModeProvider } from './context/ColorModeProvider/ColorModeProvider.tsx'
 
 const router = createBrowserRouter([
     {
@@ -23,7 +24,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <Provider store={store}>
-            <RouterProvider router={router}/>
+            <ColorModeProvider>
+                <RouterProvider router={router}/>
+            </ColorModeProvider>
         </Provider>
     </React.StrictMode>,
 )
