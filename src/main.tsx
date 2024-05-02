@@ -6,6 +6,7 @@ import './main.css'
 import { store } from "./store";
 import { Provider } from 'react-redux';
 import PageNotFound from "@/404.tsx";
+import SignUpForm from "@/register.tsx";
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import "./main.css";
 
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <LoginForm/>,
+    },
+    {
+        path: "/signup",
+        element: <SignUpForm/>,
     },
     {
         path: "*",
