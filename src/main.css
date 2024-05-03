@@ -11,6 +11,7 @@
 		--accent: #6dc58f;
 		font-family: "Inter", sans-serif;
 	}
+	
 	.dark {
 		--text: #eaf0ec;
 		--background: #060907;
@@ -18,7 +19,9 @@
 		--secondary: #2d6241;
 		--accent: #3a925c;
 	}
-	.login-icon {
+}
+
+.login-icon {
 		color: var(--primary);
 		transition: color 0.3s ease, transform 0.3s ease;
 	}
@@ -26,4 +29,7 @@
 		color: var(--accent);
 		transform: scale(1.1);
 	}
+
+body {
+	width: 100vw;
 }

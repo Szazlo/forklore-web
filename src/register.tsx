@@ -6,8 +6,6 @@ import {fab} from '@fortawesome/free-brands-svg-icons'
 
 library.add(fab)
 
-
-
 function SignUpForm() {
     return (
         <div className="lg:flex h-screen bg-primary">
