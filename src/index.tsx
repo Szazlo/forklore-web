@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar.tsx";
+import Navbar from "@/components/navbar.tsx";
 import Footer from "@/components/footer.tsx";
 import "./main.css";
 
