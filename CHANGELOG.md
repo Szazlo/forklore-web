@@ -1,7 +1,8 @@
 # Project change log
 ===================
 
-### 0.0.6 2024-05-02
+### 0.06 2024-05-02
+* Added animation on scroll for navigation bar
 * Added footer
 * Added 404 page
 
