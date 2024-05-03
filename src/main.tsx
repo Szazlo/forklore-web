@@ -5,10 +5,11 @@ import LoginForm from './login.tsx'
 import './main.css'
 import { store } from "./store";
 import { Provider } from 'react-redux';
-
+import PageNotFound from "@/404.tsx";
+import SignUpForm from "@/register.tsx";
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import "./main.css";
-import { ColorModeProvider } from './context/ColorModeProvider/ColorModeProvider.tsx'
+import { ColorModeProvider } from '@/context/ColorModeProvider'
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <LoginForm/>,
+    },
+    {
+        path: "/signup",
+        element: <SignUpForm/>,
+    },
+    {
+        path: "*",
+        element: <PageNotFound/>,
     },
 ]);
 

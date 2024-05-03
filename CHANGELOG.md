@@ -3,6 +3,8 @@
 
 ### 0.06 2024-05-02
 * Added animation on scroll for navigation bar
+* Added footer
+* Added 404 page
 
 ### 0.0.5 2024-05-01
 * Added navigation bar (for desktop view)
