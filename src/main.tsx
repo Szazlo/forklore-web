@@ -7,6 +7,7 @@ import { store } from "./store";
 import { Provider } from 'react-redux';
 import PageNotFound from "@/404.tsx";
 import SignUpForm from "@/register.tsx";
+import Recipe from "@/recipe.tsx";
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import "./main.css";
 
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Index/>,
+    },
+    {
+        path: "/recipe",
+        element: <Recipe/>,
     },
     {
         path: "/login",
