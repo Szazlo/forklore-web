@@ -1,6 +1,9 @@
 # Project change log
 ===================
 
+### 0.0.7 2024-05-03\
+* Added `/recipe` route template.
+
 ### 0.0.6 2024-05-02
 * Added footer
 * Added 404 page
