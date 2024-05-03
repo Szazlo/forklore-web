@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import '../main.css'
 import {useEffect, useState} from 'react';
 import LogoShort from '@/components/logos/LogoShort.tsx';
