@@ -5,7 +5,7 @@ import {fab} from '@fortawesome/free-brands-svg-icons'
 // import { selectUser } from "./store";
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {FormEvent} from "react";
+import {FormEvent, useState} from "react";
 import {useDispatch} from "react-redux";
 import {login} from "@/store/auth/authSlice.ts";
 import {useNavigate} from "react-router-dom";
@@ -13,15 +13,33 @@ import {useNavigate} from "react-router-dom";
 library.add(fab)
 
 function SignUpForm() {
-    
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+
+    
+    function handleFirstNameChange(e: any) {
+        setFirstName(e.target.value);
+    }
+    
+    function handleLastNameChange(e: any) {
+        setLastName(e.target.value);
+    }
+    
+    function handleUsernameChange(e: any) {
+        setUsername(e.target.value);
+    }
+
     function handleSignUpWithEmailAndPassword(event: FormEvent) {
         event.preventDefault();
-        // @ts-ignore
+
+        // @ts-expect-error annoying
         const email = event.target.email.value;
-        // @ts-ignore
+        // @ts-expect-error annoying nagging bitch
         const password = event.target.password.value;
 
         // check if email is valid, password is valid
@@ -54,16 +72,16 @@ function SignUpForm() {
                         <h2 className="mb-4 text-2xl text-primary">Sign up</h2>
                         <div className="flex flex-row items-stretch justify-center w-full">
                             {/* First name field*/}
-                            <input name={"firstName"} className="mb-4 mr-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
+                            <input value={firstName} name={"firstName"} className="mb-4 mr-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
                                    type="text"
-                                   placeholder="First Name" />
+                                   placeholder="First Name" onChange={handleFirstNameChange} />
                             {/* Last Name Field*/}
-                            <input name={"lastName"} className="mb-4 ml-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
+                            <input value={lastName} name={"lastName"} className="mb-4 ml-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
                                    type="text"
-                                   placeholder="Last Name" />
+                                   placeholder="Last Name" onChange={handleLastNameChange} />
                         </div>
-                        <input name={"username"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="text"
-                               placeholder="Username" required/>
+                        <input value={username} name={"username"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="text"
+                               placeholder="Username" onChange={handleUsernameChange} required/>
                         <input name={"email"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="text"
                                placeholder="Email" required/>
                         <input name={"password"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="password"
