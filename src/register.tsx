@@ -13,6 +13,34 @@ import {useNavigate} from "react-router-dom";
 library.add(fab)
 
 function SignUpForm() {
+    const [userId, setUserId] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function handleSignUpWithEmailAndPassword(event: FormEvent) {
+        event.preventDefault();
+        // @ts-ignore
+        const email = event.target.email;
+        // @ts-ignore
+        const password = event.target.password;
+
+        // check if email is valid, password is valid
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed up
+                console.log("Signed up successful");
+                const user = userCredential.user;
+                setUserId(user.uid);
+                dispatch(login(user));
+                navigate("/");
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.error(errorMessage);
+            });
+    }
+
     return (
         <div className="lg:flex h-screen bg-primary">
             <div className="w-full bg-white flex items-start justify-start p-4 lg:hidden">
@@ -23,8 +51,9 @@ function SignUpForm() {
             </div>
             <div className="w-full lg:w-1/2 bg-white items-center">
                 <div className="flex flex-col items-center justify-center h-screen">
-                    <form className="flex flex-col w-3/5 max-w-lg mx-auto items-center">
+                    <form onSubmit={handleSignUpWithEmailAndPassword} className="flex flex-col w-3/5 max-w-lg mx-auto items-center">
                         <h2 className="mb-4 text-2xl text-primary">Sign up</h2>
+                        <h3>{userId}</h3>
                         <div className="flex flex-row items-stretch justify-center w-full">
                             {/* First name field*/}
                             <input name="firstName" className="mb-4 mr-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
@@ -35,14 +64,14 @@ function SignUpForm() {
                                    type="text"
                                    placeholder="Last Name" />
                         </div>
-                        <input className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="text"
+                        <input name={"username"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="text"
                                placeholder="Username" required/>
                         <input name={"email"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="text"
                                placeholder="Email" required/>
                         <input name={"password"} className="mb-4 w-full px-4 py-2 border border-primary rounded-full" type="password"
                                placeholder="Password" required/>
                         <button className="w-1/2 p-2 bg-primary text-white rounded-full hover:bg-accent"
-                                type="submit">Sign up
+                        > Sign up
                         </button>
                     </form>
                     <a className="mt-4 text-primary hover:text-accent hover:underline" href="/login">Already have an
