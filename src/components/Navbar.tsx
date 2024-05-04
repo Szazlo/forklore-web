@@ -15,12 +15,12 @@ const Navbar = () => {
       });
   }, []);
     return (
-        <nav className={`sticky top-0 flex justify-between items-center rounded-full py-1 mx-auto px-4 transition-all duration-200 ${scrolled ? "w-3/5 border border-accent backdrop-blur-sm top-1" : "w-full"}`}>
+        <nav className={`sticky top-0 flex justify-between items-center rounded-full h-16 px-5 transition-all duration-200 ${scrolled ? "w-3/5 border border-accent backdrop-blur-sm top-1" : "w-full"}`}>
             <a className={`overflow-hidden transition-all ${scrolled ? "w-0" : ""}`} href="/"><img src="/logo.png" alt="Forklore logo" className="h-8" /></a>
           {scrolled && <LogoShort />}
-            <ul className="flex mx-auto gap-8">
+            <ul className="flex justify-between w-1/5">
                 <li><Link className={location.pathname=="/"?"underline decoration-primary decoration-4":""} to="/">Feed</Link></li>
-                <li><Link className={location.pathname=="/recipes"?"underline decoration-primary decoration-4":""} to="/recipes">Recipes</Link></li>
+                <li className="mx-4"><Link className={location.pathname=="/recipes"?"underline decoration-primary decoration-4":""} to="/recipes">Recipes</Link></li>
                 <li><Link className={location.pathname=="/tips"?"underline decoration-primary decoration-4":""} to="/tips">Cooking Tips</Link></li>
             </ul>
         {/*    TODO: Search component*/}
