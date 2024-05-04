@@ -5,7 +5,7 @@ import {fab} from '@fortawesome/free-brands-svg-icons'
 // import { selectUser } from "./store";
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {FormEvent, useState} from "react";
+import {FormEvent} from "react";
 import {useDispatch} from "react-redux";
 import {login} from "@/store/auth/authSlice.ts";
 import {useNavigate} from "react-router-dom";
@@ -31,7 +31,6 @@ function SignUpForm() {
                 // Signed up
                 console.log("Signed up successful");
                 const user = userCredential.user;
-                setUserId(user.uid);
                 dispatch(login(user));
                 navigate("/");
             })
@@ -56,11 +55,11 @@ function SignUpForm() {
                         <h3>{userId}</h3>
                         <div className="flex flex-row items-stretch justify-center w-full">
                             {/* First name field*/}
-                            <input name="firstName" className="mb-4 mr-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
+                            <input name={"firstName"} className="mb-4 mr-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
                                    type="text"
                                    placeholder="First Name" />
                             {/* Last Name Field*/}
-                            <input name="lastName" className="mb-4 ml-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
+                            <input name={"lastName"} className="mb-4 ml-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
                                    type="text"
                                    placeholder="Last Name" />
                         </div>
