@@ -42,13 +42,13 @@ function LoginForm() {
             <div className="w-full lg:w-1/2 bg-white items-center">
                 <div className="flex flex-col items-center justify-center h-screen">
                     <form className="flex flex-col w-3/5 max-w-lg mx-auto items-center">
-                        <h2 className="mb-4 text-2xl text-primary">Sign in</h2>
+                        <h2 className="mb-4 text-2xl text-primary">Log in</h2>
                         <input className="mb-4 w-2/3 px-4 py-2 border border-primary rounded-full" type="text"
                                placeholder="Username" required/>
                         <input className="mb-4 w-2/3 px-4 py-2 border border-primary rounded-full" type="password"
                                placeholder="Password" required/>
                         <button className="w-1/2 p-2 bg-primary text-white rounded-full hover:bg-accent"
-                                type="submit">Sign in
+                                type="submit">Log in
                         </button>
                     </form>
                     <a className="mt-4 text-primary hover:text-accent hover:underline" href="#">Forgot Password?</a>
@@ -58,7 +58,7 @@ function LoginForm() {
                         <p className="mx-4 text-secondary">OR</p>
                         <hr className="w-1/4 border-t border-secondary"/>
                     </div>
-                    <p className="mt-4 text-primary">Login with:</p>
+                    <p className="mt-4 text-primary">Log in with:</p>
                     <div className="flex w-full justify-center mt-4">
                         <button className="mx-2 login-icon">
                             <FontAwesomeIcon icon={['fab', 'facebook']} size="2x"/>

@@ -3,7 +3,7 @@ import '../main.css'
 
 const Footer = () => {
     return (
-        <nav className="flex justify-between mx-5 pb-10 pt-5">
+        <nav className="flex justify-between mx-20 pb-10 pt-5">
             <div className="flex flex-col w-36">
                 <img src="/logo.png" alt="Forklore logo" className="w-full h-auto flex-none"/>
                 <p className="mt-1 text-accent">Just fork it.</p>

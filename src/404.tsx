@@ -12,7 +12,7 @@ const PageNotFound = () => {
                 <br/>
                 Fear not! We have plenty of recipes to choose from. Let's get you back on track.
             </p>
-            <button className="btn bg-primary py-2 px-4 my-4 rounded hover:bg-accent text-white" onClick={() => navigate(-1)}></button>
+            <button className="btn bg-primary py-2 px-4 my-4 rounded hover:bg-accent text-white" onClick={() => navigate(-1)}>Go back</button>
         </div>
     );
 };
