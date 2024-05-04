@@ -13,16 +13,16 @@ import {useNavigate} from "react-router-dom";
 library.add(fab)
 
 function SignUpForm() {
-    const [userId, setUserId] = useState("");
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function handleSignUpWithEmailAndPassword(event: FormEvent) {
         event.preventDefault();
         // @ts-ignore
-        const email = event.target.email;
+        const email = event.target.email.value;
         // @ts-ignore
-        const password = event.target.password;
+        const password = event.target.password.value;
 
         // check if email is valid, password is valid
 
@@ -52,7 +52,6 @@ function SignUpForm() {
                 <div className="flex flex-col items-center justify-center h-screen">
                     <form onSubmit={handleSignUpWithEmailAndPassword} className="flex flex-col w-3/5 max-w-lg mx-auto items-center">
                         <h2 className="mb-4 text-2xl text-primary">Sign up</h2>
-                        <h3>{userId}</h3>
                         <div className="flex flex-row items-stretch justify-center w-full">
                             {/* First name field*/}
                             <input name={"firstName"} className="mb-4 mr-1 px-4 py-2 w-full p-2 border border-primary rounded-full"
