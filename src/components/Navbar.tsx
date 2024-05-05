@@ -16,7 +16,7 @@ const Navbar = () => {
     }, []);
     return (
         <nav
-            className={`sticky top-0 flex justify-between items-center rounded-full mx-auto px-2.5 py-2.5 transition-all duration-200 ${scrolled ? "w-3/5 border border-accent backdrop-blur-sm top-1" : "w-full"}`}>
+            className={`sticky top-0 flex justify-between items-center rounded-full mx-auto px-2.5 py-2.5 transition-all duration-200 ${scrolled ? "w-3/5 border border-accent bg-white/[0.5] backdrop-blur-lg top-1" : "w-full"}`}>
             <div className={'flex items-center'}>
                 <div className={'mr-10'}>
                     {scrolled
