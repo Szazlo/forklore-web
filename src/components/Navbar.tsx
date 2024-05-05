@@ -38,7 +38,7 @@ const Navbar = () => {
                 </ul>
             </div>
             {/*    TODO: Search component*/}
-            <button className="btn border border-primary text-primary font-bold py-2 px-4 rounded hover:bg-gray-300"
+            <button className={`btn border border-primary text-primary font-bold py-2 px-4 hover:bg-gray-300 ${scrolled ? "rounded-full" : "rounded"}`}
                     onClick={() => navigate("/login")}>Log in
             </button>
         </nav>
