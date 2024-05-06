@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './main.css'
 
 const PageNotFound = () => {
+    const navigate = useNavigate();
     return (
         <div className="flex flex-col items-center justify-center h-screen">
             <h2 className="text-4xl text-primary">Lost in the sauce?</h2>
@@ -11,7 +12,7 @@ const PageNotFound = () => {
                 <br/>
                 Fear not! We have plenty of recipes to choose from. Let's get you back on track.
             </p>
-            <button className="btn bg-primary py-2 px-4 my-4 rounded hover:bg-accent"><Link to="/" className="text-white">Go to homepage</Link></button>
+            <button className="btn bg-primary py-2 px-4 my-4 rounded hover:bg-accent text-white" onClick={() => navigate(-1)}>Go back</button>
         </div>
     );
 };
