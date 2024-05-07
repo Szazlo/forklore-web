@@ -1,6 +1,11 @@
 # Project change log
 ===================
 
+### 0.0.8 2024-05-06
+* Added profile button on navbar when user is signed in
+* Added (working) sign out button in navbar profile menu
+* Made it so every page except the register and login will show the header and footer.
+
 ### 0.0.7 2024-05-03
 * Added `/recipe` route template.
 
