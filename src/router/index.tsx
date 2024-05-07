@@ -3,7 +3,7 @@ import LoginForm from "@/pages/login";
 import PageNotFound from "@/pages/404";
 import SignUpForm from "@/pages/register/register.tsx";
 import Recipe from "@/pages/Recipe";
-import Root from "../components/Root.tsx";
+import Root from "@/components/Root.tsx";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
