@@ -1,7 +1,7 @@
 import Home from "@/pages/Home";
 import LoginForm from "@/pages/login";
 import PageNotFound from "@/pages/404";
-import SignUpForm from "@/pages/register/register.tsx";
+import SignUpForm from "@/pages/register";
 import Recipe from "@/pages/Recipe";
 import Root from "@/components/Root.tsx";
 import { createBrowserRouter } from "react-router-dom";
