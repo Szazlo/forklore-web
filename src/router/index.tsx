@@ -1,8 +1,8 @@
-import Home from "../index.tsx";
-import LoginForm from "../login.tsx";
-import PageNotFound from "@/404.tsx";
-import SignUpForm from "@/register.tsx";
-import Recipe from "@/recipe.tsx";
+import Home from "@/pages/Home";
+import LoginForm from "@/pages/login";
+import PageNotFound from "@/pages/404";
+import SignUpForm from "@/pages/register/register.tsx";
+import Recipe from "@/pages/Recipe";
 import Root from "../components/Root.tsx";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -12,10 +12,10 @@ export const router = createBrowserRouter([
 		element: <Root />,
 		children: [
 			{
-        path: '/',
-        index: true,
-        element: <Home />,
-      },
+				path: "/",
+				index: true,
+				element: <Home />,
+			},
 			{
 				path: "/recipe",
 				element: <Recipe />,
