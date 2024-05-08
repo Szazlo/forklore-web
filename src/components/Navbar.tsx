@@ -1,89 +1,76 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "../main.css";
-import { useEffect, useState } from "react";
-import LogoShort from "@/components/logos/LogoShort.tsx";
+import "@/main.css";
 import { selectUser } from "@/store";
 import { useSelector } from "react-redux";
 import HeaderProfileButton from "./HeaderProfileButton";
+import { AppBar, Box, Button, IconButton, Toolbar, useMediaQuery, useTheme } from "@mui/material";
+import LinksDrawer from "./LinksDrawer";
+import SearchIcon from '@mui/icons-material/Search';
+import LogoShort from "./logos/LogoShort";
 
 const Navbar = () => {
+	const theme = useTheme();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [scrolled, setScrolled] = useState(false);
 	const user = useSelector(selectUser);
-
-	// Listen for scroll event and animate the header appropriately
-	useEffect(() => {
-		return window.addEventListener("scroll", () => {
-			setScrolled(window.scrollY > 30);
-		});
-	}, []);
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
-		<nav
-			className={`sticky top-0 flex justify-between items-center rounded-full mx-auto px-2.5 py-2.5 transition-all duration-200 ${scrolled ? "w-3/5 border border-accent bg-white/[0.5] backdrop-blur-lg top-1" : "w-full"}`}
-		>
+		<AppBar color="transparent" sx={{ boxShadow: "none" }} position="static">
+			<Toolbar className="flex justify-between" sx={{ px: 0.5 }}>
 			<div className={"flex items-center"}>
-				<div className={"mr-10"}>
-					{scrolled ? (
-						<LogoShort />
-					) : (
-						<a className={`transition-all ${scrolled ? "w-0" : ""}`} href="/">
-							<img src="/logo.png" alt="Forklore logo" className="h-8" />
-						</a>
-					)}
-				</div>
-				<ul className="flex gap-5">
-					<li>
-						<Link
-							className={
-								location.pathname == "/"
+				{isMobile && <LinksDrawer />}
+				<Link className="mr-10" to="/">
+					{isMobile ? <LogoShort /> : <img src="/logo.png" alt="Forklore logo" className="h-8" />}
+				</Link>
+				{!isMobile &&
+					<ul className="flex gap-5">
+						<li>
+							<Link className={location.pathname == "/" ? "underline decoration-primary decoration-4": ""} to="/">
+								Feed
+							</Link>
+						</li>
+						<li>
+							<Link
+								className={
+									location.pathname == "/recipes"
 									? "underline decoration-primary decoration-4"
 									: ""
-							}
-							to="/"
-						>
-							Feed
-						</Link>
-					</li>
-					<li>
-						<Link
-							className={
-								location.pathname == "/recipes"
+								}
+								to="/recipes"
+								>
+								Recipes
+							</Link>
+						</li>
+						<li>
+							<Link
+								className={
+									location.pathname == "/tips"
 									? "underline decoration-primary decoration-4"
 									: ""
-							}
-							to="/recipes"
-						>
-							Recipes
-						</Link>
-					</li>
-					<li>
-						<Link
-							className={
-								location.pathname == "/tips"
-									? "underline decoration-primary decoration-4"
-									: ""
-							}
-							to="/tips"
-						>
-							Cooking Tips
-						</Link>
-					</li>
-				</ul>
+								}
+								to="/tips"
+								>
+								Cooking Tips
+							</Link>
+						</li>
+					</ul>
+				}
 			</div>
-			{/*    TODO: Search component*/}
-			{user ? (
-				<HeaderProfileButton />
-			) : (
-				<button
-					className={`btn border border-primary text-primary font-bold py-2 px-4 hover:bg-gray-300 ${scrolled ? "rounded-full" : "rounded"}`}
-					onClick={() => navigate("/signup")}
-				>
-					Sign up
-				</button>
-			)}
-		</nav>
+				<Box>
+				{isMobile && 
+				// TODO: Add search box
+					<IconButton size="large" aria-label="search">
+							<SearchIcon />
+					</IconButton>}
+				{user ? (
+					<HeaderProfileButton />
+				) : (
+					<Button variant="outlined" sx={{ fontWeight: "bold"}} onClick={() => navigate("/signup")}>Sign up</Button>
+				)}
+				</Box>
+			</Toolbar>
+		</AppBar>
 	);
 };
 
