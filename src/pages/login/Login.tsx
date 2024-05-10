@@ -8,6 +8,7 @@ import { useDispatch /* useSelector */ } from "react-redux";
 // import { selectUser } from "./store";
 import { login } from "@/store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import {Button, TextField, Typography} from '@mui/material';
 
 library.add(fab);
 
@@ -47,35 +48,21 @@ function LoginForm() {
 					className="hidden lg:block h-10"
 				/>
 			</div>
-			<div className="w-full lg:w-1/2 bg-white items-center">
-				<div className="flex flex-col items-center justify-center h-screen">
-					<form className="flex flex-col w-3/5 max-w-lg mx-auto items-center">
-						<h2 className="mb-4 text-2xl text-primary">Log in</h2>
-						<input
-							className="mb-4 w-2/3 px-4 py-2 border border-primary rounded-full"
-							type="text"
-							placeholder="Username"
-							required
-						/>
-						<input
-							className="mb-4 w-2/3 px-4 py-2 border border-primary rounded-full"
-							type="password"
-							placeholder="Password"
-							required
-						/>
-						<button
-							className="w-1/2 p-2 bg-primary text-white rounded-full hover:bg-accent"
-							type="submit"
-						>
+			<div className="w-full h-full lg:w-1/2 bg-white items-center">
+				<div className="flex flex-col items-center justify-center mt-5 lg:mt-0 lg:h-screen">
+					<Typography variant={"h3"} color={"primary"} gutterBottom>Log in</Typography>
+					<form className="flex flex-col w-4/5 sm:w-1/2 mx-auto items-center">
+						<TextField label="Username" required fullWidth margin={"normal"} InputProps={{ sx: { borderRadius: 7 }}}/>
+						<TextField label="Password" required fullWidth margin={"dense"} InputProps={{ sx: { borderRadius: 7 }}}/>
+						<div className={"w-full text-right"}>
+							<Button variant={"text"} sx={{ textTransform: "capitalize"}}>
+								Forgot Password?
+							</Button>
+						</div>
+						<Button variant={"contained"} color={"primary"} sx={{ width: 150 }}>
 							Log in
-						</button>
+						</Button>
 					</form>
-					<a
-						className="mt-4 text-primary hover:text-accent hover:underline"
-						href="#"
-					>
-						Forgot Password?
-					</a>
 					<a
 						className="mt-4 text-primary hover:text-accent hover:underline"
 						href="/signup"
