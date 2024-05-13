@@ -10,7 +10,7 @@ export default function LinksDrawer() {
   return (
     <>
       <IconButton onClick={() => setOpen(true)}>
-        <MenuRoundedIcon />
+        <MenuRoundedIcon fontSize="large"/>
       </IconButton>
 
       <SwipeableDrawer anchor="left" open={open} onClose={() => setOpen(false)} onOpen={() => setOpen(true)}>
