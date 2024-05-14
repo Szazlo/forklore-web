@@ -5,26 +5,27 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 // import { selectUser } from "./store";
 import { auth } from "@/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/auth/authSlice.ts";
 import { useNavigate } from "react-router-dom";
-import { Button, Divider, Typography } from "@mui/material";
+import { Button, Divider, TextField, Typography } from "@mui/material";
 
 library.add(fab);
 
 function SignUpForm() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [emailError, setEmailError] = useState("");
 
 	function handleSignUpWithEmailAndPassword(event: FormEvent) {
 		event.preventDefault();
-		// @ts-ignore
-		const email = event.target.email.value;
-		// @ts-ignore
-		const password = event.target.password.value;
-
-		// check if email is valid, password is valid
+		// TODO: Check if password is valid
 		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				// Signed up
@@ -33,9 +34,11 @@ function SignUpForm() {
 				dispatch(login(user));
 				navigate("/");
 			})
-			.catch((error) => {
-				const errorMessage = error.message;
-				console.error(errorMessage);
+			.catch(error => {
+				// TODO: Add more error handles on singup
+				if (error.code === "auth/email-already-in-use") {
+					setEmailError("Email already in use.");
+				}
 			});
 	}
 
@@ -52,44 +55,14 @@ function SignUpForm() {
 					<Typography variant="h3" gutterBottom color="primary">Sign up</Typography>
 					<form onSubmit={handleSignUpWithEmailAndPassword} className="text-center mb-4">
 						<div className="flex w-full gap-2">
-							{/* First name field*/}
-							<input
-								name="firstName"
-								className="mb-4 px-4 py-2 w-full border border-primary rounded-full"
-								placeholder="First Name"
-							/>
-							{/* Last Name Field*/}
-							<input
-								name="lastName"
-								className="mb-4 px-4 py-2 w-full border border-primary rounded-full"
-								placeholder="Last Name"
-							/>
+							<TextField value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth margin="normal" name="firstName" label="First Name" />
+							<TextField value={lastName} onChange={(e) => setLastName(e.target.value)}fullWidth margin="normal" name="lastName" label="Last Name" />
 						</div>
-						{/* Username field */}
-						<input
-							name="username"
-							className="mb-4 w-full px-4 py-2 border border-primary rounded-full"
-							placeholder="Username"
-							required
-						/>
-						{/* Email field */}
-						<input
-							name="email"
-							className="mb-4 w-full px-4 py-2 border border-primary rounded-full"
-							type="email"
-							placeholder="Email"
-							required
-						/>
-						{/* Password field */}
-						<input
-							name={"password"}
-							className="mb-4 w-full px-4 py-2 border border-primary rounded-full"
-							type="password"
-							placeholder="Password"
-							required
-						/>
+						<TextField value={username} onChange={(e) => setUsername(e.target.value)} name="username" fullWidth margin="dense" label="Username" required />
+						<TextField value={email} onChange={(e) => setEmail(e.target.value)} name="email" fullWidth margin="dense" type="email" label="Email" placeholder="masterchef@mail.com" required error={emailError !== ""} helperText={emailError}/>
+						<TextField value={password} onChange={(e) => setPassword(e.target.value)}name="password" fullWidth margin="normal" type="password" label="Password" required/>
 						{/* TODO: Confirm password field? */}
-						<Button variant="contained" sx={{ width: 0.5 }}>Sign up</Button>
+						<Button type="submit" variant="contained" sx={{ width: 0.5 }}>Sign up</Button>
 					</form>
 					<a className="mt-4 text-primary hover:text-accent hover:underline" href="/login">
 						Already have an account? Sign in
