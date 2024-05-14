@@ -3,12 +3,12 @@ import { auth } from "@/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useDispatch /* useSelector */ } from "react-redux";
-// import { selectUser } from "./store";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { login } from "@/store/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import {Button, TextField, Typography} from '@mui/material';
+import { FormEvent, useState } from "react";
 
 library.add(fab);
 
@@ -17,6 +17,9 @@ function LoginForm() {
 	// const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
 
 	// Signs the user in with google
 	const signInWithGoogle = () => {
@@ -31,6 +34,21 @@ function LoginForm() {
 				console.log(err);
 			});
 	};
+
+	const handleSignInWithEmailAndPassword = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		signInWithEmailAndPassword(auth, email, password)
+			.then(userCredential => {
+				dispatch(login(userCredential.user))
+				navigate("/");
+			})
+			.catch(err => {
+				console.log(err);
+				if (err.code === "auth/wrong-password") {
+					setErrorMessage("Error: Invalid Credentials");
+				}
+			})
+	}
 
 	return (
 		<div className="flex flex-col lg:flex-row h-screen bg-primary">
@@ -51,18 +69,19 @@ function LoginForm() {
 			<div className="w-full h-full lg:w-1/2 bg-white items-center">
 				<div className="flex flex-col items-center justify-center mt-5 lg:mt-0 lg:h-screen">
 					<Typography variant={"h3"} color={"primary"} gutterBottom>Log in</Typography>
-					<form className="flex flex-col w-4/5 sm:w-1/2 mx-auto items-center">
-						<TextField label="Username" required fullWidth margin={"normal"} InputProps={{ sx: { borderRadius: 7 }}}/>
-						<TextField label="Password" required fullWidth margin={"dense"} InputProps={{ sx: { borderRadius: 7 }}}/>
+
+					<form onSubmit={handleSignInWithEmailAndPassword} className="flex flex-col w-4/5 sm:w-1/2 mx-auto items-center">
+						<TextField name="email" value={email} onChange={(e) => setEmail(e.target.value)} label="Email" required fullWidth margin={"normal"}/>
+						<TextField name="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" type="password" required fullWidth margin={"dense"} 
+								error={errorMessage !== ""} helperText={errorMessage}/>
 						<div className={"w-full text-right"}>
-							<Button variant={"text"} sx={{ textTransform: "capitalize"}}>
+							<Button variant={"text"} sx={{ textTransform: "capitalize"}} type="button">
 								Forgot Password?
 							</Button>
 						</div>
-						<Button variant={"contained"} color={"primary"} sx={{ width: 150 }}>
-							Log in
-						</Button>
+						<Button variant="contained" color="primary" sx={{ width: 150 }} type="submit">Log in</Button>
 					</form>
+
 					<a
 						className="mt-4 text-primary hover:text-accent hover:underline"
 						href="/signup"
