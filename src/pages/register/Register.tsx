@@ -9,7 +9,7 @@ import { FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/auth/authSlice.ts";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 
 library.add(fab);
 
