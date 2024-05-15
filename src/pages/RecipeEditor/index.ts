@@ -1,1 +1,1 @@
-export {default} from "./RecipeEditor";
+export {default} from "./Editor";
