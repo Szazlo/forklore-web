@@ -34,6 +34,20 @@ const recipes: RecipeCardData[] & any = [
 		difficulty: "easy",
 		createdAt: Timestamp.now(),
 		image: prawnPilPil,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson2",
+		title: "Halal Fried Chicken",
+		publisher: {
+			username: "laplace",
+			firstName: "Daithi",
+			lastName: "Williamson",
+		},
+		cookingTime: 135,
+		averageRating: 5.0,
+		difficulty: "Michelin Chef",
+		createdAt: Timestamp.now(),
+		image: prawnPilPil,
 	}
 ];
 
@@ -41,7 +55,7 @@ function Home() {
 	const recipeCards = recipes.map((recipeData: RecipeCardData & any) => {
 		return (
 			<Grid item key={recipeData.id} xs={12} md={6}>
-				<Card  sx={{ borderRadius: 6, maxWidth: 400 }}>
+				<Card  sx={{ borderRadius: 6, maxWidth: 600 }}>
 					<CardActionArea>
 						<CardMedia sx={{ borderRadius: 6, height: 200, objectFit: "cover" }} component="img" height="140" image={recipeData?.image} alt={recipeData.title} />
 						<CardContent>
