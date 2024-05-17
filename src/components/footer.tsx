@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "../main.css";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function addToMailingList(event: any) {
 	event.preventDefault();
@@ -22,84 +23,97 @@ function addToMailingList(event: any) {
 
 const Footer = () => {
 	return (
-		<footer className="flex flex-wrap justify-between gap-y-5 mx-3 pb-10 pt-5 tex-xs md:text-md">
-			{/* Logo */}
-			<div className="flex-initial basis-36">
-				<img src="/logo.png" alt="Forklore logo" />
-				<p className="mt-1 text-accent">Just fork it.</p>
+		<footer className="bg-gray-200 py-8">
+			<div className="container mx-auto px-4">
+				<div className="flex flex-col md:flex-row justify-between items-left mb-6">
+					<div className="text-center md:text-left mb-4 md:mb-0">
+						<img src={"/public/logo.png"} alt="Forklore logo" className="h-8"/>
+						<p className="mt-2 max-w-md text-left">The purpose of lorem ipsum is to create a natural looking block of
+							text (sentence, paragraph, page, etc.) that doesn't distract from the layout.</p>
+					</div>
+				</div>
+				<div className="flex flex-wrap justify-between items-start mb-6">
+					<div className="w-full md:w-1/3 mb-4 md:mb-0">
+						<h2 className="text-lg font-semibold mb-3">Products</h2>
+						<ul>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/">
+								Feed
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/recipes">
+									Recipes
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/tips">
+									Cooking Tips
+								</Link>
+							</li>
+						</ul>
+					</div>
+					<div className="w-full md:w-1/3 mb-4 md:mb-0">
+						<h2 className="text-lg font-semibold mb-3">Company</h2>
+						<ul>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/about">
+									About us
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/contact">
+									Contact
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/news">
+									News
+								</Link>
+							</li>
+						</ul>
+					</div>
+					<div className="w-full md:w-1/3">
+						<h2 className="text-lg font-semibold mb-3">Resources</h2>
+						<ul>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/faq">
+									FAQ
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/blog">
+									Blog
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/privacy">
+									Privacy Policy
+								</Link>
+							</li>
+							<li className="mb-2">
+								<Link className={"hover:text-accent"} to="/terms">
+									Terms of Service
+								</Link>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div className="flex justify-center md:justify-between items-center">
+					<div className="flex space-x-6">
+						<a href="#" className="hover:text-accent"><FontAwesomeIcon
+							icon={["fab", "facebook"]}/></a>
+						<a href="#" className="hover:text-accent"><FontAwesomeIcon
+							icon={["fab", "x-twitter"]}/></a>
+						<a href="#" className="hover:text-accent"><FontAwesomeIcon
+							icon={["fab", "instagram"]}/></a>
+						<a href="#" className="hover:text-accent"><FontAwesomeIcon
+							icon={["fab", "tiktok"]}/></a>
+					</div>
+				</div>
+				<hr className="border-gray-700 my-6"/>
+				<p className="text-sm text-center md:text-left opacity-50 mt-4 md:mt-0">© 2024 Forklore. All Rights Reserved</p>
 			</div>
-			{/* Ul wrapper */}
-			<div className="flex justify-around basis-full md:basis-1/2">
-				{/* Products section */}
-				<ul className="mx-4">
-					<li className="pb-2 font-bold">Products</li>
-					<li className="pb-2">
-						<Link className={"hover:text-accent"} to="/">
-							Feed
-						</Link>
-					</li>
-					<li className="pb-2">
-						<Link className={"hover:text-accent"} to="/recipes">
-							Recipes
-						</Link>
-					</li>
-					<li>
-						<Link className={"hover:text-accent"} to="/tips">
-							Cooking Tips
-						</Link>
-					</li>
-				</ul>
-				<ul className="mx-4">
-					<li className="pb-2 font-bold">Company</li>
-					<li className="pb-2">
-						<Link className={"hover:text-accent"} to="/about">
-							About us
-						</Link>
-					</li>
-					<li className="pb-2">
-						<Link className={"hover:text-accent"} to="/contact">
-							Contact
-						</Link>
-					</li>
-					<li>
-						<Link className={"hover:text-accent"} to="/news">
-							News
-						</Link>
-					</li>
-				</ul>
-				{/* Resources section */}
-				<ul className="flex flex-col mx-4">
-					<li className="pb-2 font-bold">Resources</li>
-					<li className="pb-2">
-						<Link className={"hover:text-accent"} to="/faq">
-							FAQ
-						</Link>
-					</li>
-					<li className="pb-2">
-						<Link className={"hover:text-accent"} to="/blog">
-							Blog
-						</Link>
-					</li>
-					<li>
-						<Link className={"hover:text-accent"} to="/tips">
-							Tips
-						</Link>
-					</li>
-				</ul>
-			</div>
-			{/* Mailing list Section */}
-			<form className="flex flex-col basis-2/3 md:basis-1/4 sm:mx-auto" onSubmit={addToMailingList}>
-				<p className="mb-2 font-bold">Stay up to date</p>
-				<input
-					className="mb-4 w-full p-2 border border-primary rounded-2xl"
-					type="email"
-					placeholder="Email"
-					required
-				/>
-				<button className="w-full p-2 bg-primary text-white rounded-xl hover:bg-accent">
-					Subscribe
-				</button>
-			</form>
 		</footer>
 	);
 };
