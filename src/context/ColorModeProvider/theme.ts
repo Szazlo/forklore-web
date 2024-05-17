@@ -7,16 +7,19 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     ? {
       primary: {
         main: "#5ea67b",
+        dark: "#6dc58f",
+        contrastText: "#fff" //button text white instead of black
       },
       secondary: {
         main: "#9dd2b1",
       },
       text: {
         primary:"#0f1511",
+        secondary: "#A7A7A7",
       },
       background: {
         default: "#f6f9f7",
-      }
+      },
     }: {
         primary: {
           main: "#59a176",
@@ -27,7 +30,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         text: {
           primary: "#eaf0ec",
         },
-        bacgkround: {
+        background: {
           default: "#060907",
         }
       }
