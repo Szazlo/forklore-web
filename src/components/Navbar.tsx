@@ -1,36 +1,77 @@
-import {Link, useLocation, useNavigate} from "react-router-dom";
-import '../main.css'
-import {useEffect, useState} from 'react';
-import LogoShort from '@/components/logos/LogoShort.tsx';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "@/main.css";
+import { selectUser } from "@/store";
+import { useSelector } from "react-redux";
+import HeaderProfileButton from "./HeaderProfileButton";
+import { AppBar, Box, Button, IconButton, Toolbar, useMediaQuery, useTheme } from "@mui/material";
+import LinksDrawer from "./LinksDrawer";
+import SearchIcon from '@mui/icons-material/Search';
+import LogoShort from "./logos/LogoShort";
 
 const Navbar = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [scrolled, setScrolled] = useState(false);
+	const theme = useTheme();
+	const navigate = useNavigate();
+	const location = useLocation();
+	const user = useSelector(selectUser);
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-     // Listen for scroll event and animate the header appropriately
-    useEffect(() => {
-      return window.addEventListener('scroll', () => {
-        setScrolled(window.scrollY > 30);
-      });
-  }, []);
-    return (
-        <nav className={`sticky top-0 flex justify-between items-center rounded-full mx-auto px-5 py-1 transition-all duration-200 ${scrolled ? "w-3/5 border border-accent backdrop-blur-sm top-1" : "w-full"}`}>
-          <div>
-            {scrolled
-            ? <LogoShort />
-            : <a className={`transition-all ${scrolled ? "w-0" : ""}`} href="/"><img src="/logo.png" alt="Forklore logo" className="h-8" /></a>
-            }
-          </div>
-            <ul className="flex gap-5">
-                <li><Link className={location.pathname=="/"?"underline decoration-primary decoration-4":""} to="/">Feed</Link></li>
-                <li><Link className={location.pathname=="/recipes"?"underline decoration-primary decoration-4":""} to="/recipes">Recipes</Link></li>
-                <li><Link className={location.pathname=="/tips"?"underline decoration-primary decoration-4":""} to="/tips">Cooking Tips</Link></li>
-            </ul>
-        {/*    TODO: Search component*/}
-            <button className="btn bg-primary text-white py-2 px-4 rounded hover:bg-accent" onClick={()=>navigate("/login")}>Sign In</button>
-        </nav>
-    );
+	return (
+		<AppBar color="transparent" sx={{ boxShadow: "none" }} position="static">
+			<Toolbar className="flex justify-between" sx={{ px: 0.5 }}>
+			<div className={"flex items-center"}>
+				{isMobile && <LinksDrawer />}
+				<Link className="mr-10" to="/">
+					{isMobile ? <LogoShort /> : <img src="/logo.png" alt="Forklore logo" className="h-8" />}
+				</Link>
+				{!isMobile &&
+					<ul className="flex gap-5">
+						<li>
+							<Link className={location.pathname == "/" ? "underline decoration-primary decoration-4": ""} to="/">
+								Feed
+							</Link>
+						</li>
+						<li>
+							<Link
+								className={
+									location.pathname == "/recipes"
+									? "underline decoration-primary decoration-4"
+									: ""
+								}
+								to="/recipes"
+								>
+								Recipes
+							</Link>
+						</li>
+						<li>
+							<Link
+								className={
+									location.pathname == "/tips"
+									? "underline decoration-primary decoration-4"
+									: ""
+								}
+								to="/tips"
+								>
+								Cooking Tips
+							</Link>
+						</li>
+					</ul>
+				}
+			</div>
+				<Box>
+				{isMobile && 
+				// TODO: Add search box
+					<IconButton size="large" aria-label="search">
+							<SearchIcon />
+					</IconButton>}
+				{user ? (
+					<HeaderProfileButton />
+				) : (
+					<Button variant="outlined" sx={{ fontWeight: "bold"}} onClick={() => navigate("/signup")}>Sign up</Button>
+				)}
+				</Box>
+			</Toolbar>
+		</AppBar>
+	);
 };
 
 export default Navbar;
