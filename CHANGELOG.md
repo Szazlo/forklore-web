@@ -1,6 +1,13 @@
 # Project change log
 ===================
 
+### 0.0.8 2024-17-05
+* Improved design of register and sign in page
+* Added basic design of home page that includes recipes
+* Fixed issues with the website not working correctly on firebase hosting
+* Restructured frontend code for code scalability
+* Addes sample recipe data (for testing)
+
 ### 0.0.8 2024-05-06
 * Added profile button on navbar when user is signed in
 * Added (working) sign out button in navbar profile menu
