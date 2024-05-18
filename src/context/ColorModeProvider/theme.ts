@@ -1,4 +1,6 @@
-import { PaletteMode } from "@mui/material";
+import { PaletteMode, createTheme, responsiveFontSizes } from "@mui/material";
+
+export const fontTheme = responsiveFontSizes(createTheme());
 
 export const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
@@ -35,4 +37,5 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         }
       }
     }
-  })
+})
+
