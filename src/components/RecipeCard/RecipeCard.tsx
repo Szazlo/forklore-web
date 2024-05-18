@@ -6,7 +6,7 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
-export default function RecipeCard(props: RecipeCardData) {
+export default function RecipeCard(props: RecipeCardData & any) {
   const [bookmarked, setBookmarked] = useState(false);
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -28,7 +28,7 @@ export default function RecipeCard(props: RecipeCardData) {
             <Typography minHeight={50}>{props.title}</Typography>
 
             {/* Publisher and Calories */}
-            {!isTablet && 
+            {!isTablet &&
               <div className="flex justify-between items-center">
 								<div className="flex items-center gap-1">
 									<Avatar sx={{ width: 32, height: 32, bgcolor: "primary.main" }}>D</Avatar>
