@@ -5,22 +5,22 @@ import { db } from "@/firebase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useMediaQuery, useTheme} from "@mui/material";
 
-function addToMailingList(event: any) {
-	event.preventDefault();
-	const email = event.target[0].value;
-	const docRef = doc(db, "mailinglist", email);
-	setDoc(docRef, {
-		email: email,
-	})
-		.then(() => {
-			console.log("Added to mailing list");
-		})
-		.catch((e) => {
-			console.log(e);
-		});
-	event.target[0].value = "";
-	// TODO: Add success notification
-}
+// function addToMailingList(event: any) {
+// 	event.preventDefault();
+// 	const email = event.target[0].value;
+// 	const docRef = doc(db, "mailinglist", email);
+// 	setDoc(docRef, {
+// 		email: email,
+// 	})
+// 		.then(() => {
+// 			console.log("Added to mailing list");
+// 		})
+// 		.catch((e) => {
+// 			console.log(e);
+// 		});
+// 	event.target[0].value = "";
+// 	// TODO: Add success notification
+// }
 
 const Footer = () => {
 	const theme = useTheme();
