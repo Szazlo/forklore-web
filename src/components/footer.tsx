@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../main.css";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "@/firebase";
+// import { doc, setDoc } from "firebase/firestore";
+// import { db } from "@/firebase";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useMediaQuery, useTheme} from "@mui/material";
 
