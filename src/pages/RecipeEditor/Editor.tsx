@@ -5,6 +5,21 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
+import { FilePond, registerPlugin } from 'react-filepond'
+
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css'
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType);
 
 const numbersHours = Array.from({ length: 24 }, (_, i) => i);
 const numbersMinutes = Array.from({ length: 60 }, (_, i) => i + 1);
@@ -15,22 +30,6 @@ const tagsList = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', 'Low Carb'
 function RecipeEditor() {
     const [desc, setDesc] = useState("");
     const maxDescLength = 150;
-    const [image, setImage] = useState("");
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = (event.target.files || [])[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            setImage(reader.result as string);
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    };
-    const handleImageRemove = () => {
-        setImage("");
-    };
 
     const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDesc(e.target.value);
@@ -86,6 +85,11 @@ function RecipeEditor() {
         setTags(value);
     }
 
+    const [files, setFiles] = useState([])
+    const HandleFileChange = (file: any) => {
+        setFiles(files)
+    }
+
     return (
         <main>
             <div className="max-w-3xl mx-auto rounded-2xl p-6 shadow-lg bg-white">
@@ -98,32 +102,16 @@ function RecipeEditor() {
                     placeholder="Black Bean & Cork Quesadillas"
                 />
 
-                <div className="mb-4 w-1/2">
-                    <div className="flex flex-col items-start my-4">
-                        <label className="block text-gray-700 mb-2">Image:</label>
-                        {image && (
-                            <div className={"relative"}>
-                                <img src={image} alt="Recipe Image" className="w-full object-cover rounded mb-2"/>
-                                <button
-                                    className="bg-gray-200 text-error hover:bg-error hover:text-white py-1 px-2 rounded absolute bottom-4 right-2"
-                                    onClick={handleImageRemove}
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        )}
-                        <div>
-                            {!image && (
-                                // place holder image
-                                <div className="relative">
-                                    <img src="https://via.placeholder.com/150" alt="Recipe Image"
-                                         className="w-1/2 object-cover rounded mb-2"/>
-                                    <input type="file" accept="image/*"
-                                           onChange={handleImageChange}/>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                <div className="my-8">
+                    <label className="block text-gray-700 mb-2">Cover Image:</label>
+                    <FilePond
+                        files={files}
+                        onupdatefiles={HandleFileChange}
+                        allowMultiple={false}
+                        acceptedFileTypes={['image/*']}
+                        name="Cover"
+                        labelIdle='Drag & Drop a cover image or <span class="filepond--label-action">Browse</span>'
+                    />
                 </div>
 
                 <div className="mb-4">
@@ -196,7 +184,7 @@ function RecipeEditor() {
 
                 <div className="mb-4 w-56">
                     <label className="block text-gray-700 mb-2">Servings:</label>
-                    <TextField className="bg-white" size="small" type="number" fullWidth placeholder="#"/>
+                    <TextField className="bg-white" size="small" type="number" InputProps={{ inputProps: { min: 0}}} fullWidth placeholder="#"/>
                 </div>
 
                 <div className="mb-4">
