@@ -12,7 +12,7 @@ function RecipeEditor() {
     const maxDescLength = 150;
     const [image, setImage] = useState("");
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files[0];
+        const file = (event.target.files || [])[0];
         const reader = new FileReader();
 
         reader.onloadend = () => {
@@ -53,7 +53,7 @@ function RecipeEditor() {
         setIngredients(ingredients.filter((_, i) => i !== index));
     };
 
-    const handleIngredientChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleIngredientChange = (index: number, event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const newIngredients = ingredients.map((ingredient, i) => (i === index ? event.target.value : ingredient));
         setIngredients(newIngredients);
     };
@@ -66,7 +66,7 @@ function RecipeEditor() {
         setSteps(steps.filter((_, i) => i !== index));
     };
 
-    const handleStepChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleStepChange = (index: number, event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const newSteps = steps.map((step, i) => (i === index ? event.target.value : step));
         setSteps(newSteps);
     };
