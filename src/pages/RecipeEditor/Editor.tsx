@@ -3,9 +3,14 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Autocomplete from '@mui/material/Autocomplete';
+import Chip from '@mui/material/Chip';
 
 const numbersHours = Array.from({ length: 24 }, (_, i) => i);
 const numbersMinutes = Array.from({ length: 60 }, (_, i) => i + 1);
+
+const cuisines = ['Italian', 'Mexican', 'Indian', 'Chinese', 'French'];
+const tagsList = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', 'Low Carb'];
 
 function RecipeEditor() {
     const [desc, setDesc] = useState("");
@@ -71,16 +76,26 @@ function RecipeEditor() {
         setSteps(newSteps);
     };
 
+    const [selectedCuisines, setSelectedCuisines] = useState<string[]>([]);
+    const handleCuisineChange = (_event: React.SyntheticEvent, value: string[]) => {
+        setSelectedCuisines(value);
+    };
+
+    const [selectedTags, setTags] = useState<string[]>([]);
+    const handleAddTag = (_event: React.SyntheticEvent, value: string[]) => {
+        setTags(value);
+    }
+
     return (
         <main>
-            <div className="max-w-2xl mx-auto rounded-lg p-6">
+            <div className="max-w-3xl mx-auto rounded-2xl p-6 shadow-lg bg-white">
                 <h1 className="text-2xl font-semibold mb-4">Create a new recipe</h1>
                 <TextField
                     className="bg-white"
                     size="small"
                     label="Title"
                     fullWidth
-                    placeholder="Recipe Title"
+                    placeholder="Black Bean & Cork Quesadillas"
                 />
 
                 <div className="mb-4 w-1/2">
@@ -101,26 +116,25 @@ function RecipeEditor() {
                             {!image && (
                                 // place holder image
                                 <div className="relative">
-                                <img src="https://via.placeholder.com/150" alt="Recipe Image"
-                                     className="w-1/2 object-cover rounded mb-2"/>
-                                <input type="file" accept="image/*"
-                                       className="bg-gray-300 text-gray-700 py-1 px-3 rounded mt-2"
-                                       onChange={handleImageChange}/>
-                            </div>
+                                    <img src="https://via.placeholder.com/150" alt="Recipe Image"
+                                         className="w-1/2 object-cover rounded mb-2"/>
+                                    <input type="file" accept="image/*"
+                                           onChange={handleImageChange}/>
+                                </div>
                             )}
                         </div>
                     </div>
                 </div>
 
                 <div className="mb-4">
-                <TextField
+                    <TextField
                         className="bg-white"
                         onChange={handleDescriptionChange}
                         label="Description"
                         error={desc.length >= maxDescLength}
                         multiline
                         minRows={2}
-                        placeholder="Introduce your recipe"
+                        placeholder="A quick and easy mexican dish that is perfect for any party or just a simple dinner."
                         fullWidth
                         inputProps={{maxLength: maxDescLength}}
                     />
@@ -271,19 +285,53 @@ function RecipeEditor() {
 
                 <div className="mb-4">
                     <label className="block text-gray-700 mb-2">Cuisine:</label>
-                    <select className="w-full p-2 border border-gray-300 rounded">
-                        <option>Italian</option>
-                    </select>
+                    <Autocomplete
+                        multiple
+                        id="cuisine"
+                        options={cuisines}
+                        value={selectedCuisines}
+                        onChange={handleCuisineChange}
+                        disableCloseOnSelect
+                        renderTags={(value: string[], getTagProps) =>
+                            value.map((option: string, index: number) => (
+                                <Chip label={option} {...getTagProps({index})} />
+                            ))
+                        }
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                variant="standard"
+                                placeholder="Select Cuisine"
+                            />
+                        )}
+                    />
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-gray-700 mb-2">Collection:</label>
-                    <select className="w-full p-2 border border-gray-300 rounded">
-                        <option>1 Collection selected</option>
-                    </select>
+                    <label className="block text-gray-700 mb-2">Tags:</label>
+                    <Autocomplete
+                        multiple
+                        id="cuisine"
+                        options={tagsList}
+                        value={selectedTags}
+                        onChange={handleAddTag}
+                        disableCloseOnSelect
+                        renderTags={(value: string[], getTagProps) =>
+                            value.map((option: string, index: number) => (
+                                <Chip label={option} {...getTagProps({index})} />
+                            ))
+                        }
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                variant="standard"
+                                placeholder="Add tags"
+                            />
+                        )}
+                    />
                 </div>
                 <div className="flex justify-center">
-                    <button className="px-4 py-1 bg-primary hover:bg-accent text-white rounded">Publish</button>
+                <button className="px-4 py-1 bg-primary hover:bg-accent text-white rounded">Publish</button>
                 </div>
             </div>
         </main>
