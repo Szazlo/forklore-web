@@ -4,6 +4,7 @@ import { Box, Button, Container, Grid, Typography, useMediaQuery, useTheme } fro
 import { Timestamp } from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import prawnPilPil from "@/assets/prawnpilpil.jpeg";
+import landingImage from "@/assets/landing.png";
 import landingImage1 from "@/assets/landingImg1.png";
 import BlogSection from "./BlogSection";
 import RecipeCard from "@/components/RecipeCard";
@@ -66,18 +67,27 @@ function Home() {
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Blob />
+				<Blob /> {/* That green yolk on the top right of the page*/}
 				<Container sx={{ textAlign: isMobile ? "center": "left", my: 10 }}>
-					<Typography variant="h2" fontWeight="bold"> Your Daily Dish</Typography>
-					<Typography variant="h2" fontWeight="bold" gutterBottom> A <Typography fontWeight="bold" variant="h2" component="span" color="primary">Food </Typography>Journey</Typography>
-					<Box maxWidth="sm">
-						<Typography color="text.secondary" sx={{ mb: 3 }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, laudantium sequi expedita doloremque cocalar Baabido? </Typography>
-					</Box>
+					<Grid container>
+						<Grid item xs={12} md={6}>
+							<Typography variant="h2" fontWeight="bold"> Your Daily Dish</Typography>
+							<Typography variant="h2" fontWeight="bold" gutterBottom> A <Typography fontWeight="bold" variant="h2" component="span" color="primary">Food </Typography>Journey</Typography>
+							<Box maxWidth="sm">
+								<Typography color="text.secondary" sx={{ mb: 3 }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, laudantium sequi expedita doloremque cocalar Baabido? </Typography>
+							</Box>
 
-					<Box display="flex" alignItems={"center"} justifyContent={isMobile ? "center" :"start"} gap={1}>
-						<Button variant="contained">Log in</Button>
-						<Button variant="outlined">Sign up</Button>
-					</Box>
+							<Box display="flex" alignItems={"center"} justifyContent={isMobile ? "center" :"start"} gap={1}>
+								<Button variant="contained">Log in</Button>
+								<Button variant="outlined">Sign up</Button>
+							</Box>
+						</Grid>
+						{!isMobile &&
+							<Grid item md={6}>
+								<img src={landingImage} />
+							</Grid>
+						}
+					</Grid>
 				</Container>
 
 				<Box display="flex" flexWrap="wrap" mb={8}>
@@ -151,47 +161,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
-/**
-<Container className="flex-grow px-2">
-{recipes
-	? <>
-	<Typography variant="h4" gutterBottom>Recipes for you</Typography>
-	<Grid container spacing={2} justifyContent="space-around" sx={{ overflowX: "scroll" }} wrap="nowrap" pb={2}>
-	{recipeCards}
-	</Grid>
-
-	<Divider sx={{ my: 3 }}/>
-
-	<Typography variant="h4" gutterBottom>Trending</Typography>
-	<Card sx={{ borderRadius: 6 }}>
-	<CardActionArea>
-	<Box display="flex">
-	<CardMedia sx={{ borderRadius: 6, objectFit: "cover", width: 225 }} component="img" image={burgir} alt="burgir" />
-	<CardContent sx={{ p: 1 }}>
-	<Typography variant="h6">{"David's Meat Burgir"}</Typography>
-	<Typography color="text.secondary">by {"Daithi Edginson"}</Typography>
-	</CardContent>
-	</Box>
-	</CardActionArea>
-	</Card>
-
-	<Divider sx={{ my: 3 }} />
-
-	<Typography variant="h4" gutterBottom>Your friends enjoyed</Typography>
-	<Grid container spacing={2} justifyContent="space-around" sx={{ overflowX: "scroll" }} wrap="nowrap" pb={2}>
-	{recipeCards}
-	</Grid>
-	</>
-	:
-	<div className="flex flex-col items-center justify-center h-screen">
-	<h1 className="text-4xl">Welcome to Forklore</h1>
-	<p className="w-1/2 text-center">
-	We are a community of food lovers who share our passion for cooking.
-	</p>
-	</div>
-}
-</Container>
-*/
