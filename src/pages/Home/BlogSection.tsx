@@ -23,7 +23,7 @@ export default function BlogSection() {
 	return (
 		<>
 			<Typography my={4} variant="h2" fontWeight="bold">Blogs</Typography>
-			<Grid container spacing={2}>{blogComponents}</Grid>
+			<Grid container spacing={2} mb={6}>{blogComponents}</Grid>
 		</>
 	)
 }
