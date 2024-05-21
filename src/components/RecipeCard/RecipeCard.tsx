@@ -35,7 +35,7 @@ export default function RecipeCard(props: RecipeCardData & any) {
 									<Typography variant="body2" color="text.secondary">{props.publisher.firstName?.at(0) + ". " + props.publisher.lastName}</Typography>
 								</div>
 
-								<Button size="small" variant="outlined" color="warning" startIcon={<WhatshotIcon />}>251 cals</Button>
+								<Button disableRipple size="small" variant="outlined" color="warning" startIcon={<WhatshotIcon />}>251 cals</Button>
 
               </div>
             }

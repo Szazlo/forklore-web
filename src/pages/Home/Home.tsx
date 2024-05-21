@@ -93,9 +93,9 @@ function Home() {
 
 				<Box display="flex" flexWrap="wrap" mb={8}>
 					<div className="flex-2 md:flex-1">
-						<img src={landingImage1} alt="Phone taking picture of food" />
+						<img className="rounded-xl" src={landingImage1} alt="Phone taking picture of food" />
 					</div>
-					<Container maxWidth="lg" sx={{ flex: 1, textAlign: "center", m: "auto" }}>
+					<Container maxWidth="lg" sx={{ flex: isTablet ? 1 : 1.5, textAlign: "center", m: "auto" }}>
 						<Typography variant="h4" my={2} fontWeight="bold">Share Your Recipes</Typography>
 						<Container maxWidth="sm">
 							<Typography my={2} color="text.secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat accusantium nobis officiis, quia quam commodi quae.</Typography>
