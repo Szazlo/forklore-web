@@ -1,6 +1,6 @@
 import { storage } from "@/firebase";
 import { BlogCardData } from "@/types/Blog";
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { getDownloadURL, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 
@@ -18,11 +18,19 @@ const blogs: BlogCardData[] = [
 ]
 
 export default function BlogSection() {
+	const isMobile = useMediaQuery(useTheme().breakpoints.down("sm"));
 	const blogComponents = blogs.map(blog => <BlogComponent key={blog.id} {...blog} />);
 
 	return (
 		<>
 			<Typography my={4} variant="h2" fontWeight="bold">Blogs</Typography>
+			<div className="w-full text-right">
+				{!isMobile &&
+					<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
+						View more
+					</Button>
+				}
+			</div>
 			<Grid container spacing={2} mb={6}>{blogComponents}</Grid>
 		</>
 	)
