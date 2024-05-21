@@ -61,6 +61,7 @@ const recipes: RecipeCardData[] & any = [
 function Home() {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
 	const recipeCards = recipes.map((recipeData: RecipeCardData & any) => <RecipeCard key={recipeData.id} {...recipeData} />);
 
@@ -68,7 +69,7 @@ function Home() {
 		<>
 			<Container maxWidth="lg">
 				<Blob /> {/* That green yolk on the top right of the page*/}
-				<Container sx={{ textAlign: isMobile ? "center": "left", my: 10 }}>
+				<Container sx={{ textAlign: isTablet ? "center": "left", my: 10 }}>
 					<Grid container>
 						<Grid item xs={12} md={6}>
 							<Typography variant="h2" fontWeight="bold"> Your Daily Dish</Typography>
@@ -77,14 +78,14 @@ function Home() {
 								<Typography color="text.secondary" sx={{ mb: 3 }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, laudantium sequi expedita doloremque cocalar Baabido? </Typography>
 							</Box>
 
-							<Box display="flex" alignItems={"center"} justifyContent={isMobile ? "center" :"start"} gap={1}>
+							<Box display="flex" alignItems={"center"} justifyContent={isTablet ? "center" :"start"} gap={1}>
 								<Button variant="contained">Log in</Button>
 								<Button variant="outlined">Sign up</Button>
 							</Box>
 						</Grid>
-						{!isMobile &&
+						{!isTablet &&
 							<Grid item md={6}>
-								<img src={landingImage} />
+								<img src={landingImage} alt="image of a dish with a review beside it" />
 							</Grid>
 						}
 					</Grid>
@@ -103,7 +104,7 @@ function Home() {
 					</Container>
 				</Box>
 
-				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Trending Recipes</Typography>
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Trending</Typography>
 				<div className="w-full text-right">
 					{!isMobile &&
 						<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
@@ -123,12 +124,12 @@ function Home() {
 							</Button>
 					}
 				</div>
-				<Grid container spacing={3} mb={4}>{recipeCards}</Grid>
+				<Grid container spacing={3} mb={6}>{recipeCards}</Grid>
 			</Container>
 
 			<NewsletterBox />
 
-			<Container maxWidth="lg">
+			<Container maxWidth="lg" sx={{ mb: 8 }}>
 				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Popular Categories</Typography>
 				<div className="w-full text-right">
 					{!isMobile &&
@@ -154,7 +155,7 @@ function Home() {
 						<img src={LunchImage} alt={"Spaghette"} className="rounded-full"/>
 						<Typography fontWeight="bold" my={2} textAlign="center">Smoothie</Typography>
 					</Grid>
-					</Grid>
+				</Grid>
 			</Container>
 		</>
 );

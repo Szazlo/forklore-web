@@ -5,7 +5,7 @@ export default function NewsletterBox() {
 
 
   return (
-    <Box width={1} bgcolor="background.light" py={5} my={4}>
+    <Box width={1} bgcolor="background.light" py={5} my={8}>
       <Container maxWidth="md" sx={{ textAlign: "center" }}>
         <Typography variant="h3" gutterBottom fontWeight="bold">Let's stay in touch!</Typography>
         <Container maxWidth="sm">
