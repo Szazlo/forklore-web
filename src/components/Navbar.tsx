@@ -3,7 +3,7 @@ import "@/main.css";
 import { selectUser } from "@/store";
 import { useSelector } from "react-redux";
 import HeaderProfileButton from "./HeaderProfileButton";
-import { AppBar, Box, Button, IconButton, Toolbar, useMediaQuery, useTheme } from "@mui/material";
+import {AppBar, Box, Button, Container, IconButton, Toolbar, useMediaQuery, useTheme} from "@mui/material";
 import LinksDrawer from "./LinksDrawer";
 import SearchIcon from '@mui/icons-material/Search';
 import LogoShort from "./logos/LogoShort";
@@ -16,6 +16,7 @@ const Navbar = () => {
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	return (
+		<Container maxWidth="lg">
 		<AppBar color="transparent" sx={{ boxShadow: "none" }} position="static">
 			<Toolbar className="flex justify-between" sx={{ px: 0.5 }}>
 			<div className={"flex items-center"}>
@@ -24,7 +25,7 @@ const Navbar = () => {
 					{isMobile ? <LogoShort /> : <img src="/logo.png" alt="Forklore logo" className="h-8" />}
 				</Link>
 				{!isMobile &&
-					<ul className="flex gap-5">
+					<ul className="flex gap-5 mx-auto">
 						<li>
 							<Link className={location.pathname == "/" ? "underline decoration-primary decoration-4": ""} to="/">
 								Feed
@@ -71,6 +72,7 @@ const Navbar = () => {
 				</Box>
 			</Toolbar>
 		</AppBar>
+		</Container>
 	);
 };
 export default Navbar;
