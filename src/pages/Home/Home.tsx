@@ -8,7 +8,7 @@ import landingImage from "@/assets/landing.png";
 import landingImage1 from "@/assets/landingImg1.png";
 import BlogSection from "./BlogSection";
 import RecipeCard from "@/components/RecipeCard";
-import Blob from "./Blob";
+// import Blob from "./Blob";
 import NewsletterBox from '@/components/NewsletterBox.tsx';
 import LunchImage from "@/assets/landing0.png";
 
@@ -63,12 +63,12 @@ function Home() {
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
-	const recipeCards = recipes.map((recipeData: RecipeCardData & any) => <RecipeCard key={recipeData.id} {...recipeData} />);
+	const recipeCards = recipes.map((recipeData: RecipeCardData) => <RecipeCard key={recipeData.id} {...recipeData} />);
 
 	return (
 		<>
 			<Container maxWidth="lg">
-				<Blob /> {/* That green yolk on the top right of the page*/}
+				{/* <Blob /> That green yolk on the top right of the page */}
 				<Container sx={{ textAlign: isTablet ? "center": "left", my: 10 }}>
 					<Grid container>
 						<Grid item xs={12} md={6}>
