@@ -75,7 +75,7 @@ function Home() {
 							<Typography variant="h2" fontWeight="bold"> Your Daily Dish</Typography>
 							<Typography variant="h2" fontWeight="bold" gutterBottom> A <Typography fontWeight="bold" variant="h2" component="span" color="primary">Food </Typography>Journey</Typography>
 							<Box maxWidth="sm">
-								<Typography color="text.secondary" sx={{ mb: 3 }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, laudantium sequi expedita doloremque cocalar Baabido? </Typography>
+								<Typography color="text.secondary" sx={{ mb: 3 }}>A place to share your favourite recipes. What shall we cook today? </Typography>
 							</Box>
 
 							<Box display="flex" alignItems={"center"} justifyContent={isTablet ? "center" :"start"} gap={1}>
