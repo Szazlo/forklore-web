@@ -9,7 +9,7 @@ import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/auth/authSlice.ts";
 import { useNavigate } from "react-router-dom";
-import { Button, Divider, TextField, Typography } from "@mui/material";
+import { Button, Container, Divider, TextField, Typography } from "@mui/material";
 
 library.add(fab);
 
@@ -43,16 +43,13 @@ function SignUpForm() {
 	}
 
 	return (
-		<div className="lg:flex h-screen">
-			<div className="w-full flex items-start justify-start p-4 lg:hidden flex-1">
-				<img src="/logo.png" alt="Forklore logo" className="h-10 mx-auto" />
-			</div>
+		<Container maxWidth="lg" sx={{ display: 'flex', py: 8 }}>
 			<div className="hidden lg:block lg:w-1/2 bg-secondary items-start justify-start p-4">
-				<img src="/logo.png" alt="Forklore logo" className="hidden lg:block h-10" />
+				Insert your favourite animation here
 			</div>
-			<div className="flex-1 flex flex-col lg:items-center mt-10 lg:mt-0">
-				<div className="text-center px-4 m-auto sm:w-3/5">
-					<Typography variant="h3" gutterBottom color="primary">Sign up</Typography>
+			<div className="flex-1">
+				<div className="text-center px-4 m-auto xs:3/5 sm:w-4/5">
+					<Typography variant="h4" gutterBottom color="primary">Sign up</Typography>
 					<form onSubmit={handleSignUpWithEmailAndPassword} className="text-center mb-4">
 						<div className="flex w-full gap-2">
 							<TextField value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth margin="normal" name="firstName" label="First Name" />
@@ -88,7 +85,7 @@ function SignUpForm() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Container>
 	);
 }
 
