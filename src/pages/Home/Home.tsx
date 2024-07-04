@@ -107,7 +107,7 @@ function Home() {
 				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Trending</Typography>
 				<div className="w-full text-right">
 					{!isMobile &&
-						<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
+						<Button variant="text" sx={{ textTransform: "none" }} type="button">
 							View more
 						</Button>
 					}
@@ -119,7 +119,7 @@ function Home() {
 				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Explore</Typography>
 				<div className="w-full text-right">
 					{!isMobile &&
-							<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
+							<Button variant="text" sx={{ textTransform: "none" }} type="button">
 								View more
 							</Button>
 					}
@@ -133,7 +133,7 @@ function Home() {
 				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Popular Categories</Typography>
 				<div className="w-full text-right">
 					{!isMobile &&
-							<Button variant="text" sx={{textTransform: "capitalize"}} type="button">
+							<Button variant="text" sx={{ textTransform: "none" }} type="button">
 								View more
 							</Button>
 					}
