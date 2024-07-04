@@ -26,7 +26,7 @@ export default function BlogSection() {
 			<Typography my={4} variant="h2" fontWeight="bold">Blogs</Typography>
 			<div className="w-full text-right">
 				{!isMobile &&
-					<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
+					<Button variant="text" sx={{ textTransform: "none" }} type="button">
 						View more
 					</Button>
 				}
