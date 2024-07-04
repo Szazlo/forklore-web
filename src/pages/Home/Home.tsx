@@ -1,10 +1,16 @@
 import "@/main.css";
 import { RecipeCardData } from "@/types/recipe";
-import { Box, Card, CardActionArea, CardContent, CardMedia, Container, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Timestamp } from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import prawnPilPil from "@/assets/prawnpilpil.jpeg";
-import StarIcon from '@mui/icons-material/Star';
+import landingImage from "@/assets/landing.png";
+import landingImage1 from "@/assets/landingImg1.png";
+import BlogSection from "./BlogSection";
+import RecipeCard from "@/components/RecipeCard";
+// import Blob from "./Blob";
+import NewsletterBox from '@/components/NewsletterBox.tsx';
+import LunchImage from "@/assets/landing0.png";
 
 // TODO: Remove image attr
 const recipes: RecipeCardData[] & any = [
@@ -53,70 +59,106 @@ const recipes: RecipeCardData[] & any = [
 ];
 
 function Home() {
-	const recipeCards = recipes.map((recipeData: RecipeCardData & any) => {
-		return (
-			<Grid item key={recipeData.id} xs={12} md={6} >
-				<Card sx={{ borderRadius: 6, width: 250 }}>
-					<CardActionArea>
-							<div className="relative">
-							<CardMedia sx={{ borderRadius: 6, height: 200, objectFit: "cover" }} component="img" height="140" image={recipeData?.image} alt={recipeData.title} />
-							<div className="absolute right-0 bottom-4 flex rounded-l-lg justify-center items-center bg-slate-200/75 w-12 pl-1">
-								<Typography color="primary">{recipeData.averageRating}</Typography>
-								<StarIcon htmlColor="gold"/>
-							</div>
-						</div>
-						<CardContent sx={{ py: 1 }}>
-							<Typography variant="h6">{recipeData.title}</Typography>
-							<Typography color="text.secondary">by {recipeData.publisher.firstName + " " + recipeData.publisher.lastName}</Typography>
-						</CardContent>
-					</CardActionArea>
-				</Card>
-			</Grid>
-			)
-		});
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+
+	const recipeCards = recipes.map((recipeData: RecipeCardData) => <RecipeCard key={recipeData.id} {...recipeData} />);
 
 	return (
-		<Container className="flex-grow px-2">
-			{recipes
-			? <>
-				<Typography variant="h4" gutterBottom>Recipes for you</Typography>
-				<Grid container spacing={2} justifyContent="space-around" sx={{ overflowX: "scroll" }} wrap="nowrap" pb={2}>
-					{recipeCards}
-				</Grid>
+		<>
+			<Container maxWidth="lg">
+				{/* <Blob /> That green yolk on the top right of the page */}
+				<Container sx={{ textAlign: isTablet ? "center": "left", my: 10 }}>
+					<Grid container>
+						<Grid item xs={12} md={6}>
+							<Typography variant="h2" fontWeight="bold"> Your Daily Dish</Typography>
+							<Typography variant="h2" fontWeight="bold" gutterBottom> A <Typography fontWeight="bold" variant="h2" component="span" color="primary">Food </Typography>Journey</Typography>
+							<Box maxWidth="sm">
+								<Typography color="text.secondary" sx={{ mb: 3 }}>A place to share your favourite recipes. What shall we cook today? </Typography>
+							</Box>
 
-				<Divider sx={{ my: 3 }}/>
+							<Box display="flex" alignItems={"center"} justifyContent={isTablet ? "center" :"start"} gap={1}>
+								<Button variant="contained">Log in</Button>
+								<Button variant="outlined">Sign up</Button>
+							</Box>
+						</Grid>
+						{!isTablet &&
+							<Grid item md={6}>
+								<img src={landingImage} alt="image of a dish with a review beside it" />
+							</Grid>
+						}
+					</Grid>
+				</Container>
 
-				<Typography variant="h4" gutterBottom>Trending</Typography>
-				<Card sx={{ borderRadius: 6 }}>
-					<CardActionArea>
-						<Box display="flex">
-							<CardMedia sx={{ borderRadius: 6, objectFit: "cover", width: 225 }} component="img" image={burgir} alt="burgir" />
-							<CardContent sx={{ p: 1 }}>
-								<Typography variant="h6">{"David's Meat Burgir"}</Typography>
-								<Typography color="text.secondary">by {"Daithi Edginson"}</Typography>
-							</CardContent>
-						</Box>
-					</CardActionArea>
-				</Card>
+				<Box display="flex" flexWrap="wrap" mb={8}>
+					<div className="flex-2 md:flex-1">
+						<img className="rounded-xl" src={landingImage1} alt="Phone taking picture of food" />
+					</div>
+					<Container maxWidth="lg" sx={{ flex: isTablet ? 1 : 1.5, textAlign: "center", m: "auto" }}>
+						<Typography variant="h4" my={2} fontWeight="bold">Share Your Recipes</Typography>
+						<Container maxWidth="sm">
+							<Typography my={2} color="text.secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat accusantium nobis officiis, quia quam commodi quae.</Typography>
+						</Container>
+						<Button variant="contained">Create a Recipe</Button>
+					</Container>
+				</Box>
 
-				<Divider sx={{ my: 3 }} />
-
-				<Typography variant="h4" gutterBottom>Your friends enjoyed</Typography>
-				<Grid container spacing={2} justifyContent="space-around" sx={{ overflowX: "scroll" }} wrap="nowrap" pb={2}>
-					{recipeCards}
-				</Grid>
-			</>
-			:
-				<div className="flex flex-col items-center justify-center h-screen">
-					<h1 className="text-4xl">Welcome to Forklore</h1>
-					<p className="w-1/2 text-center">
-						We are a community of food lovers who share our passion for cooking.
-					</p>
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Trending</Typography>
+				<div className="w-full text-right">
+					{!isMobile &&
+						<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
+							View more
+						</Button>
+					}
 				</div>
-			}
-		</Container>
-	);
+				<Grid container spacing={3}>{recipeCards}</Grid>
+
+				<BlogSection />
+
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Explore</Typography>
+				<div className="w-full text-right">
+					{!isMobile &&
+							<Button variant="text" sx={{ textTransform: "capitalize" }} type="button">
+								View more
+							</Button>
+					}
+				</div>
+				<Grid container spacing={3} mb={6}>{recipeCards}</Grid>
+			</Container>
+
+			<NewsletterBox />
+
+			<Container maxWidth="lg" sx={{ mb: 8 }}>
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">Popular Categories</Typography>
+				<div className="w-full text-right">
+					{!isMobile &&
+							<Button variant="text" sx={{textTransform: "capitalize"}} type="button">
+								View more
+							</Button>
+					}
+				</div>
+				<Grid container spacing={2}>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full"/>
+						<Typography fontWeight="bold" my={2} textAlign="center">Lunch</Typography>
+					</Grid>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full"/>
+						<Typography fontWeight="bold" my={2} textAlign="center">Dinner</Typography>
+					</Grid>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full"/>
+						<Typography fontWeight="bold" my={2} textAlign="center">Pizza</Typography>
+					</Grid>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full"/>
+						<Typography fontWeight="bold" my={2} textAlign="center">Smoothie</Typography>
+					</Grid>
+				</Grid>
+			</Container>
+		</>
+);
 }
 
 export default Home;
-

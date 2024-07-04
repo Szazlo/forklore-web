@@ -1,4 +1,6 @@
-import { PaletteMode } from "@mui/material";
+import {PaletteMode, createTheme, responsiveFontSizes, alpha} from "@mui/material";
+
+export const fontTheme = responsiveFontSizes(createTheme());
 
 export const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
@@ -12,13 +14,16 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       },
       secondary: {
         main: "#9dd2b1",
+        dark: "#"
       },
       text: {
         primary:"#0f1511",
         secondary: "#A7A7A7",
+        dark: "#737373"
       },
       background: {
         default: "#f6f9f7",
+        light: alpha("#9dd2b1", 0.4)
       },
     }: {
         primary: {
@@ -35,4 +40,5 @@ export const getDesignTokens = (mode: PaletteMode) => ({
         }
       }
     }
-  })
+})
+

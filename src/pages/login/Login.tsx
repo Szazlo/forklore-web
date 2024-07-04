@@ -6,8 +6,8 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/auth/authSlice";
-import { useNavigate } from "react-router-dom";
-import {Button, TextField, Typography} from '@mui/material';
+import { Link, useNavigate } from "react-router-dom";
+import {Button, Container, TextField, Typography} from '@mui/material';
 import { FormEvent, useState } from "react";
 
 library.add(fab);
@@ -51,43 +51,31 @@ function LoginForm() {
 	}
 
 	return (
-		<div className="flex flex-col lg:flex-row h-screen bg-primary">
-			<div className="bg-white items-center p-4 lg:hidden">
-				<img
-					src="/public/logo.png"
-					alt="Forklore logo"
-					className="h-10 mx-auto"
-				/>
+		<Container maxWidth="lg" sx={{ display: 'flex', py: 8 }}>
+			<div className="hidden flex-1 lg:block lg:w-1/2 bg-secondary justify-start p-4">
+				Insert Animation here
 			</div>
-			<div className="hidden lg:block lg:w-1/2 bg-secondary items-start justify-start p-4">
-				<img
-					src="/public/logo.png"
-					alt="Forklore logo"
-					className="hidden lg:block h-10"
-				/>
-			</div>
-			<div className="w-full h-full lg:w-1/2 bg-white items-center">
-				<div className="flex flex-col items-center justify-center mt-5 lg:mt-0 lg:h-screen">
-					<Typography variant={"h3"} color={"primary"} gutterBottom>Log in</Typography>
+			<div className="flex-1">
+				<div className="text-center mt-5 lg:mt-0 p-4">
+					<Typography variant="h4" color="primary" gutterBottom>Log in</Typography>
 
-					<form onSubmit={handleSignInWithEmailAndPassword} className="flex flex-col w-4/5 sm:w-1/2 mx-auto items-center">
-						<TextField name="email" value={email} onChange={(e) => setEmail(e.target.value)} label="Email" required fullWidth margin={"normal"}/>
-						<TextField name="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" type="password" required fullWidth margin={"dense"} 
+					<form onSubmit={handleSignInWithEmailAndPassword} className="flex flex-col w-4/5 sm:w-1/2 mx-auto items-center mb-4">
+						<TextField name="email" value={email} onChange={(e) => setEmail(e.target.value)} label="Email" required fullWidth margin="normal"/>
+						<TextField name="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" type="password" required fullWidth margin="dense"
 								error={errorMessage !== ""} helperText={errorMessage}/>
 						<div className={"w-full text-right"}>
-							<Button variant={"text"} sx={{ textTransform: "capitalize"}} type="button">
+							<Button variant="text" sx={{ textTransform: "capitalize"}} type="button">
 								Forgot Password?
 							</Button>
 						</div>
-						<Button variant="contained" color="primary" sx={{ width: 150 }} type="submit">Log in</Button>
+						<Button type="submit" variant="contained" sx={{ width: 150 }} >Log in</Button>
 					</form>
 
-					<a
+					<Link to="/signup"
 						className="mt-4 text-primary hover:text-accent hover:underline"
-						href="/signup"
 					>
 						Don't have an account? Sign up
-					</a>
+					</Link>
 					<div className="flex justify-center items-center w-full mt-4">
 						<hr className="w-1/4 border-t border-secondary" />
 						<p className="mx-4 text-secondary">OR</p>
@@ -117,7 +105,7 @@ function LoginForm() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Container>
 	);
 }
 

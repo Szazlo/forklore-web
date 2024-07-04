@@ -21,17 +21,17 @@ export const router = createBrowserRouter([
 				element: <Recipe />,
 			},
 			{
+				path: "/login",
+				element: <LoginForm />,
+			},
+			{
+				path: "/signup",
+				element: <SignUpForm />,
+			},
+			{
 				path: "*",
 				element: <PageNotFound />,
 			},
 		],
-	},
-	{
-		path: "/login",
-		element: <LoginForm />,
-	},
-	{
-		path: "/signup",
-		element: <SignUpForm />,
 	},
 ]);

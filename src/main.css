@@ -11,7 +11,7 @@
 		--accent: #6dc58f;
 		font-family: "Inter", sans-serif;
 	}
-	
+
 	.dark {
 		--text: #eaf0ec;
 		--background: #060907;
@@ -22,16 +22,18 @@
 }
 
 .login-icon {
-		color: var(--primary);
-		transition: color 0.3s ease, transform 0.3s ease;
-	}
-	.login-icon:hover {
-		color: var(--accent);
-		transform: scale(1.1);
-	}
+	color: var(--primary);
+	transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.login-icon:hover {
+	color: var(--accent);
+	transform: scale(1.1);
+}
 
 body {
 	width: 100vw;
 	background: var(--background);
 	color: var(--text);
+	overflow-x: hidden;
 }
