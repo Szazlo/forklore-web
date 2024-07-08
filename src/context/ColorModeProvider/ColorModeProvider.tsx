@@ -1,7 +1,6 @@
 import { CssBaseline, PaletteMode, ThemeProvider, createTheme } from "@mui/material";
 import { ReactNode, createContext, useMemo, useState } from "react";
-import { getDesignTokens } from "./theme";
-
+import { getDesignTokens, fontTheme } from "./theme";
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {}});
 
@@ -15,7 +14,7 @@ export function ColorModeProvider({ children }: { children: ReactNode }) {
     },
   }), []);
 
-  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = useMemo(() => createTheme(fontTheme, getDesignTokens(mode)), [mode]);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

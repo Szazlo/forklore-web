@@ -3,7 +3,6 @@ import LoginForm from "@/pages/login";
 import PageNotFound from "@/pages/404";
 import SignUpForm from "@/pages/register";
 import Recipe from "@/pages/Recipe";
-import RecipeEditor from "@/pages/RecipeEditor";
 import Root from "@/components/Root.tsx";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -26,17 +25,17 @@ export const router = createBrowserRouter([
 				element: <RecipeEditor />,
 			},
 			{
+				path: "/login",
+				element: <LoginForm />,
+			},
+			{
+				path: "/signup",
+				element: <SignUpForm />,
+			},
+			{
 				path: "*",
 				element: <PageNotFound />,
 			},
 		],
-	},
-	{
-		path: "/login",
-		element: <LoginForm />,
-	},
-	{
-		path: "/signup",
-		element: <SignUpForm />,
 	},
 ]);
