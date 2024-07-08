@@ -4,6 +4,7 @@ import PageNotFound from "@/pages/404";
 import SignUpForm from "@/pages/register";
 import Recipe from "@/pages/Recipe";
 import Root from "@/components/Root.tsx";
+import Feed from "@/pages/Feed";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/signup",
 				element: <SignUpForm />,
+			},
+			{
+				path: "/feed",
+				element: <Feed />,
 			},
 			{
 				path: "*",
