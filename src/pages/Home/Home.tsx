@@ -11,6 +11,8 @@ import RecipeCard from "@/components/RecipeCard";
 // import Blob from "./Blob";
 import NewsletterBox from '@/components/NewsletterBox.tsx';
 import LunchImage from "@/assets/landing0.png";
+// import StarIcon from '@mui/icons-material/Star';
+import Blob from '@/components/HomeBlob.tsx';
 
 // TODO: Remove image attr
 const recipes: RecipeCardData[] & any = [
@@ -68,7 +70,7 @@ function Home() {
 	return (
 		<>
 			<Container maxWidth="lg">
-				{/* <Blob /> That green yolk on the top right of the page */}
+				<Blob />
 				<Container sx={{ textAlign: isTablet ? "center": "left", my: 10 }}>
 					<Grid container>
 						<Grid item xs={12} md={6}>
@@ -162,3 +164,4 @@ function Home() {
 }
 
 export default Home;
+
