@@ -86,7 +86,8 @@ function RecipeEditor() {
     }
 
     const [files, setFiles] = useState([])
-    const HandleFileChange = (file: any) => {
+    // TODO: Szazlo see about this unused argument
+    const HandleFileChange = (/* file: any */) => {
         setFiles(files)
     }
 
