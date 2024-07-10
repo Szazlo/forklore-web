@@ -26,7 +26,7 @@ const Footer = () => {
 	const theme = useTheme();
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 	return (
-		<footer className="bg-gray-200 py-8">
+		<footer className="bg-gray-200 py-8 mt-4">
 			<div className="container mx-auto px-4">
 				{ isTablet && <FooterLogo/> }
 				<div className="flex flex-row md:flex-wrap justify-between items-start mb-6">
