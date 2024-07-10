@@ -1,6 +1,7 @@
 import "@/main.css";
 import { RecipeCardData } from "@/types/recipe";
 import { Box, Button, Container, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import useSnack from "@/context/SnackbarProvider";
 import { Timestamp } from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import prawnPilPil from "@/assets/prawnpilpil.jpeg";
@@ -64,6 +65,7 @@ function Home() {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+	const { addSnack } = useSnack();
 
 	const recipeCards = recipes.map((recipeData: RecipeCardData) => <RecipeCard key={recipeData.id} {...recipeData} />);
 
@@ -81,7 +83,7 @@ function Home() {
 							</Box>
 
 							<Box display="flex" alignItems={"center"} justifyContent={isTablet ? "center" :"start"} gap={1}>
-								<Button variant="contained">Log in</Button>
+								<Button variant="contained" onClick={() => addSnack("Lauri toaster", 'error')}>Log in</Button>
 								<Button variant="outlined">Sign up</Button>
 							</Box>
 						</Grid>
