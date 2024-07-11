@@ -1,5 +1,7 @@
 # Project change log
 ===================
+### 0.0.9 2024-10-07
+* Added Snackbar Context provider and hook
 
 ### 0.0.8 2024-17-05
 * Improved design of register and sign in page
