@@ -1,6 +1,8 @@
 # Project change log
 ===================
-### 0.0.9 2024-10-07
+### 0.0.9 2024-13-07
+* Added stock images for the sign in and sign up page for desktop
+* Added a box shadow container for the stock image and form
 * Added Snackbar Context provider and hook
 
 ### 0.0.8 2024-17-05
