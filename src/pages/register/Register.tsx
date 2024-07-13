@@ -66,15 +66,11 @@ function SignUpForm() {
 								<TextField value={lastName} onChange={(e) => setLastName(e.target.value)} fullWidth margin="normal"
 													 name="lastName" label="Last Name" />
 							</div>
-							<TextField value={username} onChange={(e) => setUsername(e.target.value)} name="username" fullWidth
-												 margin="dense" label="Username" required />
-							<TextField value={email} onChange={(e) => setEmail(e.target.value)} name="email" fullWidth margin="dense"
-												 type="email" label="Email" placeholder="masterchef@mail.com" required error={emailError !== ""}
-												 helperText={emailError} />
-							<TextField value={password} onChange={(e) => setPassword(e.target.value)} name="password" fullWidth
-												 margin="normal" type="password" label="Password" required />
-							{/* TODO: Confirm password field? */}
-							<Button type="submit" variant="contained" sx={{ width: 0.5 }}>Sign up</Button>
+							<TextField value={username} onChange={(e) => setUsername(e.target.value)} name="username" fullWidth margin="dense" label="Username" required />
+							<TextField value={email} onChange={(e) => setEmail(e.target.value)} name="email" fullWidth margin="dense" type="email" label="Email" placeholder="masterchef@mail.com" required error={emailError !== ""} helperText={emailError}/>
+							<TextField value={password} onChange={(e) => setPassword(e.target.value)}name="password" fullWidth margin="dense" type="password" label="Password" required error={passwordError !== ""} helperText={passwordError} />
+							<TextField value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} name="password-confirm" fullWidth margin="dense" type="password" label="Confirm Password" required />
+							<Button type="submit" variant="contained" sx={{ width: 0.5, m: 1 }} >Sign up</Button>
 						</form>
 						<Link to="/login" className="mt-4 text-primary hover:text-accent hover:underline" >
 							Already have an account? Sign in
@@ -98,33 +94,6 @@ function SignUpForm() {
 								<FontAwesomeIcon icon={["fab", "apple"]} size="2x" />
 							</a>
 						</div>
-						<TextField value={username} onChange={(e) => setUsername(e.target.value)} name="username" fullWidth margin="dense" label="Username" required />
-						<TextField value={email} onChange={(e) => setEmail(e.target.value)} name="email" fullWidth margin="dense" type="email" label="Email" placeholder="masterchef@mail.com" required error={emailError !== ""} helperText={emailError}/>
-						<TextField value={password} onChange={(e) => setPassword(e.target.value)}name="password" fullWidth margin="dense" type="password" label="Password" required error={passwordError !== ""} helperText={passwordError} />
-						<TextField value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} name="password-confirm" fullWidth margin="dense" type="password" label="Confirm Password" required />
-						<Button type="submit" variant="contained" sx={{ width: 0.5, m: 1 }} >Sign up</Button>
-					</div>
-					<a className="mt-4 text-primary hover:text-accent hover:underline" href="/login">
-						Already have an account? Sign in
-					</a>
-					<Divider flexItem sx={{ p: 1, color: "primary.main" }}>OR</Divider>
-					<Typography color="primary">Sign Up with:</Typography>
-					<div className="flex w-full justify-center mt-4">
-						<button className="mx-2 login-icon">
-							<FontAwesomeIcon icon={["fab", "facebook"]} size="2x" />
-						</button>
-						<button className="mx-2 login-icon">
-							<FontAwesomeIcon icon={["fab", "google"]} size="2x" />
-						</button>
-						<button className="mx-2 login-icon">
-							<FontAwesomeIcon icon={["fab", "microsoft"]} size="2x" />
-						</button>
-						<button className="mx-2 login-icon">
-							<FontAwesomeIcon icon={["fab", "twitter"]} size="2x" />
-						</button>
-						<a href="#" className="mx-2 login-icon">
-							<FontAwesomeIcon icon={["fab", "apple"]} size="2x" />
-						</a>
 					</div>
 				</div>
 			</Box>
