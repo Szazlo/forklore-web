@@ -9,6 +9,7 @@
 		--primary: #5ea67b;
 		--secondary: #9dd2b1;
 		--accent: #6dc58f;
+		--error: #ff6161;
 		font-family: "Inter", sans-serif;
 	}
 
@@ -18,6 +19,7 @@
 		--primary: #59a176;
 		--secondary: #2d6241;
 		--accent: #3a925c;
+		--error: #ff6161;
 	}
 }
 
