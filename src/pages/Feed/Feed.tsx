@@ -1,6 +1,6 @@
 import "@/main.css";
 import {RecipeCardData} from "@/types/recipe";
-import {Container, Grid} from "@mui/material";
+import {Container} from "@mui/material";
 import {Timestamp} from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import RecipeCard from "@/components/RecipeCard";
