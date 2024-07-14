@@ -6,6 +6,7 @@ import Recipe from "@/pages/Recipe";
 import Root from "@/components/Root.tsx";
 import Feed from "@/pages/Feed";
 import { createBrowserRouter } from "react-router-dom";
+import RecipeEditor from "@/pages/RecipeEditor"
 
 export const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/recipe",
 				element: <Recipe />,
+			},
+			{
+				path: "/recipecreator",
+				element: <RecipeEditor />,
 			},
 			{
 				path: "/login",

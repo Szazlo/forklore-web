@@ -23,6 +23,7 @@ module.exports = {
 				primary: "var(--primary)",
 				secondary: "var(--secondary)",
 				accent: "var(--accent)",
+				error: "var(--error)",
 			},
 			borderRadius: {
 				lg: "var(--radius)",
