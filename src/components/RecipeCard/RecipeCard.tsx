@@ -40,7 +40,7 @@ export default function RecipeCard(props: RecipeCardData & any) {
                             height: { xs: 150, sm: 200, md: 250 }
                         }}
                     />
-                    <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', mb: 2 }}>
+                    <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start'}}>
                         <Box sx={{ flex: 2 }}>
                             <Typography variant="body1" color="text.primary" fontWeight={"bold"}>
                                 {props.title}

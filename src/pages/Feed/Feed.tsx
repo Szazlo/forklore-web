@@ -1,6 +1,6 @@
 import "@/main.css";
 import {RecipeCardData} from "@/types/recipe";
-import {Container} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import {Timestamp} from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import RecipeCard from "@/components/RecipeCard";
@@ -139,8 +139,8 @@ function Recipe() {
 
     return (
         <>
-            <Container maxWidth={"lg"}>
-                    {recipeCards}
+            <Container maxWidth="lg" sx={{ display: 'grid', gap: 2, gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr' } }}>
+                {recipeCards}
             </Container>
         </>
     );
