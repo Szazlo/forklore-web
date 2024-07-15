@@ -1,92 +1,131 @@
 import "@/main.css";
+import {
+	Avatar,
+	Box,
+	Breadcrumbs,
+	Checkbox,
+	Container,
+	Divider, FormControlLabel,
+	FormGroup,
+	Grid,
+	Rating, Stack,
+	Typography,
+} from "@mui/material";
+import { RecipeData } from "@/types/recipe";
+import { Timestamp } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import Burgir from "@/assets/burgir.jpeg";
+
+const recipeData: RecipeData = {
+	id: "dfasfsa12we",
+	title: "Mici",
+	publisher: {
+		username: "marioc14",
+		firstName: "Mario",
+		lastName: "Caval",
+	},
+	serveCount: 4,
+	prepTime: 5,
+	cookingTime: 20,
+	difficulty: "easy",
+	averageRating: 4.3,
+	createdAt: Timestamp.now(),
+	ingredients: [
+		{ id: "1", name: "1g flour" },
+		{ id: "2", name: "70g sugar" },
+		{ id: "3", name: "20ml milk" },
+		{ id: "4", name: "200ml water" },
+		{ id: "5", name: "70g minced pork" },
+		{ id: "6", name: "100g beef lard/tallow" },
+	],
+	about: "This recipe features a vibrant and refreshing salad made with a medley of mixed greens, accompanied by a flavorful sun-dried tomato dressing.",
+	steps: [
+		{ stepNumber: 1, content: "Preheat the oven to 180 degrees", hasImage: false },
+		{ stepNumber: 2, content: "Mix the flour, sugar, and milk in a bowl", hasImage: false },
+		{ stepNumber: 3, content: "Add water and mix until sticky", hasImage: false },
+		{ stepNumber: 4, content: "Pour the mixture into a baking tray", hasImage: false },
+		{ stepNumber: 5, content: "Slice into 2 x 15cm sticks", hasImage: false },
+		{ stepNumber: 6, content: "Bake for 5 minutes", hasImage: false },
+	],
+};
 
 function Recipe() {
 	return (
-		<>
-			<main className={"flex-grow mx-40"}>
-				<div className="flex flex-col justify-start w-full">
-					<div className="flex h-auto w-full items-start justify-center">
-						<img
-							src={
-								"https://nomadparadise.com/wp-content/uploads/2023/04/501_00fi-735x490.jpg"
-							}
-							alt="Recipe"
-							className={"w-auto max-h-96 rounded-2xl mr-4"}
-						/>
-						<div className="flex w-full h-96 border-2 border-secondary rounded-2xl">
-							<div className="flex flex-col justify-between w-full p-4">
-								<div className="flex items-start justify-between">
-									<div>
-										<h1 className="text-4xl">Recipe Name</h1>
-										<p>Description</p>
-									</div>
-									<div className={"flex flex-col"}>
-										<div className="flex">
-											<img
-												src={
-													"https://i1.sndcdn.com/artworks-000351391263-hmj4bg-t500x500.jpg"
-												}
-												alt="Profile"
-												className="h-11 w-11 mx-2 rounded-full"
-											/>
-											<div className="flex flex-col justify-end">
-												<p className={"block"}>Nibba Shrigga</p>
-												<p className={"flex justify-end text-primary text-sm"}>
-													@shrigger
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div className="flex justify-between items-end">
-									<div className="flex flex-col items-start">
-										<p>
-											<b>Prep Time: </b>40 min
-										</p>
-										<p>
-											<b>Cook Time: </b>25 min
-										</p>
-										<p>
-											<b>Difficulty: </b>Medium
-										</p>
-									</div>
-									<div className="flex flex-col items-end justify-end">
-										<div className="flex items-end justify-end">
-											<button className={"btn"}>Save</button>
-											<button className={"btn"}>Share</button>
-										</div>
-										<p className={"text-yellow-400 text-3xl"}>* * * *</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="flex flex-col w-full justify-start mt-4 p-4 border-2 border-primary rounded-2xl">
-						<h2 className="text-2xl mb-2">Ingredients</h2>
-						<ul className={"list-disc list-inside"}>
-							<li>1g flour</li>
-							<li>70g sugar</li>
-							<li>20ml milk</li>
-							<li>200ml water</li>
-							<li>70g minced pork</li>
-							<li>100g beef lard/tallow</li>
-						</ul>
-					</div>
-					<div className="flex flex-col w-full justify-start mt-4 p-4 border-2 border-primary rounded-2xl">
-						<h2 className="text-2xl mb-2">Instructions</h2>
-						<ol className={"list-decimal list-inside"}>
-							<li>Preheat the oven to 180 degrees</li>
-							<li>Mix the flour, sugar, and milk in a bowl</li>
-							<li>Add water and mix until sticky</li>
-							<li>Pour the mixture into a baking tray</li>
-							<li>Slice into 2x15cm sticks</li>
-							<li>Bake for 5 minutes</li>
-						</ol>
-					</div>
+		<Container maxWidth="lg">
+			<Breadcrumbs separator="›" sx={{ my: 2 }}>
+				<Link to="/" className="hover:underline">Home</Link>
+				<Link to="/recipes" className="hover:underline">Recipes</Link>
+				<Link to="#" className="hover:underline">Mici</Link>
+			</Breadcrumbs>
+			<Typography variant="h1" gutterBottom>{recipeData.title}</Typography>
+			<Grid container gap={2}>
+				<div className="flex items-center gap-2">
+					<Avatar sx={{ height: 25, width: 25, bgcolor: "primary.main" }} />
+					<Typography>{recipeData.publisher.firstName} {recipeData.publisher.lastName}</Typography>
 				</div>
-			</main>
-		</>
+				<div className="flex items-center gap-2">
+					<CalendarMonthIcon color="primary" />
+					<Typography>{formatDate(recipeData.createdAt)}</Typography>
+				</div>
+				<div className="flex items-center gap-2">
+					<Rating value={recipeData.averageRating} size="small"></Rating>
+					<Typography variant="body2" color="text.dark">4.6 / 10 reviews</Typography>
+				</div>
+			</Grid>
+
+			<Box width={1} my={2}>
+				<img src={Burgir} alt={"burgir"} className="w-full rounded" />
+			</Box>
+
+			<Grid container justifyContent="space-around">
+				<div className="text-center">
+					<Typography variant="body1" color="text.dark">Prep time</Typography>
+					{recipeData.cookingTime} mins
+				</div>
+				<Divider orientation="vertical" flexItem />
+				{recipeData.prepTime && // Not all recipes have a prep time
+					<div className="text-center">
+						<Typography variant="body1" color="text.dark">Cook time</Typography>
+						{recipeData.prepTime} mins
+					</div>
+				}
+				<Divider orientation="vertical" flexItem />
+				<div className="text-center">
+					<Typography variant="body1" color="text.dark">Serves</Typography>
+					{recipeData.serveCount}
+				</div>
+			</Grid>
+
+			<Typography my={4}>{recipeData.about}</Typography>
+
+			<Typography variant="h3">Ingredients</Typography>
+			<FormGroup>
+				{recipeData.ingredients.map(ingredient =>
+					<FormControlLabel key={ingredient.id} control={<Checkbox color="primary" />} label={ingredient.name} />
+				)}
+			</FormGroup>
+
+			<Typography variant="h3" my={4}>Steps</Typography>
+			<Stack spacing={3}>
+				{recipeData.steps.map(step =>
+					<div className="flex" key={step.stepNumber}>
+						<Box className="mr-4 w-6 text-center text-white" bgcolor="primary.main" borderRadius={1}>{step.stepNumber}</Box>
+						<Typography>{step.content}</Typography>
+					</div>
+				)}
+			</Stack>
+
+			<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }}/>
+
+			<Typography variant="h3">Comments</Typography>
+			<Typography>TODO</Typography>
+		</Container>
 	);
+}
+
+function formatDate(timestamp: Timestamp) {
+	return timestamp.toDate().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }
 
 export default Recipe;
