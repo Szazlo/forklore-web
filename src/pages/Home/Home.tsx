@@ -12,6 +12,8 @@ import RecipeCard from "@/components/RecipeCard";
 // import Blob from "./Blob";
 import NewsletterBox from '@/components/NewsletterBox.tsx';
 import LunchImage from "@/assets/landing0.png";
+import {useSelector} from "react-redux";
+import {selectUser} from "@/store";
 // import StarIcon from '@mui/icons-material/Star';
 import Blob from '@/components/HomeBlob.tsx';
 
@@ -62,6 +64,7 @@ const recipes: RecipeCardData[] & any = [
 ];
 
 function Home() {
+	const user = useSelector(selectUser);
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
@@ -81,11 +84,15 @@ function Home() {
 							<Box maxWidth="sm">
 								<Typography color="text.secondary" sx={{ mb: 3 }}>A place to share your favourite recipes. What shall we cook today? </Typography>
 							</Box>
-
+							{!user ? (
 							<Box display="flex" alignItems={"center"} justifyContent={isTablet ? "center" :"start"} gap={1}>
 								<Button variant="contained" onClick={() => addSnack("Lauri toaster", 'error')}>Log in</Button>
 								<Button variant="outlined">Sign up</Button>
 							</Box>
+							) : (
+								<Button variant="contained">Discover recipes</Button>
+							)
+							}
 						</Grid>
 						{!isTablet &&
 							<Grid item md={6}>
@@ -128,7 +135,7 @@ function Home() {
 							</Button>
 					}
 				</div>
-				<Grid container spacing={3} mb={6}>{recipeCards}</Grid>
+				<Grid container spacing={3}>{recipeCards}</Grid>
 			</Container>
 
 			<NewsletterBox />
