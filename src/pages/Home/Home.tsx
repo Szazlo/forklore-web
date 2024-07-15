@@ -135,7 +135,7 @@ function Home() {
 							</Button>
 					}
 				</div>
-				<Grid container spacing={3} mb={6}>{recipeCards}</Grid>
+				<Grid container spacing={3}>{recipeCards}</Grid>
 			</Container>
 
 			<NewsletterBox />
