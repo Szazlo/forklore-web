@@ -22,9 +22,13 @@ export interface RecipeData extends RecipeCardData {
 export interface RecipeReview {
   id: string,
   recipeId: string,
-  title: string,
+  // title: string,
   body: string,
-  reviewer: ForkloreUser,
+  rating: number,
+  reviewer: ForkloreUserMeta,
+  likes: number,
+  numReplies: number
+  reviewedAt: Timestamp
 }
 
 /** Standalone ingredient, i.e. general information */
