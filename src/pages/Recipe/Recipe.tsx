@@ -2,7 +2,7 @@ import "@/main.css";
 import {
 	Avatar,
 	Box,
-	Breadcrumbs,
+	Breadcrumbs, Button,
 	Checkbox,
 	Container,
 	Divider, FormControlLabel,
@@ -16,6 +16,9 @@ import { Timestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Burgir from "@/assets/burgir.jpeg";
+import RecipeReviewRenderer from "@/pages/Recipe/RecipeReview.tsx";
+import type { RecipeReview } from "@/types/recipe";
+import ReviewForm from "@/pages/Recipe/ReviewForm.tsx";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -49,6 +52,37 @@ const recipeData: RecipeData = {
 		{ stepNumber: 6, content: "Bake for 5 minutes", hasImage: false },
 	],
 };
+
+const reviews: RecipeReview[] = [
+	{
+		id: "1",
+		body: "Wow, this mixed Greens with Sun-dried tomato dressing recipe is a flavour explosion in my mouth! Very delicious.",
+		recipeId: "123",
+		reviewer: {
+			username: "sarajson",
+			firstName: "Sara",
+			lastName: "Johnson",
+		},
+		rating: 3,
+		likes: 20,
+		numReplies: 1,
+		reviewedAt: Timestamp.now(),
+	},
+	{
+		id: "2",
+		body: "Bloody lovely mate",
+		recipeId: "123",
+		reviewer: {
+			username: "dntB_a_knt",
+			firstName: "Billy",
+			lastName: "Butcher",
+		},
+		rating: 4,
+		likes: 1,
+		numReplies: 0,
+		reviewedAt: Timestamp.now(),
+	},
+];
 
 function Recipe() {
 	return (
@@ -102,7 +136,7 @@ function Recipe() {
 			<Typography variant="h3">Ingredients</Typography>
 			<FormGroup>
 				{recipeData.ingredients.map(ingredient =>
-					<FormControlLabel key={ingredient.id} control={<Checkbox color="primary" />} label={ingredient.name} />
+					<FormControlLabel key={ingredient.id} control={<Checkbox color="primary" />} label={ingredient.name} />,
 				)}
 			</FormGroup>
 
@@ -110,16 +144,23 @@ function Recipe() {
 			<Stack spacing={3}>
 				{recipeData.steps.map(step =>
 					<div className="flex" key={step.stepNumber}>
-						<Box className="mr-4 w-6 text-center text-white" bgcolor="primary.main" borderRadius={1}>{step.stepNumber}</Box>
+						<Box className="mr-4 w-6 text-center text-white" bgcolor="primary.main"
+								 borderRadius={1}>{step.stepNumber}</Box>
 						<Typography>{step.content}</Typography>
-					</div>
+					</div>,
 				)}
 			</Stack>
 
-			<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }}/>
+			<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }} />
 
-			<Typography variant="h3">Comments</Typography>
-			<Typography>TODO</Typography>
+			<Typography gutterBottom variant="h3">Reviews</Typography>
+			<Divider sx={{ mb: 2 }} />
+
+			{reviews.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
+			<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>Load more</Button>
+
+			<Typography variant="h5" my={1} fontWeight="bold">Rate this recipe and share your opinion</Typography>
+			<ReviewForm />
 		</Container>
 	);
 }
