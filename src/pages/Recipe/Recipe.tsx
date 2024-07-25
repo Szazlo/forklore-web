@@ -11,14 +11,16 @@ import {
 	Rating, Stack,
 	Typography,
 } from "@mui/material";
-import { RecipeData } from "@/types/recipe";
+import { RecipeCardData, RecipeData } from "@/types/recipe";
 import { Timestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import Burgir from "@/assets/burgir.jpeg";
+import burgir from "@/assets/burgir.jpeg";
 import RecipeReviewRenderer from "@/pages/Recipe/RecipeReview.tsx";
 import type { RecipeReview } from "@/types/recipe";
 import ReviewForm from "@/pages/Recipe/ReviewForm.tsx";
+import RecipeCard from "@/components/RecipeCard";
+import NewsletterBox from "@/components/NewsletterBox.tsx";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -84,6 +86,52 @@ const reviews: RecipeReview[] = [
 	},
 ];
 
+const recipes: (RecipeCardData & { image: string })[] = [
+	{
+		id: "gourmet_cheeseburger_davwilson",
+		title: "Gourmet Cheeseburger",
+		publisher: {
+			username: "davwilson",
+			firstName: "David",
+			lastName: "Wilson",
+		},
+		cookingTime: 20,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: Timestamp.now(),
+		image: burgir,
+		serveCount: 2,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson1",
+		title: "Prawn Pil Pil",
+		publisher: {
+			username: "laplace",
+			firstName: "Lauri",
+			lastName: "Kiukkonen",
+		},
+		cookingTime: 10,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: Timestamp.now(),
+		image: burgir,
+		serveCount: 2,
+	},
+];
+
+const nutritionalValues = [
+	{ name: "Calories", value: 494 },
+	{ name: "Carbs", value: 80 },
+	{ name: "Fat", value: 18 },
+	{ name: "Protein", value: 24 },
+	{ name: "Fiber", value: 23 },
+	{ name: "Net Carbs", value: 56 },
+	{ name: "Sodium", value: 444 },
+	{ name: "Cholesterol", value: 0 },
+];
+
+const tags = ["Dessert",  "Baking", "FoodBlog", "CheesecakeRecipe", "DeliciousDesserts"];
+
 function Recipe() {
 	return (
 		<Container maxWidth="lg">
@@ -109,7 +157,7 @@ function Recipe() {
 			</Grid>
 
 			<Box width={1} my={2}>
-				<img src={Burgir} alt={"burgir"} className="w-full rounded" />
+				<img src={burgir} alt={"burgir"} className="w-full rounded" />
 			</Box>
 
 			<Grid container justifyContent="space-around">
@@ -161,8 +209,42 @@ function Recipe() {
 
 			<Typography variant="h5" my={1} fontWeight="bold">Rate this recipe and share your opinion</Typography>
 			<ReviewForm />
+
+			<Typography variant="h4" fontWeight="bold" my={3}>You might like</Typography>
+			<Grid container gap={2}>
+				{recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
+			</Grid>
+
+			<Box className="bg-gray-200 my-6 py-5 px-5">
+				<Typography variant="h5" fontWeight="bold" gutterBottom>Nutrition Facts</Typography>
+				<Stack spacing={1}>
+					{nutritionalValues.map(nut =>
+						<div className="flex justify-between border-b border-gray-300" key={nut.name}>
+							<Typography color="text.dark">{nut.name}</Typography>
+							<Typography>{nut.value}</Typography>
+						</div>,
+					)}
+				</Stack>
+			</Box>
+
+			<NewsletterBox />
+
+			{/* Tags */}
+			<Typography variant="h3" gutterBottom fontWeight="bold">Tags</Typography>
+			<Grid container gap={1} mb={6}>
+				{tags.map(tag => <TagButton tag={tag} />)}
+			</Grid>
 		</Container>
 	);
+}
+
+function TagButton(props: any) {
+
+	return (
+		<Button variant="outlined" sx={{ textTransform: "none", color: "gray" }}>
+			#{props.tag}
+		</Button>
+	)
 }
 
 function formatDate(timestamp: Timestamp) {
