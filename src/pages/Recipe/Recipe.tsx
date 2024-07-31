@@ -9,7 +9,7 @@ import {
 	FormGroup,
 	Grid,
 	Rating, Stack,
-	Typography,
+	Typography, useMediaQuery, useTheme,
 } from "@mui/material";
 import { RecipeCardData, RecipeData } from "@/types/recipe";
 import { Timestamp } from "firebase/firestore";
@@ -21,6 +21,8 @@ import type { RecipeReview } from "@/types/recipe";
 import ReviewForm from "@/pages/Recipe/ReviewForm.tsx";
 import RecipeCard from "@/components/RecipeCard";
 import NewsletterBox from "@/components/NewsletterBox.tsx";
+import RecipePrintCard from "@/pages/Recipe/RecipePrintCard.tsx";
+import { formatDate } from "@/lib/utils.ts";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -130,9 +132,12 @@ const nutritionalValues = [
 	{ name: "Cholesterol", value: 0 },
 ];
 
-const tags = ["Dessert",  "Baking", "FoodBlog", "CheesecakeRecipe", "DeliciousDesserts"];
+const tags = ["Dessert", "Baking", "FoodBlog", "CheesecakeRecipe", "DeliciousDesserts"];
 
 function Recipe() {
+	const theme = useTheme();
+	const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+
 	return (
 		<Container maxWidth="lg">
 			<Breadcrumbs separator="›" sx={{ my: 2 }}>
@@ -152,7 +157,7 @@ function Recipe() {
 				</div>
 				<div className="flex items-center gap-2">
 					<Rating value={recipeData.averageRating} size="small"></Rating>
-					<Typography variant="body2" color="text.dark">4.6 / 10 reviews</Typography>
+					<Typography variant="body2" color="text.dark">{recipeData.averageRating} / 10 reviews</Typography>
 				</div>
 			</Grid>
 
@@ -181,6 +186,7 @@ function Recipe() {
 
 			<Typography my={4}>{recipeData.about}</Typography>
 
+			{/* Ingredients */}
 			<Typography variant="h3">Ingredients</Typography>
 			<FormGroup>
 				{recipeData.ingredients.map(ingredient =>
@@ -188,33 +194,40 @@ function Recipe() {
 				)}
 			</FormGroup>
 
+			{/* Steps */}
 			<Typography variant="h3" my={4}>Steps</Typography>
 			<Stack spacing={3}>
 				{recipeData.steps.map(step =>
 					<div className="flex" key={step.stepNumber}>
-						<Box className="mr-4 w-6 text-center text-white" bgcolor="primary.main"
-								 borderRadius={1}>{step.stepNumber}</Box>
+						<Box className="mr-4 w-6 max-h-6 text-center text-white rounded" bgcolor="primary.main">{step.stepNumber}</Box>
 						<Typography>{step.content}</Typography>
 					</div>,
 				)}
 			</Stack>
 
+			{/* Recipe Print Card for desktop */}
+			{isTablet && <RecipePrintCard {...recipeData} />}
+
 			<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }} />
 
+			{/* Reviews */}
 			<Typography gutterBottom variant="h3">Reviews</Typography>
 			<Divider sx={{ mb: 2 }} />
 
 			{reviews.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
 			<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>Load more</Button>
 
+			{/* Review Form*/}
 			<Typography variant="h5" my={1} fontWeight="bold">Rate this recipe and share your opinion</Typography>
 			<ReviewForm />
 
+			{/* You might like */}
 			<Typography variant="h4" fontWeight="bold" my={3}>You might like</Typography>
 			<Grid container gap={2}>
 				{recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
 			</Grid>
 
+			{/* Nutrition */}
 			<Box className="bg-gray-200 my-6 py-5 px-5">
 				<Typography variant="h5" fontWeight="bold" gutterBottom>Nutrition Facts</Typography>
 				<Stack spacing={1}>
@@ -244,11 +257,7 @@ function TagButton(props: any) {
 		<Button variant="outlined" sx={{ textTransform: "none", color: "gray" }}>
 			#{props.tag}
 		</Button>
-	)
-}
-
-function formatDate(timestamp: Timestamp) {
-	return timestamp.toDate().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+	);
 }
 
 export default Recipe;
