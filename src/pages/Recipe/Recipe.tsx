@@ -150,7 +150,7 @@ function Recipe() {
 					<Typography>{formatDate(recipeData.createdAt)}</Typography>
 				</div>
 				<div className="flex items-center gap-2">
-					<Rating value={recipeData.averageRating} size="small"></Rating>
+					<Rating readOnly value={recipeData.averageRating} size="small"></Rating>
 					<Typography variant="body2" color="text.dark">{recipeData.averageRating} / 10 reviews</Typography>
 				</div>
 			</Grid>
