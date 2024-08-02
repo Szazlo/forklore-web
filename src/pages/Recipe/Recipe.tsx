@@ -26,6 +26,8 @@ import NewsletterBox from "@/components/NewsletterBox.tsx";
 import RecipePrintCard from "@/pages/Recipe/RecipePrintCard.tsx";
 import { formatDate } from "@/lib/utils.ts";
 import { IngredientsList } from "@/pages/Recipe/IngredientsList.tsx";
+import NutritionalValuesBox from "@/pages/Recipe/NutritionalValuesBox.tsx";
+import NewsletterBoxSmall from "@/components/NewsletterBoxSmall.tsx";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -124,22 +126,11 @@ const recipes: (RecipeCardData & { image: string })[] = [
 	},
 ];
 
-const nutritionalValues = [
-	{ name: "Calories", value: 494 },
-	{ name: "Carbs", value: 80 },
-	{ name: "Fat", value: 18 },
-	{ name: "Protein", value: 24 },
-	{ name: "Fiber", value: 23 },
-	{ name: "Net Carbs", value: 56 },
-	{ name: "Sodium", value: 444 },
-	{ name: "Cholesterol", value: 0 },
-];
-
 const tags = ["Dessert", "Baking", "FoodBlog", "CheesecakeRecipe", "DeliciousDesserts"];
 
 function Recipe() {
 	const theme = useTheme();
-	const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
+	const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 
 	return (
 		<Container maxWidth="lg">
@@ -149,7 +140,7 @@ function Recipe() {
 				<Link to="#" className="hover:underline">Mici</Link>
 			</Breadcrumbs>
 			<Typography variant="h1" gutterBottom>{recipeData.title}</Typography>
-			<Grid container gap={2}>
+			<Grid container gap={2} mb={1}>
 				<div className="flex items-center gap-2">
 					<Avatar sx={{ height: 25, width: 25, bgcolor: "primary.main" }} />
 					<Typography>{recipeData.publisher.firstName} {recipeData.publisher.lastName}</Typography>
@@ -164,88 +155,98 @@ function Recipe() {
 				</div>
 			</Grid>
 
-			<Box width={1} my={2}>
-				<img src={burgir} alt={"burgir"} className="w-full rounded" />
-			</Box>
+			{isTablet && <Divider />}
 
-			<Grid container justifyContent="space-around">
-				<div className="text-center">
-					<Typography variant="body1" color="text.dark">Prep time</Typography>
-					{recipeData.cookingTime} mins
-				</div>
-				<Divider orientation="vertical" flexItem />
-				{recipeData.prepTime && // Not all recipes have a prep time
-					<div className="text-center">
-						<Typography variant="body1" color="text.dark">Cook time</Typography>
-						{recipeData.prepTime} mins
-					</div>
+			<Grid container>
+				<Grid item md={8}>
+					<Box width={1} my={2}>
+						<img src={burgir} alt={"burgir"} className="w-full rounded" />
+					</Box>
+
+					<Grid container justifyContent="space-around">
+						<div className="text-center">
+							<Typography variant="body1" color="text.dark">Prep time</Typography>
+							{recipeData.cookingTime} mins
+						</div>
+						<Divider orientation="vertical" flexItem />
+						{recipeData.prepTime && // Not all recipes have a prep time
+							<div className="text-center">
+								<Typography variant="body1" color="text.dark">Cook time</Typography>
+								{recipeData.prepTime} mins
+							</div>
+						}
+						<Divider orientation="vertical" flexItem />
+						<div className="text-center">
+							<Typography variant="body1" color="text.dark">Serves</Typography>
+							{recipeData.serveCount}
+						</div>
+					</Grid>
+
+					<Typography my={4}>{recipeData.about}</Typography>
+
+					{/* Ingredients */}
+					<Typography variant="h3">Ingredients</Typography>
+					<IngredientsList ingredients={recipeData.ingredients} />
+
+					{/* Steps */}
+					<Typography variant="h3" my={4}>Steps</Typography>
+					<Stack spacing={3}>
+						{recipeData.steps.map(step =>
+							<div className="flex" key={step.stepNumber}>
+								<Box className="mr-4 w-6 max-h-6 text-center text-white rounded"
+										 bgcolor="primary.main">{step.stepNumber}</Box>
+								<Typography>{step.content}</Typography>
+							</div>,
+						)}
+					</Stack>
+
+					{/* Recipe Print Card for desktop */}
+					{isTablet && <RecipePrintCard {...recipeData} />}
+
+					<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }} />
+
+					{/* Reviews */}
+					<Typography gutterBottom variant="h3">Reviews</Typography>
+					<Divider sx={{ mb: 2 }} />
+
+					{reviews.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
+					<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>Load more</Button>
+
+					{/* Review Form*/}
+					<Typography variant="h5" my={1} fontWeight="bold">Rate this recipe and share your opinion</Typography>
+					<ReviewForm />
+
+					{/* You might like */}
+					<Typography variant="h4" fontWeight="bold" my={3}>You might like</Typography>
+					<Grid container gap={2}>
+						{recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
+					</Grid>
+
+					{/* Hide some content from the bottom so we can show it to the right of the main content */}
+					{!isTablet && <>
+						<NutritionalValuesBox />
+						<NewsletterBox />
+						<Typography variant="h3" gutterBottom fontWeight="bold">Tags</Typography>
+						<Grid container gap={1} mb={6}>
+							{tags.map(tag => <TagButton tag={tag} />)}
+						</Grid>
+					</>
+					}
+
+				</Grid>
+				{/* Show more content on the right side on larger screens*/}
+				{isTablet &&
+					<Grid item md={4}>
+						<div className="ml-12">
+							<NutritionalValuesBox />
+							<NewsletterBoxSmall />
+							<Typography variant="h4" gutterBottom fontWeight="bold">Tags</Typography>
+							<Grid container gap={0.5} mb={6}>
+								{tags.map(tag => <TagButton tag={tag} />)}
+							</Grid>
+						</div>
+					</Grid>
 				}
-				<Divider orientation="vertical" flexItem />
-				<div className="text-center">
-					<Typography variant="body1" color="text.dark">Serves</Typography>
-					{recipeData.serveCount}
-				</div>
-			</Grid>
-
-			<Typography my={4}>{recipeData.about}</Typography>
-
-			{/* Ingredients */}
-			<Typography variant="h3">Ingredients</Typography>
-			<IngredientsList ingredients={recipeData.ingredients} />
-
-			{/* Steps */}
-			<Typography variant="h3" my={4}>Steps</Typography>
-			<Stack spacing={3}>
-				{recipeData.steps.map(step =>
-					<div className="flex" key={step.stepNumber}>
-						<Box className="mr-4 w-6 max-h-6 text-center text-white rounded"
-								 bgcolor="primary.main">{step.stepNumber}</Box>
-						<Typography>{step.content}</Typography>
-					</div>,
-				)}
-			</Stack>
-
-			{/* Recipe Print Card for desktop */}
-			{isTablet && <RecipePrintCard {...recipeData} />}
-
-			<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }} />
-
-			{/* Reviews */}
-			<Typography gutterBottom variant="h3">Reviews</Typography>
-			<Divider sx={{ mb: 2 }} />
-
-			{reviews.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
-			<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>Load more</Button>
-
-			{/* Review Form*/}
-			<Typography variant="h5" my={1} fontWeight="bold">Rate this recipe and share your opinion</Typography>
-			<ReviewForm />
-
-			{/* You might like */}
-			<Typography variant="h4" fontWeight="bold" my={3}>You might like</Typography>
-			<Grid container gap={2}>
-				{recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
-			</Grid>
-
-			{/* Nutrition */}
-			<Box className="bg-gray-200 my-6 py-5 px-5">
-				<Typography variant="h5" fontWeight="bold" gutterBottom>Nutrition Facts</Typography>
-				<Stack spacing={1}>
-					{nutritionalValues.map(nut =>
-						<div className="flex justify-between border-b border-gray-300" key={nut.name}>
-							<Typography color="text.dark">{nut.name}</Typography>
-							<Typography>{nut.value}</Typography>
-						</div>,
-					)}
-				</Stack>
-			</Box>
-
-			<NewsletterBox />
-
-			{/* Tags */}
-			<Typography variant="h3" gutterBottom fontWeight="bold">Tags</Typography>
-			<Grid container gap={1} mb={6}>
-				{tags.map(tag => <TagButton tag={tag} />)}
 			</Grid>
 		</Container>
 	);
@@ -254,7 +255,7 @@ function Recipe() {
 function TagButton(props: any) {
 
 	return (
-		<Button variant="outlined" sx={{ textTransform: "none", color: "gray" }}>
+		<Button variant="outlined" sx={{ textTransform: "none", color: "gray", p: 1 }}>
 			#{props.tag}
 		</Button>
 	);
