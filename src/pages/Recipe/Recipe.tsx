@@ -2,27 +2,30 @@ import "@/main.css";
 import {
 	Avatar,
 	Box,
-	Breadcrumbs, Button,
-	Checkbox,
+	Breadcrumbs,
+	Button,
 	Container,
-	Divider, FormControlLabel,
-	FormGroup,
+	Divider,
 	Grid,
-	Rating, Stack,
-	Typography, useMediaQuery, useTheme,
+	Rating,
+	Stack,
+	Typography,
+	useMediaQuery,
+	useTheme,
 } from "@mui/material";
+import type { RecipeReview } from "@/types/recipe";
 import { RecipeCardData, RecipeData } from "@/types/recipe";
 import { Timestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import burgir from "@/assets/burgir.jpeg";
 import RecipeReviewRenderer from "@/pages/Recipe/RecipeReview.tsx";
-import type { RecipeReview } from "@/types/recipe";
 import ReviewForm from "@/pages/Recipe/ReviewForm.tsx";
 import RecipeCard from "@/components/RecipeCard";
 import NewsletterBox from "@/components/NewsletterBox.tsx";
 import RecipePrintCard from "@/pages/Recipe/RecipePrintCard.tsx";
 import { formatDate } from "@/lib/utils.ts";
+import { IngredientsList } from "@/pages/Recipe/IngredientsList.tsx";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -188,18 +191,15 @@ function Recipe() {
 
 			{/* Ingredients */}
 			<Typography variant="h3">Ingredients</Typography>
-			<FormGroup>
-				{recipeData.ingredients.map(ingredient =>
-					<FormControlLabel key={ingredient.id} control={<Checkbox color="primary" />} label={ingredient.name} />,
-				)}
-			</FormGroup>
+			<IngredientsList ingredients={recipeData.ingredients} />
 
 			{/* Steps */}
 			<Typography variant="h3" my={4}>Steps</Typography>
 			<Stack spacing={3}>
 				{recipeData.steps.map(step =>
 					<div className="flex" key={step.stepNumber}>
-						<Box className="mr-4 w-6 max-h-6 text-center text-white rounded" bgcolor="primary.main">{step.stepNumber}</Box>
+						<Box className="mr-4 w-6 max-h-6 text-center text-white rounded"
+								 bgcolor="primary.main">{step.stepNumber}</Box>
 						<Typography>{step.content}</Typography>
 					</div>,
 				)}

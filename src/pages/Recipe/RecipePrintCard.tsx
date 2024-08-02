@@ -2,10 +2,10 @@ import { RecipeData } from "@/types/recipe";
 import {
 	Avatar,
 	Box,
-	Button, Checkbox,
+	Button,
 	Container,
 	Divider,
-	FormControlLabel, FormGroup,
+	FormGroup,
 	Grid, List,
 	Rating,
 	Stack,
@@ -17,6 +17,7 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import burgir from "@/assets/burgir.jpeg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { formatDate } from "@/lib/utils.ts";
+import { IngredientsList } from "@/pages/Recipe/IngredientsList.tsx";
 
 export default function RecipePrintCard(props: RecipeData) {
 
@@ -67,9 +68,7 @@ export default function RecipePrintCard(props: RecipeData) {
 			{/* Ingredients */}
 			<Typography variant="h4" my={1}>Ingredients</Typography>
 			<FormGroup>
-				{props.ingredients.map(ingredient =>
-					<FormControlLabel key={ingredient.id} control={<Checkbox color="primary" sx={{ py: 0.5 }}/>} label={ingredient.name} />,
-				)}
+				<IngredientsList ingredients={props.ingredients} />
 			</FormGroup>
 
 			{/* Steps */}
