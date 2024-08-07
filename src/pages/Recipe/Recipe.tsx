@@ -61,8 +61,16 @@ const recipeData: RecipeData = {
 		{ stepNumber: 2, content: "Mix the flour, sugar, and milk in a bowl", hasImage: false },
 		{ stepNumber: 3, content: "Add water and mix until sticky", hasImage: false },
 		{ stepNumber: 4, content: "Pour the mixture into a baking tray", hasImage: false },
-		{ stepNumber: 5, content: "Slice into 2 x 15cm sticks", hasImage: false },
-		{ stepNumber: 6, content: "Bake for 5 minutes", hasImage: false },
+		{
+			stepNumber: 5,
+			content: "Chop the fresh herbs, tomato, and onions and toss them with the salad greens. Add additional veggies as desired",
+			hasImage: false,
+		},
+		{
+			stepNumber: 6,
+			content: "Juice the lemon and combine in a high-powered blender with the sun dried tomato mixture and garlic until smooth. Pour over the salad and toss together well. Top with brazil nuts and enjoy!",
+			hasImage: false,
+		},
 	],
 };
 
@@ -211,13 +219,16 @@ function Recipe() {
 					<IngredientsList ingredients={recipeData.ingredients} />
 
 					{/* Steps */}
-					<Typography variant="h3" my={4}>Steps</Typography>
-					<Stack spacing={3}>
+					<Typography variant="h3" my={3}>Steps</Typography>
+					<Stack gap={3}>
 						{recipeData.steps.map(step =>
-							<div className="flex" key={step.stepNumber}>
-								<Box className="mr-4 w-6 max-h-6 text-center text-white rounded"
-										 bgcolor="primary.main">{step.stepNumber}</Box>
-								<Typography>{step.content}</Typography>
+							<div className="flex gap-1" key={step.stepNumber}>
+								<div className="w-8">
+									<Box bgcolor="primary.main" className="w-6 h-6 flex align-middle justify-center rounded text-white">
+										{step.stepNumber}
+									</Box>
+								</div>
+								<Typography maxWidth={0.9}>{step.content}</Typography>
 							</div>,
 						)}
 					</Stack>

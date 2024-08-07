@@ -6,14 +6,15 @@ import {
 	Container,
 	Divider,
 	FormGroup,
-	Grid, List,
+	Grid,
+	List,
 	Rating,
 	Stack,
 	Typography,
 } from "@mui/material";
-import LocalPrintshopOutlinedIcon from '@mui/icons-material/LocalPrintshopOutlined';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import burgir from "@/assets/burgir.jpeg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { formatDate } from "@/lib/utils.ts";
@@ -39,7 +40,7 @@ export default function RecipePrintCard(props: RecipeData) {
 							<Typography variant="body2">{props.publisher.firstName} {props.publisher.lastName}</Typography>
 						</div>
 						<div className="flex items-center gap-2">
-							<CalendarMonthIcon color="primary" fontSize="small"/>
+							<CalendarMonthIcon color="primary" fontSize="small" />
 							<Typography variant="body2">{formatDate(props.createdAt)}</Typography>
 						</div>
 						{/*	TODO: Add category*/}
@@ -59,11 +60,11 @@ export default function RecipePrintCard(props: RecipeData) {
 				</Button>
 				<Button variant="contained" sx={{ textTransform: "capitalize" }}>
 					<ShareOutlinedIcon className="mr-2" />
-          <Typography>Share</Typography>
+					<Typography>Share</Typography>
 				</Button>
 			</Grid>
 
-      <Divider />
+			<Divider />
 
 			{/* Ingredients */}
 			<Typography variant="h4" my={1}>Ingredients</Typography>
@@ -75,26 +76,31 @@ export default function RecipePrintCard(props: RecipeData) {
 			<Typography variant="h4" my={1}>Steps</Typography>
 			<Stack spacing={2}>
 				{props.steps.map(step =>
-					<div className="flex" key={step.stepNumber}>
-						<Box className="mr-4 w-6 max-h-6 text-center text-white rounded" bgcolor="primary.main">{step.stepNumber}</Box>
-						<Typography>{step.content}</Typography>
+					<div className="flex items-start gap-1" key={step.stepNumber}>
+						<div className="w-8">
+							<Box bgcolor="primary.main" className="w-6 h-6 flex align-middle justify-center rounded text-white">
+								{step.stepNumber}
+							</Box>
+						</div>
+						<Typography maxWidth={0.9}>{step.content}</Typography>
 					</div>,
 				)}
 			</Stack>
 
 			<Typography variant="h4" my={2}>Cooking Notes:</Typography>
 			<List>
-				<ListItem>Ensure the freshness of your mixed greens. Look for crisp, vibrant eaves with no signs of wilting or browning</ListItem>
+				<ListItem>Ensure the freshness of your mixed greens. Look for crisp, vibrant eaves with no signs of wilting or
+					browning</ListItem>
 			</List>
 		</Container>
 	);
 }
 
-function ListItem({children}: any) {
+function ListItem({ children }: any) {
 	return (
 		<div className="flex">
 			<Box className="rounded-xl w-3 h-2 m-2" bgcolor="primary.main" />
 			{children}
 		</div>
-	)
+	);
 }
