@@ -31,6 +31,7 @@ import NutritionalValuesBox from "@/pages/Recipe/NutritionalValuesBox.tsx";
 import NewsletterBoxSmall from "@/components/NewsletterBoxSmall.tsx";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { ShareOutlined } from "@mui/icons-material";
+import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -161,12 +162,13 @@ function Recipe() {
 					</div>
 				</Grid>
 
-				{/* Recipe action buttons -- bookmark, share */}
+				{/* Recipe action buttons -- bookmark, share, print */}
 				{isTablet &&
 					<Grid container md={4}>
-						<div className="ml-12">
+						<div className="ml-12 flex gap-0.5">
 							<IconButton size="small"><BookmarkBorderIcon color="primary" /></IconButton>
 							<IconButton size="small"><ShareOutlined color="primary" /></IconButton>
+							<IconButton size="small"><LocalPrintshopOutlinedIcon color="primary" /></IconButton>
 						</div>
 					</Grid>
 				}
@@ -180,24 +182,27 @@ function Recipe() {
 						<img src={burgir} alt={"burgir"} className="w-full rounded" />
 					</Box>
 
-					<Grid container justifyContent="space-around">
-						<div className="text-center">
-							<Typography variant="body1" color="text.dark">Prep time</Typography>
-							{recipeData.cookingTime} mins
-						</div>
-						<Divider orientation="vertical" flexItem />
-						{recipeData.prepTime && // Not all recipes have a prep time
+					{/* Recipe metadata -- time, servings */}
+					<Container maxWidth="sm">
+						<Grid container justifyContent="space-around">
 							<div className="text-center">
-								<Typography variant="body1" color="text.dark">Cook time</Typography>
-								{recipeData.prepTime} mins
+								<Typography variant="body1" color="text.dark">Prep time</Typography>
+								{recipeData.cookingTime} mins
 							</div>
-						}
-						<Divider orientation="vertical" flexItem />
-						<div className="text-center">
-							<Typography variant="body1" color="text.dark">Serves</Typography>
-							{recipeData.serveCount}
-						</div>
-					</Grid>
+							<Divider orientation="vertical" flexItem />
+							{recipeData.prepTime && // Not all recipes have a prep time
+								<div className="text-center">
+									<Typography variant="body1" color="text.dark">Cook time</Typography>
+									{recipeData.prepTime} mins
+								</div>
+							}
+							<Divider orientation="vertical" flexItem />
+							<div className="text-center">
+								<Typography variant="body1" color="text.dark">Serves</Typography>
+								{recipeData.serveCount}
+							</div>
+						</Grid>
+					</Container>
 
 					<Typography my={4}>{recipeData.about}</Typography>
 
