@@ -9,7 +9,6 @@ import {
 	Grid,
 	IconButton,
 	Rating,
-	Stack,
 	Typography,
 	useMediaQuery,
 	useTheme,
@@ -32,6 +31,7 @@ import NewsletterBoxSmall from "@/components/NewsletterBoxSmall.tsx";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { ShareOutlined } from "@mui/icons-material";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
+import RecipeStepsList from "@/pages/Recipe/RecipeStepsList.tsx";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -220,18 +220,7 @@ function Recipe() {
 
 					{/* Steps */}
 					<Typography variant="h3" my={3}>Steps</Typography>
-					<Stack gap={3}>
-						{recipeData.steps.map(step =>
-							<div className="flex gap-1" key={step.stepNumber}>
-								<div className="w-8">
-									<Box bgcolor="primary.main" className="w-6 h-6 flex align-middle justify-center rounded text-white">
-										{step.stepNumber}
-									</Box>
-								</div>
-								<Typography maxWidth={0.9}>{step.content}</Typography>
-							</div>,
-						)}
-					</Stack>
+					<RecipeStepsList steps={recipeData.steps} />
 
 					{/* Recipe Print Card for desktop */}
 					{isTablet && <RecipePrintCard {...recipeData} />}
