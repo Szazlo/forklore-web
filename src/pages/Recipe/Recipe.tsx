@@ -7,6 +7,7 @@ import {
 	Container,
 	Divider,
 	Grid,
+	IconButton,
 	Rating,
 	Stack,
 	Typography,
@@ -28,6 +29,8 @@ import { formatDate } from "@/lib/utils.ts";
 import { IngredientsList } from "@/pages/Recipe/IngredientsList.tsx";
 import NutritionalValuesBox from "@/pages/Recipe/NutritionalValuesBox.tsx";
 import NewsletterBoxSmall from "@/components/NewsletterBoxSmall.tsx";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import { ShareOutlined } from "@mui/icons-material";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
@@ -139,20 +142,34 @@ function Recipe() {
 				<Link to="/recipes" className="hover:underline">Recipes</Link>
 				<Typography color="text.primary">{recipeData.title}</Typography>
 			</Breadcrumbs>
-			<Typography variant="h1" gutterBottom>{recipeData.title}</Typography>
-			<Grid container gap={2} mb={1}>
-				<div className="flex items-center gap-2">
-					<Avatar sx={{ height: 25, width: 25, bgcolor: "primary.main" }} />
-					<Typography>{recipeData.publisher.firstName} {recipeData.publisher.lastName}</Typography>
-				</div>
-				<div className="flex items-center gap-2">
-					<CalendarMonthIcon color="primary" />
-					<Typography>{formatDate(recipeData.createdAt)}</Typography>
-				</div>
-				<div className="flex items-center gap-2">
-					<Rating readOnly value={recipeData.averageRating} size="small"></Rating>
-					<Typography variant="body2" color="text.dark">{recipeData.averageRating} / 10 reviews</Typography>
-				</div>
+			<Typography variant="h1">{recipeData.title}</Typography>
+			<Grid container mb={1}>
+
+				{/* Recipe metadata -- Author, date, rating */}
+				<Grid container md={8} xs={12} gap={1.5}>
+					<div className="flex items-center gap-1">
+						<Avatar sx={{ height: 25, width: 25, bgcolor: "primary.main" }} />
+						<Typography>{recipeData.publisher.firstName} {recipeData.publisher.lastName}</Typography>
+					</div>
+					<div className="flex items-center gap-1">
+						<CalendarMonthIcon color="primary" />
+						<Typography>{formatDate(recipeData.createdAt)}</Typography>
+					</div>
+					<div className="flex items-center gap-1">
+						<Rating readOnly value={recipeData.averageRating} size="small"></Rating>
+						<Typography variant="body2" color="text.dark">{recipeData.averageRating} / 10 reviews</Typography>
+					</div>
+				</Grid>
+
+				{/* Recipe action buttons -- bookmark, share */}
+				{isTablet &&
+					<Grid container md={4}>
+						<div className="ml-12">
+							<IconButton size="small"><BookmarkBorderIcon color="primary" /></IconButton>
+							<IconButton size="small"><ShareOutlined color="primary" /></IconButton>
+						</div>
+					</Grid>
+				}
 			</Grid>
 
 			{isTablet && <Divider />}
