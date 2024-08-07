@@ -155,7 +155,7 @@ function Recipe() {
 			<Grid container mb={1}>
 
 				{/* Recipe metadata -- Author, date, rating */}
-				<Grid container md={8} xs={12} gap={1.5}>
+				<Grid container item md={8} xs={12} gap={1.5}>
 					<div className="flex items-center gap-1">
 						<Avatar sx={{ height: 25, width: 25, bgcolor: "primary.main" }} />
 						<Typography>{recipeData.publisher.firstName} {recipeData.publisher.lastName}</Typography>
@@ -172,7 +172,7 @@ function Recipe() {
 
 				{/* Recipe action buttons -- bookmark, share, print */}
 				{isTablet &&
-					<Grid container md={4}>
+					<Grid container item md={4}>
 						<div className="ml-12 flex gap-0.5">
 							<IconButton size="small"><BookmarkBorderIcon color="primary" /></IconButton>
 							<IconButton size="small"><ShareOutlined color="primary" /></IconButton>
@@ -250,7 +250,7 @@ function Recipe() {
 						<NewsletterBox />
 						<Typography variant="h3" gutterBottom fontWeight="bold">Tags</Typography>
 						<Grid container gap={1} mb={6}>
-							{tags.map(tag => <TagButton tag={tag} />)}
+							{tags.map(tag => <TagButton key={tag} tag={tag} />)}
 						</Grid>
 					</>
 					}
@@ -264,7 +264,7 @@ function Recipe() {
 							<NewsletterBoxSmall />
 							<Typography variant="h4" gutterBottom fontWeight="bold">Tags</Typography>
 							<Grid container gap={0.5} mb={6}>
-								{tags.map(tag => <TagButton tag={tag} />)}
+								{tags.map(tag => <TagButton key={tag} tag={tag} />)}
 							</Grid>
 						</div>
 					</Grid>
