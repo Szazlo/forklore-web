@@ -137,7 +137,7 @@ function Recipe() {
 			<Breadcrumbs separator="›" sx={{ my: 2 }}>
 				<Link to="/" className="hover:underline">Home</Link>
 				<Link to="/recipes" className="hover:underline">Recipes</Link>
-				<Link to="#" className="hover:underline">Mici</Link>
+				<Typography color="text.primary">{recipeData.title}</Typography>
 			</Breadcrumbs>
 			<Typography variant="h1" gutterBottom>{recipeData.title}</Typography>
 			<Grid container gap={2} mb={1}>
