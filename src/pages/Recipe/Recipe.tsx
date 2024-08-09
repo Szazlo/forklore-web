@@ -35,7 +35,7 @@ import RecipeStepsList from "@/pages/Recipe/RecipeStepsList.tsx";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
-	title: "Mici",
+	title: "Mici cu mustar",
 	publisher: {
 		username: "marioc14",
 		firstName: "Mario",
@@ -151,7 +151,8 @@ function Recipe() {
 				<Link to="/recipes" className="hover:underline">Recipes</Link>
 				<Typography color="text.primary">{recipeData.title}</Typography>
 			</Breadcrumbs>
-			<Typography variant="h1">{recipeData.title}</Typography>
+			<Typography variant="h3" gutterBottom maxWidth={isTablet ? 0.7 : 1}
+									letterSpacing={0.1}>{recipeData.title}</Typography>
 			<Grid container mb={1}>
 
 				{/* Recipe metadata -- Author, date, rating */}
