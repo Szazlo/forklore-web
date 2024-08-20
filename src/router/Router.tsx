@@ -1,12 +1,13 @@
 import Home from "@/pages/Home";
 import LoginForm from "@/pages/login";
 import PageNotFound from "@/pages/404";
-import SignUpForm from "@/pages/register";
+import SignUpPage from "@/pages/register";
 import Recipe from "@/pages/Recipe";
 import Root from "@/components/Root.tsx";
 import Feed from "@/pages/Feed";
 import { createBrowserRouter } from "react-router-dom";
-import RecipeEditor from "@/pages/RecipeEditor"
+import RecipeEditor from "@/pages/RecipeEditor";
+import EmailVerified from "@/pages/EmailVerified";
 
 export const router = createBrowserRouter([
 	{
@@ -32,11 +33,15 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "/signup",
-				element: <SignUpForm />,
+				element: <SignUpPage />,
 			},
 			{
 				path: "/feed",
 				element: <Feed />,
+			},
+			{
+				path: "/emailVerified",
+				element: <EmailVerified />,
 			},
 			{
 				path: "*",
