@@ -3,14 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { FormEvent, useState } from "react";
-import { onAuthStateChanged, sendSignInLinkToEmail } from "firebase/auth";
-import { auth } from "@/firebase";
+import { supabase } from "@/supabase";
 import useSnack from "@/context/SnackbarProvider";
-
-const actionCodeSettings = {
-	url: "http://localhost:5173/emailVerified",
-	handleCodeInApp: true,
-};
+import { addNameAndEmail } from "@/store/signup/signupSlice.ts";
 
 export default function EmailForm(props: any) {
 	const dispatch = useDispatch();
@@ -21,30 +16,28 @@ export default function EmailForm(props: any) {
 	const [emailError, setEmailError] = useState("");
 	const { addSnack } = useSnack();
 
-	const handleSubmit = (event: FormEvent) => {
+	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
 
-		// TODO: Handle email submit and verification
-		// Send the email verification link
-		// Wait for response.
-		sendSignInLinkToEmail(auth, email, actionCodeSettings)
-			.then(() => {
-				addSnack("An verification link has been sent to your email address.");
-				localStorage.setItem("emailForSignIn", email);
+		const { data, error } = await supabase.auth.signInWithOtp({
+			email: email,
+			options: {
+				emailRedirectTo: "http://localhost:5173/emailVerified"
+			}
+		});
+		console.log(data, error);
+		addSnack("An verification link has been sent to your email address.");
 
-				const unsubscribe = onAuthStateChanged(auth, user => {
-					// If the user successfully verified their email, scroll to the username form
-					if (user) {
-						
-
-						props.scrollNext();
-						unsubscribe();
-					}
-				});
-			})
-			.catch(error => {
-				console.log(error.code, error.message);
-			});
+		const { data: signInPending } = supabase.auth.onAuthStateChange((event, session) => {
+			console.log(event, session);
+			// If the user successfully verified their email, scroll to the username form
+			if (event === "SIGNED_IN") {
+				const user = session?.user;
+				dispatch(addNameAndEmail({ uid: user?.id, firstName: firstName, lastName: lastName }));
+				props.scrollNext();
+				signInPending.subscription.unsubscribe();
+			}
+		});
 	};
 
 	return (

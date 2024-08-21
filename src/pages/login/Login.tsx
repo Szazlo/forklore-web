@@ -35,16 +35,6 @@ function LoginForm() {
 		if (error) {
 			addSnack(error.message, "error");
 		}
-		// const provider = new GoogleAuthProvider();
-		// signInWithPopup(auth, provider)
-		// 	.then((result) => {
-		// 		// Redirect to home page on success
-		// 		dispatch(login(result.user));
-		// 		navigate("/");
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
 	};
 
 	const handleSignInWithEmailAndPassword = (e: FormEvent<HTMLFormElement>) => {

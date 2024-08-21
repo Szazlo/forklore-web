@@ -8,7 +8,7 @@ import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from "@/com
 import EmailForm from "@/pages/register/EmailForm.tsx";
 import UsernameForm from "@/pages/register/UsernameForm.tsx";
 import { EmblaOptionsType } from "embla-carousel";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 library.add(fab);
 const carouselOptions: EmblaOptionsType = {
@@ -23,11 +23,6 @@ function SignUpPage() {
 	const scrollNext = () => {
 		api?.scrollNext();
 	};
-
-	useEffect(() => {
-		const step = parseInt(localStorage.getItem("signupStep")) || 0;
-		api?.scrollTo(step);
-	}, []);
 
 	return (
 		<Container maxWidth="lg" sx={{ py: 8 }}>

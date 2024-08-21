@@ -1,12 +1,14 @@
 import { Button, InputAdornment, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { useSelector } from "react-redux";
+import { selectSignupMeta } from "@/store/signup/signupSlice.ts";
 
 export default function UsernameForm() {
-
+	const signupData = useSelector(selectSignupMeta);
 
 	return (
 		<div className="text-center px-4 m-auto xs:3/5 sm:w-4/5">
-			<Typography variant="h3" gutterBottom color="primary">Hi Mario!</Typography>
+			<Typography variant="h3" gutterBottom color="primary">Hi {signupData.firstName}!</Typography>
 			<Typography variant="h5" gutterBottom color="text.dark">Let's choose a username.</Typography>
 
 			<form>
