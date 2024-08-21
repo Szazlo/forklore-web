@@ -1,4 +1,4 @@
-import { storage } from "@/firebase";
+import { supabase } from "src/supabase";
 import { BlogCardData } from "@/types/Blog";
 import { Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { getDownloadURL, ref } from "firebase/storage";
@@ -41,12 +41,13 @@ function BlogComponent({ id, title, intro }: BlogCardData) {
 	const [image, setImage] = useState("");
 
 	useEffect(() => {
-		getDownloadURL(ref(storage, `blogs/${id}/index.png`))
-			.then(url => {
-				console.log(url)
-				setImage(url);
-			})
-			.catch(error => console.log(error));
+		//TODO Move this image to supabase
+		// getDownloadURL(ref(storage, `blogs/${id}/index.png`))
+		// 	.then(url => {
+		// 		console.log(url)
+		// 		setImage(url);
+		// 	})
+		// 	.catch(error => console.log(error));
 	}, [id]);
 
 	return (
