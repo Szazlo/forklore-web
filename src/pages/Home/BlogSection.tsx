@@ -1,7 +1,16 @@
-import { supabase } from "src/supabase";
+import { supabase } from "@/supabase";
 import { BlogCardData } from "@/types/Blog";
-import { Button, Card, CardActionArea, CardContent, CardMedia, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { getDownloadURL, ref } from "firebase/storage";
+import {
+	Button,
+	Card,
+	CardActionArea,
+	CardContent,
+	CardMedia,
+	Grid,
+	Typography,
+	useMediaQuery,
+	useTheme,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 
 const blogs: BlogCardData[] = [
@@ -14,53 +23,57 @@ const blogs: BlogCardData[] = [
 		id: 2,
 		title: "The Impact of Sugar Consumption on Your Health",
 		intro: "Unveiling the Hidden Dangers of Sugar Consumption",
-	}
-]
+	},
+];
 
 export default function BlogSection() {
 	const isMobile = useMediaQuery(useTheme().breakpoints.down("sm"));
-	const blogComponents = blogs.map(blog => <BlogComponent key={blog.id} {...blog} />);
+	const blogComponents = blogs.map((blog) => (
+		<BlogComponent key={blog.id} {...blog} />
+	));
 
 	return (
 		<>
-			<Typography my={4} variant="h2" fontWeight="bold">Blogs</Typography>
+			<Typography my={4} variant="h2" fontWeight="bold">
+				Blogs
+			</Typography>
 			<div className="w-full text-right">
-				{!isMobile &&
+				{!isMobile && (
 					<Button variant="text" sx={{ textTransform: "none" }} type="button">
 						View more
 					</Button>
-				}
+				)}
 			</div>
-			<Grid container spacing={2} mb={6}>{blogComponents}</Grid>
+			<Grid container spacing={2} mb={6}>
+				{blogComponents}
+			</Grid>
 		</>
-	)
+	);
 }
-
 
 function BlogComponent({ id, title, intro }: BlogCardData) {
 	const [image, setImage] = useState("");
 
 	useEffect(() => {
-		//TODO Move this image to supabase
-		// getDownloadURL(ref(storage, `blogs/${id}/index.png`))
-		// 	.then(url => {
-		// 		console.log(url)
-		// 		setImage(url);
-		// 	})
-		// 	.catch(error => console.log(error));
+		const { data } = supabase.storage
+			.from("blogs")
+			.getPublicUrl(`${id}/index.png`);
+		setImage(data.publicUrl);
 	}, [id]);
 
 	return (
 		<Grid item sm={12} md={6}>
 			<Card>
 				<CardActionArea>
-					<CardMedia height={100} component="img" src={image}/>
-					<CardContent sx={{ minHeight: 150}}>
-						<Typography variant="h5" fontWeight="bold">{title}</Typography>
+					<CardMedia height={100} component="img" src={image} />
+					<CardContent sx={{ minHeight: 150 }}>
+						<Typography variant="h5" fontWeight="bold">
+							{title}
+						</Typography>
 						<Typography color="text.secondary">{intro}</Typography>
 					</CardContent>
 				</CardActionArea>
 			</Card>
 		</Grid>
-	)
+	);
 }
