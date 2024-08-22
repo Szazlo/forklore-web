@@ -6,7 +6,6 @@ export interface SignUpStateSlice {
 	firstName: string;
 	lastName?: string;
 	email: string;
-
 }
 
 const initialState: SignUpStateSlice = {
@@ -20,6 +19,11 @@ const signupSlice = createSlice({
 	name: "signup",
 	initialState,
 	reducers: {
+		/**
+		 * Store temporary information about user to continue sign up process
+		 * @param state
+		 * @param action
+		 */
 		addNameAndEmail: (state, action) => {
 			state.uid = action.payload.uid;
 			state.firstName = action.payload.firstName;

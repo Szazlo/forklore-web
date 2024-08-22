@@ -1,5 +1,5 @@
 import { Button, Divider, TextField, Typography } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { FormEvent, useState } from "react";
@@ -9,7 +9,6 @@ import { addNameAndEmail } from "@/store/signup/signupSlice.ts";
 
 export default function EmailForm(props: any) {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
