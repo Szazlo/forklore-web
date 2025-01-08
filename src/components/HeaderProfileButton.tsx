@@ -1,15 +1,16 @@
-import { auth } from "@/firebase";
+import { supabase } from "@/supabase";
 import { selectUser } from "@/store";
 import Logout from "@mui/icons-material/Logout";
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
-import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import useSnack from "@/context/SnackbarProvider";
 
 export default function HeaderProfileButton() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
   const user = useSelector(selectUser);
+	const { addSnack } = useSnack();
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -20,11 +21,13 @@ export default function HeaderProfileButton() {
 	};
 
   const handleSignOut = () => {
-    signOut(auth);
+    supabase.auth.signOut()
+			.then(() => {
+				addSnack('Success! You signed out');
+			});
     handleClose();
-
   }
-  
+
   return (
     <>
       <Tooltip title="Account settings">

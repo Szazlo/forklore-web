@@ -1,15 +1,16 @@
 import "@/main.css";
-import { auth } from "@/firebase";
+import { supabase } from "@/supabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 import { useDispatch } from "react-redux";
-import { login } from "@/store/auth/authSlice";
+// import { login } from "@/store/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import signinImage from "@/assets/signin_img.png";
+import useSnack from "@/context/SnackbarProvider";
 
 library.add(fab);
 
@@ -21,34 +22,34 @@ function LoginForm() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const { addSnack } = useSnack();
 
 	// Signs the user in with google
-	const signInWithGoogle = () => {
-		const provider = new GoogleAuthProvider();
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				// Redirect to home page on success
-				dispatch(login(result.user));
-				navigate("/");
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+	const signInWithGoogle = async() => {
+		const { error } = await supabase.auth.signInWithOAuth({
+			provider: "google",
+			options: {
+				redirectTo: "http://localhost:5173/emailVerified",
+			},
+		});
+		if (error) {
+			addSnack(error.message, "error");
+		}
 	};
 
 	const handleSignInWithEmailAndPassword = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		signInWithEmailAndPassword(auth, email, password)
-			.then(userCredential => {
-				dispatch(login(userCredential.user));
-				navigate("/");
-			})
-			.catch(err => {
-				console.log(err);
-				if (err.code === "auth/wrong-password") {
-					setErrorMessage("Error: Invalid Credentials");
-				}
-			});
+		// signInWithEmailAndPassword(auth, email, password)
+		// 	.then(userCredential => {
+		// 		dispatch(login(userCredential.user));
+		// 		navigate("/");
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 		if (err.code === "auth/wrong-password") {
+		// 			setErrorMessage("Error: Invalid Credentials");
+		// 		}
+		// 	});
 	};
 
 	return (
