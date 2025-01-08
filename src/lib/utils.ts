@@ -1,6 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Timestamp } from "firebase/firestore";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -53,6 +52,6 @@ export function timeAgo(date: Date) {
 	return "just now";
 }
 
-export function formatDate(timestamp: Timestamp) {
-	return timestamp.toDate().toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+export function formatDate(timestamp: Date) {
+	return timestamp.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 }

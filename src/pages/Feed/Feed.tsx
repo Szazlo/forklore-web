@@ -1,11 +1,19 @@
 import "@/main.css";
 import {RecipeCardData} from "@/types/recipe";
 import {Container} from "@mui/material";
-import {Timestamp} from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import RecipeCard from "@/components/RecipeCard";
 
-const recipes: RecipeCardData[] & any = [
+// Temporary fix to removing firebase's Timestamp.now() function
+const Timestamp = {
+    now: () => {
+        return Date.now()
+    }
+}
+
+type RecipeWithImage = RecipeCardData & { image: string };
+
+const recipes: RecipeWithImage[] = [
     {
         id: "gourmet_cheeseburger_davwilson",
         title: "Gourmet Cheeseburger",

@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import type { RecipeReview } from "@/types/recipe";
 import { RecipeCardData, RecipeData } from "@/types/recipe";
-import { Timestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import burgir from "@/assets/burgir.jpeg";
@@ -46,7 +45,7 @@ const recipeData: RecipeData = {
 	cookingTime: 20,
 	difficulty: "easy",
 	averageRating: 4.3,
-	createdAt: Timestamp.now(),
+	createdAt: Date.now(),
 	ingredients: [
 		{ id: "1", name: "1g flour" },
 		{ id: "2", name: "70g sugar" },
@@ -87,7 +86,7 @@ const reviews: RecipeReview[] = [
 		rating: 3,
 		likes: 20,
 		numReplies: 1,
-		reviewedAt: Timestamp.now(),
+		reviewedAt: Date.now(),
 	},
 	{
 		id: "2",
@@ -101,7 +100,7 @@ const reviews: RecipeReview[] = [
 		rating: 4,
 		likes: 1,
 		numReplies: 0,
-		reviewedAt: Timestamp.now(),
+		reviewedAt: Date.now(),
 	},
 ];
 

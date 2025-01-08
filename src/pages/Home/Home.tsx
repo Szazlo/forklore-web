@@ -2,7 +2,6 @@ import "@/main.css";
 import { RecipeCardData } from "@/types/recipe";
 import { Box, Button, Container, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import useSnack from "@/context/SnackbarProvider";
-import { Timestamp } from "firebase/firestore";
 import burgir from "@/assets/burgir.jpeg";
 import prawnPilPil from "@/assets/prawnpilpil.jpeg";
 import landingImage from "@/assets/landing.png";
@@ -30,7 +29,7 @@ const recipes: RecipeCardData[] & any = [
 		cookingTime: 20,
 		averageRating: 4.7,
 		difficulty: "easy",
-		createdAt: Timestamp.now(),
+		createdAt: Date.now(),
 		image: burgir,
 	},
 	{
@@ -44,7 +43,7 @@ const recipes: RecipeCardData[] & any = [
 		cookingTime: 10,
 		averageRating: 4.7,
 		difficulty: "easy",
-		createdAt: Timestamp.now(),
+		createdAt: Date.now(),
 		image: prawnPilPil,
 	},
 	{
@@ -58,7 +57,7 @@ const recipes: RecipeCardData[] & any = [
 		cookingTime: 135,
 		averageRating: 5.0,
 		difficulty: "Michelin Chef",
-		createdAt: Timestamp.now(),
+		createdAt: Date.now(),
 		image: prawnPilPil,
 	}
 ];

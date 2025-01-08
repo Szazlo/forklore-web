@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase/firestore";
 import { ForkloreUserMeta } from "./User";
 
 export interface RecipeCardData {

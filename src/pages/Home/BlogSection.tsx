@@ -1,4 +1,3 @@
-import { supabase } from "@/supabase";
 import { BlogCardData } from "@/types/Blog";
 import {
 	Button,
@@ -55,10 +54,7 @@ function BlogComponent({ id, title, intro }: BlogCardData) {
 	const [image, setImage] = useState("");
 
 	useEffect(() => {
-		const { data } = supabase.storage
-			.from("blogs")
-			.getPublicUrl(`${id}/index.png`);
-		setImage(data.publicUrl);
+		console.log("Blogcomponent: Get image not implemented")
 	}, [id]);
 
 	return (
