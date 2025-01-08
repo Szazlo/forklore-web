@@ -1,5 +1,4 @@
 import "@/main.css";
-import { supabase } from "@/supabase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -17,8 +16,8 @@ library.add(fab);
 function LoginForm() {
 	// Access current user with this
 	// const user = useSelector(selectUser);
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	// const dispatch = useDispatch();
+	// const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
@@ -26,15 +25,7 @@ function LoginForm() {
 
 	// Signs the user in with google
 	const signInWithGoogle = async() => {
-		const { error } = await supabase.auth.signInWithOAuth({
-			provider: "google",
-			options: {
-				redirectTo: "http://localhost:5173/emailVerified",
-			},
-		});
-		if (error) {
-			addSnack(error.message, "error");
-		}
+		console.warn("Sign in with google: Not yet implemented")
 	};
 
 	const handleSignInWithEmailAndPassword = (e: FormEvent<HTMLFormElement>) => {

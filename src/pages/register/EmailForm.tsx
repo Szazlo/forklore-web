@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { FormEvent, useState } from "react";
-import { supabase } from "@/supabase";
-import useSnack from "@/context/SnackbarProvider";
-import { addNameAndEmail } from "@/store/signup/signupSlice.ts";
+// import useSnack from "@/context/SnackbarProvider";
+// import { addNameAndEmail } from "@/store/signup/signupSlice.ts";
 
 export default function EmailForm(props: any) {
 	const dispatch = useDispatch();
@@ -13,41 +12,12 @@ export default function EmailForm(props: any) {
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
-	const { addSnack } = useSnack();
+	// const { addSnack } = useSnack();
 
 	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
-
-		const { error } = await supabase.auth.signInWithOtp({
-			email: email,
-			options: {
-				emailRedirectTo: "http://localhost:5173/emailVerified",
-			},
-		});
-		if (error) {
-			addSnack(error.message, "error");
-		} else {
-			addSnack("An verification link has been sent to your email address.");
-		}
-
-		const { data: signInPending } = supabase.auth.onAuthStateChange(
-			(event, session) => {
-				// If the user successfully verified their email, scroll to the username form
-				if (event === "SIGNED_IN") {
-					const user = session?.user;
-					dispatch(
-						addNameAndEmail({
-							uid: user?.id,
-							firstName: firstName,
-							lastName: lastName,
-						}),
-					);
-					props.scrollNext();
-					signInPending.subscription.unsubscribe();
-				}
-			},
-		);
-	};
+		console.warn("Email confirmation: Not yet implemented")
+	}
 
 	return (
 		<div className="text-center px-4 m-auto xs:3/5 sm:w-4/5">
