@@ -9,6 +9,7 @@ import {
 	Grid,
 	IconButton,
 	Rating,
+	Skeleton,
 	Typography,
 	useMediaQuery,
 	useTheme,
@@ -31,117 +32,43 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { ShareOutlined } from "@mui/icons-material";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import RecipeStepsList from "@/pages/Recipe/RecipeStepsList.tsx";
-
-const recipeData: RecipeData = {
-	id: "dfasfsa12we",
-	title: "Mici cu mustar",
-	publisher: {
-		username: "marioc14",
-		firstName: "Mario",
-		lastName: "Caval",
-	},
-	serveCount: 4,
-	prepTime: 5,
-	cookingTime: 20,
-	difficulty: "easy",
-	averageRating: 4.3,
-	createdAt: Date.now(),
-	ingredients: [
-		{ id: "1", name: "1g flour" },
-		{ id: "2", name: "70g sugar" },
-		{ id: "3", name: "20ml milk" },
-		{ id: "4", name: "200ml water" },
-		{ id: "5", name: "70g minced pork" },
-		{ id: "6", name: "100g beef lard/tallow" },
-	],
-	about: "This recipe features a vibrant and refreshing salad made with a medley of mixed greens, accompanied by a flavorful sun-dried tomato dressing.",
-	steps: [
-		{ stepNumber: 1, content: "Preheat the oven to 180 degrees", hasImage: false },
-		{ stepNumber: 2, content: "Mix the flour, sugar, and milk in a bowl", hasImage: false },
-		{ stepNumber: 3, content: "Add water and mix until sticky", hasImage: false },
-		{ stepNumber: 4, content: "Pour the mixture into a baking tray", hasImage: false },
-		{
-			stepNumber: 5,
-			content: "Chop the fresh herbs, tomato, and onions and toss them with the salad greens. Add additional veggies as desired",
-			hasImage: false,
-		},
-		{
-			stepNumber: 6,
-			content: "Juice the lemon and combine in a high-powered blender with the sun dried tomato mixture and garlic until smooth. Pour over the salad and toss together well. Top with brazil nuts and enjoy!",
-			hasImage: false,
-		},
-	],
-};
-
-const reviews: RecipeReview[] = [
-	{
-		id: "1",
-		body: "Wow, this mixed Greens with Sun-dried tomato dressing recipe is a flavour explosion in my mouth! Very delicious.",
-		recipeId: "123",
-		reviewer: {
-			username: "sarajson",
-			firstName: "Sara",
-			lastName: "Johnson",
-		},
-		rating: 3,
-		likes: 20,
-		numReplies: 1,
-		reviewedAt: Date.now(),
-	},
-	{
-		id: "2",
-		body: "Bloody lovely mate",
-		recipeId: "123",
-		reviewer: {
-			username: "dntB_a_knt",
-			firstName: "Billy",
-			lastName: "Butcher",
-		},
-		rating: 4,
-		likes: 1,
-		numReplies: 0,
-		reviewedAt: Date.now(),
-	},
-];
-
-const recipes: (RecipeCardData & { image: string })[] = [
-	{
-		id: "gourmet_cheeseburger_davwilson",
-		title: "Gourmet Cheeseburger",
-		publisher: {
-			username: "davwilson",
-			firstName: "David",
-			lastName: "Wilson",
-		},
-		cookingTime: 20,
-		averageRating: 4.7,
-		difficulty: "easy",
-		createdAt: Timestamp.now(),
-		image: burgir,
-		serveCount: 2,
-	},
-	{
-		id: "gourmet_cheeseburger_davwilson1",
-		title: "Prawn Pil Pil",
-		publisher: {
-			username: "laplace",
-			firstName: "Lauri",
-			lastName: "Kiukkonen",
-		},
-		cookingTime: 10,
-		averageRating: 4.7,
-		difficulty: "easy",
-		createdAt: Timestamp.now(),
-		image: burgir,
-		serveCount: 2,
-	},
-];
-
-const tags = ["Dessert", "Baking", "FoodBlog", "CheesecakeRecipe", "DeliciousDesserts"];
+import { useEffect, useState } from "react";
+import Api from "@/api";
+import useSnack from "@/context/SnackbarProvider";
 
 function Recipe() {
+	const [recipeData, setRecipeData] = useState<RecipeData | null>(null);
+	const [reviews, setReviews] = useState<RecipeReview[]>([]);
+	const [youMightLikeRecipes, setYouMightLikeRecipes] = useState<(RecipeCardData & { image: string })[]>([]);
 	const theme = useTheme();
 	const isTablet = useMediaQuery(theme.breakpoints.up("md"));
+	const {addSnack} = useSnack();
+
+	// Initial loading
+	useEffect(() => {
+		Api.getRecipeData()
+		.then(data => setRecipeData(data))
+		.catch(e => {
+			console.error("Recipe Data error.", e);
+			addSnack("There was an error getting this recipe", "error");
+		})
+		Api.getRecipeReviews()
+		.then(reviews => setReviews(reviews))
+		.catch(e => {
+			console.error("Reviews error.", e);
+			addSnack("There was an error getting the reviews for this recipe", e);
+		})
+		Api.getYouMightLikeRecipes()
+		.then(data => setYouMightLikeRecipes(data))
+		.catch(e => {
+			console.error("Recipes you might like error.", e);
+			addSnack("There was an error getting recipes you might like", "error");
+		})
+	}, []);
+
+	if (recipeData === null) {
+		return <Skeleton>Loading</Skeleton>
+	}
 
 	return (
 		<Container maxWidth="lg">
@@ -231,7 +158,7 @@ function Recipe() {
 					<Typography gutterBottom variant="h3">Reviews</Typography>
 					<Divider sx={{ mb: 2 }} />
 
-					{reviews.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
+					{reviews?.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
 					<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>Load more</Button>
 
 					{/* Review Form*/}
@@ -241,7 +168,7 @@ function Recipe() {
 					{/* You might like */}
 					<Typography variant="h4" fontWeight="bold" my={3}>You might like</Typography>
 					<Grid container gap={2}>
-						{recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
+						{youMightLikeRecipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
 					</Grid>
 
 					{/* Hide some content from the bottom so we can show it to the right of the main content */}
@@ -250,7 +177,7 @@ function Recipe() {
 						<NewsletterBox />
 						<Typography variant="h3" gutterBottom fontWeight="bold">Tags</Typography>
 						<Grid container gap={1} mb={6}>
-							{tags.map(tag => <TagButton key={tag} tag={tag} />)}
+							{recipeData.tags.map(tag => <TagButton key={tag} tag={tag} />)}
 						</Grid>
 					</>
 					}
@@ -264,7 +191,7 @@ function Recipe() {
 							<NewsletterBoxSmall />
 							<Typography variant="h4" gutterBottom fontWeight="bold">Tags</Typography>
 							<Grid container gap={0.5} mb={6}>
-								{tags.map(tag => <TagButton key={tag} tag={tag} />)}
+								{recipeData.tags.map(tag => <TagButton key={tag} tag={tag} />)}
 							</Grid>
 						</div>
 					</Grid>
