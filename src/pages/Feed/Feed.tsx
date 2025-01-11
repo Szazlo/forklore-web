@@ -1,150 +1,26 @@
 import "@/main.css";
 import {RecipeCardData} from "@/types/recipe";
 import {Container} from "@mui/material";
-import burgir from "@/assets/burgir.jpeg";
 import RecipeCard from "@/components/RecipeCard";
-
-// Temporary fix to removing firebase's Timestamp.now() function
-const Timestamp = {
-    now: () => {
-        return Date.now()
-    }
-}
-
-type RecipeWithImage = RecipeCardData & { image: string };
-
-const recipes: RecipeWithImage[] = [
-    {
-        id: "gourmet_cheeseburger_davwilson",
-        title: "Gourmet Cheeseburger",
-        publisher: {
-            username: "davwilson",
-            firstName: "David",
-            lastName: "Wilson",
-        },
-        cookingTime: 20,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson1",
-        title: "Prawn Pil Pil",
-        publisher: {
-            username: "laplace",
-            firstName: "Lauri",
-            lastName: "Kiukkonen",
-        },
-        cookingTime: 10,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson2",
-        title: "Halal Fried Chicken",
-        publisher: {
-            username: "laplace",
-            firstName: "Daithi",
-            lastName: "Williamson",
-        },
-        cookingTime: 135,
-        averageRating: 5.0,
-        difficulty: "Michelin Chef",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson3",
-        title: "Gourmet Cheeseburger",
-        publisher: {
-            username: "davwilson",
-            firstName: "David",
-            lastName: "Wilson",
-        },
-        cookingTime: 20,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson4",
-        title: "Prawn Pil Pil",
-        publisher: {
-            username: "laplace",
-            firstName: "Lauri",
-            lastName: "Kiukkonen",
-        },
-        cookingTime: 10,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson5",
-        title: "Halal Fried Chicken",
-        publisher: {
-            username: "laplace",
-            firstName: "Daithi",
-            lastName: "Williamson",
-        },
-        cookingTime: 135,
-        averageRating: 5.0,
-        difficulty: "Michelin Chef",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson6",
-        title: "Gourmet Cheeseburger",
-        publisher: {
-            username: "davwilson",
-            firstName: "David",
-            lastName: "Wilson",
-        },
-        cookingTime: 20,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson7",
-        title: "Prawn Pil Pil",
-        publisher: {
-            username: "laplace",
-            firstName: "Lauri",
-            lastName: "Kiukkonen",
-        },
-        cookingTime: 10,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: Timestamp.now(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson8",
-        title: "Halal Fried Chicken",
-        publisher: {
-            username: "laplace",
-            firstName: "Daithi",
-            lastName: "Williamson",
-        },
-        cookingTime: 135,
-        averageRating: 5.0,
-        difficulty: "Michelin Chef",
-        createdAt: Timestamp.now(),
-        image: burgir
-    }
-];
+import { useEffect, useState } from "react";
+import Api from "@/api";
+import useSnack from "@/context/SnackbarProvider";
 
 function Recipe() {
-    const recipeCards = recipes.map((recipeData: RecipeCardData) => <RecipeCard key={recipeData.id} {...recipeData} />);
+    const [recipesMeta, setRecipesMeta] = useState<RecipeCardData[]>([]);
+    const { addSnack } = useSnack();
 
+    const recipeCards = recipesMeta.map(recipeData => <RecipeCard key={recipeData.id} {...recipeData} />);
+
+    useEffect(() => {
+        Api.getRecipesMeta()
+        .then(data => setRecipesMeta(data))
+        .catch(e => {
+            console.error("Error getting recipe cards", e);
+            addSnack("Error getting recipe cards", "error");
+        })
+    })
+ 
     return (
         <>
             <Container maxWidth="lg" sx={{ display: 'grid', gap: 2, gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr' } }}>

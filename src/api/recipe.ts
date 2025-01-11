@@ -1,4 +1,4 @@
-import { recipeData, recipesYouMightLike, reviews } from "./mock-data/recipes"
+import { recipeData, recipesMeta, recipesYouMightLike, reviews } from "./mock-data/recipes"
 
 const getRecipes = async () => {
   // This is to get all recipes
@@ -17,9 +17,14 @@ const getYouMightLikeRecipes = async () => {
   return recipesYouMightLike;
 }
 
+const getRecipesMeta = async () => {
+  return recipesMeta;
+}
+
 export {
   getRecipes,
   getRecipeData,
   getRecipeReviews,
-  getYouMightLikeRecipes
+  getYouMightLikeRecipes,
+  getRecipesMeta
 };

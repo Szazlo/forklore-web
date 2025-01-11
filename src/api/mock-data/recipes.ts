@@ -107,4 +107,144 @@ const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 	},
 ];
 
-export {recipeData, recipesYouMightLike, reviews};
+type RecipeWithImage = RecipeCardData & { image: string };
+
+const recipesMeta: RecipeWithImage[] = [
+    {
+        id: "gourmet_cheeseburger_davwilson",
+        title: "Gourmet Cheeseburger",
+        publisher: {
+            username: "davwilson",
+            firstName: "David",
+            lastName: "Wilson",
+        },
+        cookingTime: 20,
+        serveCount: 5,
+        averageRating: 4.7,
+        difficulty: "easy",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson1",
+        title: "Prawn Pil Pil",
+        publisher: {
+            username: "laplace",
+            firstName: "Lauri",
+            lastName: "Kiukkonen",
+        },
+        cookingTime: 10,
+        serveCount: 5,
+        averageRating: 4.7,
+        difficulty: "easy",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson2",
+        title: "Halal Fried Chicken",
+        publisher: {
+            username: "laplace",
+            firstName: "Daithi",
+            lastName: "Williamson",
+        },
+        cookingTime: 135,
+        serveCount: 5,
+        averageRating: 5.0,
+        difficulty: "Michelin Chef",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson3",
+        title: "Gourmet Cheeseburger",
+        publisher: {
+            username: "davwilson",
+            firstName: "David",
+            lastName: "Wilson",
+        },
+        cookingTime: 20,
+        serveCount: 5,
+        averageRating: 4.7,
+        difficulty: "easy",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson4",
+        title: "Prawn Pil Pil",
+        publisher: {
+            username: "laplace",
+            firstName: "Lauri",
+            lastName: "Kiukkonen",
+        },
+        cookingTime: 10,
+        serveCount: 5,
+        averageRating: 4.7,
+        difficulty: "easy",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson5",
+        title: "Halal Fried Chicken",
+        publisher: {
+            username: "laplace",
+            firstName: "Daithi",
+            lastName: "Williamson",
+        },
+        cookingTime: 135,
+        serveCount: 5,
+        averageRating: 5.0,
+        difficulty: "Michelin Chef",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson6",
+        title: "Gourmet Cheeseburger",
+        publisher: {
+            username: "davwilson",
+            firstName: "David",
+            lastName: "Wilson",
+        },
+        cookingTime: 20,
+        serveCount: 5,
+        averageRating: 4.7,
+        difficulty: "easy",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson7",
+        title: "Prawn Pil Pil",
+        publisher: {
+            username: "laplace",
+            firstName: "Lauri",
+            lastName: "Kiukkonen",
+        },
+        cookingTime: 10,
+        serveCount: 5,
+        averageRating: 4.7,
+        difficulty: "easy",
+        createdAt: new Date(),
+        image: burgir
+    },
+    {
+        id: "gourmet_cheeseburger_davwilson8",
+        title: "Halal Fried Chicken",
+        publisher: {
+            username: "laplace",
+            firstName: "Daithi",
+            lastName: "Williamson",
+        },
+        cookingTime: 135,
+        serveCount: 5,
+        averageRating: 5.0,
+        difficulty: "Michelin Chef",
+        createdAt: new Date(),
+        image: burgir
+    }
+];
+
+export {recipeData, recipesYouMightLike, reviews, recipesMeta};

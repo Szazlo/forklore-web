@@ -28,7 +28,7 @@ export default function HeaderProfileButton() {
     <>
       <Tooltip title="Account settings">
         <IconButton onClick={handleClick}>
-          <Avatar src={user?.photoURL || ""} alt={"Profile Image"}></Avatar>
+          <Avatar src={user?.photoUrl || ""} alt={"Profile Image"}></Avatar>
         </IconButton>
       </Tooltip>
       <Menu
@@ -67,7 +67,7 @@ export default function HeaderProfileButton() {
 				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 			>
 				<MenuItem onClick={handleClose}>
-					<Avatar /> {user?.displayName || user?.email}
+					<Avatar /> {user?.firstName || user?.email}
 				</MenuItem>
 				<MenuItem onClick={handleClose}>
 					<Avatar /> My account
