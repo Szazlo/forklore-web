@@ -9,13 +9,14 @@ export interface RecipeCardData {
   cookingTime: number,
   difficulty: string,
   averageRating: number,
-  createdAt: Timestamp,
+  createdAt: Date,
 }
 
 export interface RecipeData extends RecipeCardData {
-  ingredients: Ingredient[],
-  about: string
-  steps: RecipeInstruction[],
+  ingredients: Ingredient[];
+  about: string;
+  steps: RecipeInstruction[];
+  tags: string[];
 }
 
 export interface RecipeReview {
@@ -27,7 +28,7 @@ export interface RecipeReview {
   reviewer: ForkloreUserMeta,
   likes: number,
   numReplies: number
-  reviewedAt: Timestamp
+  reviewedAt: Date
 }
 
 /** Standalone ingredient, i.e. general information */

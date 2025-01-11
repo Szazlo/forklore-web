@@ -25,7 +25,7 @@ export default function RecipeReview(review: RecipeReview) {
 				</div>
 
 				<Typography variant="body2" color="text.dark"
-										gutterBottom>@{review.reviewer.username} - {timeAgo(review.reviewedAt.toDate())}</Typography>
+										gutterBottom>@{review.reviewer.username} - {timeAgo(review.reviewedAt)}</Typography>
 				<Typography gutterBottom>{review.body}</Typography>
 
 				<div className="flex items-center">
