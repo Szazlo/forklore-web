@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getRecipeData, getRecipeReviews, getRecipes, getYouMightLikeRecipes } from "./recipe";
+import { getRecipeData, getRecipeReviews, getRecipes, getRecipesMeta, getYouMightLikeRecipes } from "./recipe";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.ENDPOINT_URL || "",
@@ -10,7 +10,8 @@ const Api = {
   getRecipeData,
   getRecipes,
   getRecipeReviews,
-  getYouMightLikeRecipes
+  getYouMightLikeRecipes,
+  getRecipesMeta,
 };
 
 export default Api;

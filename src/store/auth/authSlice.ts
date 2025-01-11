@@ -1,13 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-
-interface User {
-    email: string;
-    username: string;
-}
+import { ForkloreUser } from '@/types/User';
 
 export interface AuthStateSlice {
-    user: User | null;
+    user: ForkloreUser | null;
 }
 
 const initialState: AuthStateSlice = {
