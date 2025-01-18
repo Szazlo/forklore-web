@@ -53,5 +53,9 @@ export function timeAgo(date: Date) {
 }
 
 export function formatDate(timestamp: Date) {
-	return timestamp.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+	return timestamp.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	});
 }

@@ -25,7 +25,9 @@
 
 .login-icon {
 	color: var(--primary);
-	transition: color 0.3s ease, transform 0.3s ease;
+	transition:
+		color 0.3s ease,
+		transform 0.3s ease;
 }
 
 .login-icon:hover {

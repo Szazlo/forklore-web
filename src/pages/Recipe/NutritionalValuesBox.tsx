@@ -12,17 +12,25 @@ const nutritionalValues = [
 ];
 
 export default function NutritionalValuesBox() {
-
 	return (
 		<Box className="bg-gray-200 my-6 py-5 px-5">
-			<Typography variant="h5" fontWeight="bold" gutterBottom>Nutrition Facts</Typography>
+			<Typography
+				variant="h5"
+				fontWeight="bold"
+				gutterBottom
+			>
+				Nutrition Facts
+			</Typography>
 			<Stack spacing={1}>
-				{nutritionalValues.map(nut =>
-					<div className="flex justify-between border-b border-gray-300" key={nut.name}>
+				{nutritionalValues.map((nut) => (
+					<div
+						className="flex justify-between border-b border-gray-300"
+						key={nut.name}
+					>
 						<Typography color="text.dark">{nut.name}</Typography>
 						<Typography>{nut.value}</Typography>
-					</div>,
-				)}
+					</div>
+				))}
 			</Stack>
 		</Box>
 	);
