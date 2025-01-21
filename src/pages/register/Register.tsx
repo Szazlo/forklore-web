@@ -3,16 +3,14 @@ import signupImage from "@/assets/signup_img.png";
 import { selectUser } from "@/store";
 import { useSelector } from "react-redux";
 import { Box, Container } from "@mui/material";
-import EmailForm from "@/pages/register/EmailForm.tsx";
-import { useNavigate } from "react-router-dom";
+import SignupForm from "@/pages/register/EmailForm.tsx";
+import { Navigate } from "react-router-dom";
 
 function SignUpPage() {
 	const user = useSelector(selectUser);
-	const navigate = useNavigate();
 
 	if (user !== null) {
-		navigate("/");
-		return;
+		return <Navigate to="/" />;
 	}
 
 	return (
@@ -29,7 +27,7 @@ function SignUpPage() {
 					/>
 				</div>
 				<div className="flex-1">
-					<EmailForm />
+					<SignupForm />
 				</div>
 			</Box>
 		</Container>

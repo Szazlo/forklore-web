@@ -6,7 +6,7 @@ import {
 	getRecipesMeta,
 	getYouMightLikeRecipes,
 } from "./recipe";
-import { signInWithEmail, signUpWithEmail } from "./auth";
+import { signInWithEmailAndPassword, signUpWithEmailAndPassword } from "./auth";
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.ENDPOINT_URL || "",
@@ -20,8 +20,8 @@ const Api = {
 	getYouMightLikeRecipes,
 	getRecipesMeta,
 
-	signUpWithEmail,
-	signInWithEmail,
+	signUpWithEmailAndPassword,
+	signInWithEmailAndPassword,
 };
 
 export default Api;

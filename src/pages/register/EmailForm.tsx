@@ -6,19 +6,29 @@ import { FormEvent, useState } from "react";
 import Api from "@/api";
 import { login } from "@/store/auth/authSlice";
 import useSnack from "@/context/SnackbarProvider";
+import PasswordField from "@/components/PasswordField";
 
-export default function EmailForm() {
+export default function SignupForm() {
 	const dispatch = useDispatch();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [email, setEmail] = useState("");
-	const [emailError, _] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const [passwordError, setPasswordError] = useState("");
+
 	const { addSnack } = useSnack();
 
 	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
-		if (firstName !== "" && email !== "") {
-			const newUser = await Api.signUpWithEmail(firstName, email, lastName);
+		if (password !== confirmPassword) {
+			setPasswordError("Passwords do not match");
+			return;
+		}
+
+		if (firstName !== "" && email !== "" && password !== "") {
+			const newUser = await Api.signUpWithEmailAndPassword(firstName, email, lastName);
 			dispatch(login(newUser));
 			addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName, "success");
 		}
@@ -69,6 +79,8 @@ export default function EmailForm() {
 					error={emailError !== ""}
 					helperText={emailError}
 				/>
+				<PasswordField label="Password" value={password} onChange={(e) => setPassword(e.target.value)} error={passwordError !== ""} helperText={passwordError}/>
+				<PasswordField label="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
 				<Button
 					type="submit"
 					variant="contained"
