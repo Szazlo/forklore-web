@@ -30,7 +30,7 @@ export default function SignupForm() {
 		if (firstName !== "" && email !== "" && password !== "") {
 			const newUser = await Api.signUpWithEmailAndPassword(firstName, email, lastName);
 			dispatch(login(newUser));
-			addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName, "success");
+			addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName || "", "success");
 		}
 	};
 
