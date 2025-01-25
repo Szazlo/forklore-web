@@ -59,3 +59,49 @@ export function formatDate(timestamp: Date) {
 		day: "numeric",
 	});
 }
+
+/**
+ * Validates an email
+ * @param email the email to validate
+ * @returns whether the email is valid
+ */
+export function validateEmail(email: string) {
+	const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	return re.test(email);
+}
+
+export type PasswordResponse = {
+	valid: boolean;
+	messages: string[];
+};
+
+/**
+ * Validates a password based on the following criteria:
+ * - At least 6 characters long
+ * - No more than 20 characters long
+ * - Contains at least one numeric digit
+ * - Contains at least one uppercase letter
+ * @param password The password to validate
+ * @returns An object containing the validity of the password and any error messages
+ */
+export function validatePassword(password: string) {
+	const messages: string[] = [];
+
+	if (password.length < 8) {
+		messages.push("Password must be at least 8 characters long.");
+	}
+	if (password.length > 20) {
+		messages.push("Password must be no more than 20 characters long.");
+	}
+	if (!/(?=.*\d)/.test(password)) {
+		messages.push("Password must contain at least one numeric digit.");
+	}
+	if (!/(?=.*[A-Z])/.test(password)) {
+		messages.push("Password must contain at least one uppercase letter.");
+	}
+
+	return {
+		valid: messages.length === 0,
+		messages,
+	};
+}

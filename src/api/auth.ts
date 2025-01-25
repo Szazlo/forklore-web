@@ -7,7 +7,14 @@ async function signUpWithEmailAndPassword(
 	password: string,
 	lastName?: string,
 ): Promise<ForkloreUser> {
-	return { id: uuidv4(), firstName, email, lastName };
+	return new Promise<ForkloreUser>((resolve, reject) => {
+		// Mock the api rejecting sign up if the email is already in use
+		if (email === "test@test.com") {
+			reject("Email already in use.");
+		} else {
+			resolve({ id: uuidv4(), firstName, email, lastName });
+		}
+	});
 }
 
 async function signInWithEmailAndPassword(

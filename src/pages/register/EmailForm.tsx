@@ -7,6 +7,7 @@ import Api from "@/api";
 import { login } from "@/store/auth/authSlice";
 import useSnack from "@/context/SnackbarProvider";
 import PasswordField from "@/components/PasswordField";
+import { validateEmail, validatePassword } from "@/lib/utils";
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
@@ -16,23 +17,71 @@ export default function SignupForm() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
-	const [passwordError, setPasswordError] = useState("");
+	const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+	const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
 	const { addSnack } = useSnack();
 
+	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (!validateEmail(event.target.value)) {
+			setEmailError("Invalid email");
+		} else {
+			setEmailError("");
+		}
+		setEmail(event.target.value);
+	}
+
+	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setPassword(event.target.value);
+		const { valid, messages } = validatePassword(event.target.value);
+		if (!valid) {
+			setPasswordErrors(messages);
+		} else {
+			setPasswordErrors([]);
+		}
+	}
+
+	const handlePasswordConfirmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setConfirmPassword(event.target.value);
+		if (password !== event.target.value) {
+			setConfirmPasswordError("Passwords do not match");
+		} else {
+			setConfirmPasswordError("");
+		}
+	}
+
 	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
-		if (password !== confirmPassword) {
-			setPasswordError("Passwords do not match");
+		
+		if (!validateEmail(email)) {
+			setEmailError("Invalid email");
 			return;
 		}
 
-		if (firstName !== "" && email !== "" && password !== "") {
-			const newUser = await Api.signUpWithEmailAndPassword(firstName, email, lastName);
+		const { valid: isPasswordValid, messages: passwordErrorMessages } = validatePassword(password);
+		if (!isPasswordValid) {
+			setPasswordErrors(passwordErrorMessages);
+			return;
+		}if (password !== confirmPassword) {
+			setConfirmPasswordError("Passwords do not match");
+			return;
+		}
+
+		if (firstName !== "" && validateEmail(email) && isPasswordValid) {
+			Api.signUpWithEmailAndPassword(firstName, email, lastName)
+			.then(newUser => {
 			dispatch(login(newUser));
 			addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName || "", "success");
+			})
+			.catch(_ => {
+				setEmailError("Email already in use");
+			});
 		}
 	};
+
+	const passwordErrorMessages = confirmPasswordError ? 
+		[...passwordErrors, confirmPasswordError] 
+		: passwordErrors;
 
 	return (
 		<div className="text-center px-4 m-auto xs:3/5 sm:w-4/5">
@@ -68,7 +117,7 @@ export default function SignupForm() {
 				</div>
 				<TextField
 					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					onChange={handleEmailChange}
 					name="email"
 					fullWidth
 					margin="dense"
@@ -79,8 +128,18 @@ export default function SignupForm() {
 					error={emailError !== ""}
 					helperText={emailError}
 				/>
-				<PasswordField label="Password" value={password} onChange={(e) => setPassword(e.target.value)} error={passwordError !== ""} helperText={passwordError}/>
-				<PasswordField label="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+				<PasswordField 
+					label="Password" 
+					value={password} 
+					onChange={handlePasswordChange} 
+					error={passwordErrors.length !== 0} 
+					/>
+				<PasswordErrorMessagesList messages={passwordErrorMessages} />
+				<PasswordField
+					label="Confirm Password" 
+					value={confirmPassword} 
+					onChange={handlePasswordConfirmChange} 
+					/>
 				<Button
 					type="submit"
 					variant="contained"
@@ -125,7 +184,19 @@ export default function SignupForm() {
 						size="2x"
 					/>
 				</button>
-			</div>
-		</div>
+	</div>;
+}
+
+function PasswordErrorMessagesList({ messages }: { messages: string[] }) {
+	return (
+		<>
+			{messages.length > 0 &&
+				<ul className="text-left text-red-500 text-sm list-disc ml-10 mb-2">
+					{messages.map((message, index) => (
+						<li key={index}>{message}</li>
+					))}
+				</ul>
+			}
+		</>
 	);
 }
