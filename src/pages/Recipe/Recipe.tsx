@@ -39,101 +39,185 @@ import useSnack from "@/context/SnackbarProvider";
 function Recipe() {
 	const [recipeData, setRecipeData] = useState<RecipeData | null>(null);
 	const [reviews, setReviews] = useState<RecipeReview[]>([]);
-	const [youMightLikeRecipes, setYouMightLikeRecipes] = useState<(RecipeCardData & { image: string })[]>([]);
+	const [youMightLikeRecipes, setYouMightLikeRecipes] = useState<
+		(RecipeCardData & { image: string })[]
+	>([]);
 	const theme = useTheme();
 	const isTablet = useMediaQuery(theme.breakpoints.up("md"));
-	const {addSnack} = useSnack();
+	const { addSnack } = useSnack();
 
 	// Initial loading
 	useEffect(() => {
 		Api.getRecipeData()
-		.then(data => setRecipeData(data))
-		.catch(e => {
-			console.error("Recipe Data error.", e);
-			addSnack("There was an error getting this recipe", "error");
-		})
+			.then((data) => setRecipeData(data))
+			.catch((e) => {
+				console.error("Recipe Data error.", e);
+				addSnack("There was an error getting this recipe", "error");
+			});
 		Api.getRecipeReviews()
-		.then(reviews => setReviews(reviews))
-		.catch(e => {
-			console.error("Reviews error.", e);
-			addSnack("There was an error getting the reviews for this recipe", e);
-		})
+			.then((reviews) => setReviews(reviews))
+			.catch((e) => {
+				console.error("Reviews error.", e);
+				addSnack("There was an error getting the reviews for this recipe", e);
+			});
 		Api.getYouMightLikeRecipes()
-		.then(data => setYouMightLikeRecipes(data))
-		.catch(e => {
-			console.error("Recipes you might like error.", e);
-			addSnack("There was an error getting recipes you might like", "error");
-		})
+			.then((data) => setYouMightLikeRecipes(data))
+			.catch((e) => {
+				console.error("Recipes you might like error.", e);
+				addSnack("There was an error getting recipes you might like", "error");
+			});
 	}, []);
 
 	if (recipeData === null) {
-		return <Skeleton>Loading</Skeleton>
+		return <Skeleton>Loading</Skeleton>;
 	}
 
 	return (
 		<Container maxWidth="lg">
-			<Breadcrumbs separator="›" sx={{ my: 2 }}>
-				<Link to="/" className="hover:underline">Home</Link>
-				<Link to="/recipes" className="hover:underline">Recipes</Link>
+			<Breadcrumbs
+				separator="›"
+				sx={{ my: 2 }}
+			>
+				<Link
+					to="/"
+					className="hover:underline"
+				>
+					Home
+				</Link>
+				<Link
+					to="/recipes"
+					className="hover:underline"
+				>
+					Recipes
+				</Link>
 				<Typography color="text.primary">{recipeData.title}</Typography>
 			</Breadcrumbs>
-			<Typography variant="h3" gutterBottom maxWidth={isTablet ? 0.7 : 1}
-									letterSpacing={0.1}>{recipeData.title}</Typography>
-			<Grid container mb={1}>
-
+			<Typography
+				variant="h3"
+				gutterBottom
+				maxWidth={isTablet ? 0.7 : 1}
+				letterSpacing={0.1}
+			>
+				{recipeData.title}
+			</Typography>
+			<Grid
+				container
+				mb={1}
+			>
 				{/* Recipe metadata -- Author, date, rating */}
-				<Grid container item md={8} xs={12} gap={1.5}>
+				<Grid
+					container
+					item
+					md={8}
+					xs={12}
+					gap={1.5}
+				>
 					<div className="flex items-center gap-1">
 						<Avatar sx={{ height: 25, width: 25, bgcolor: "primary.main" }} />
-						<Typography>{recipeData.publisher.firstName} {recipeData.publisher.lastName}</Typography>
+						<Typography>
+							{recipeData.publisher.firstName} {recipeData.publisher.lastName}
+						</Typography>
 					</div>
 					<div className="flex items-center gap-1">
 						<CalendarMonthIcon color="primary" />
 						<Typography>{formatDate(recipeData.createdAt)}</Typography>
 					</div>
 					<div className="flex items-center gap-1">
-						<Rating readOnly value={recipeData.averageRating} size="small"></Rating>
-						<Typography variant="body2" color="text.dark">{recipeData.averageRating} / 10 reviews</Typography>
+						<Rating
+							readOnly
+							value={recipeData.averageRating}
+							size="small"
+						></Rating>
+						<Typography
+							variant="body2"
+							color="text.dark"
+						>
+							{recipeData.averageRating} / 10 reviews
+						</Typography>
 					</div>
 				</Grid>
 
 				{/* Recipe action buttons -- bookmark, share, print */}
-				{isTablet &&
-					<Grid container item md={4}>
+				{isTablet && (
+					<Grid
+						container
+						item
+						md={4}
+					>
 						<div className="ml-12 flex gap-0.5">
-							<IconButton size="small"><BookmarkBorderIcon color="primary" /></IconButton>
-							<IconButton size="small"><ShareOutlined color="primary" /></IconButton>
-							<IconButton size="small"><LocalPrintshopOutlinedIcon color="primary" /></IconButton>
+							<IconButton size="small">
+								<BookmarkBorderIcon color="primary" />
+							</IconButton>
+							<IconButton size="small">
+								<ShareOutlined color="primary" />
+							</IconButton>
+							<IconButton size="small">
+								<LocalPrintshopOutlinedIcon color="primary" />
+							</IconButton>
 						</div>
 					</Grid>
-				}
+				)}
 			</Grid>
 
 			{isTablet && <Divider />}
 
 			<Grid container>
-				<Grid item md={8}>
-					<Box width={1} my={2}>
-						<img src={burgir} alt={"burgir"} className="w-full rounded" />
+				<Grid
+					item
+					md={8}
+				>
+					<Box
+						width={1}
+						my={2}
+					>
+						<img
+							src={burgir}
+							alt={"burgir"}
+							className="w-full rounded"
+						/>
 					</Box>
 
 					{/* Recipe metadata -- time, servings */}
 					<Container maxWidth="sm">
-						<Grid container justifyContent="space-around">
+						<Grid
+							container
+							justifyContent="space-around"
+						>
 							<div className="text-center">
-								<Typography variant="body1" color="text.dark">Prep time</Typography>
+								<Typography
+									variant="body1"
+									color="text.dark"
+								>
+									Prep time
+								</Typography>
 								{recipeData.cookingTime} mins
 							</div>
-							<Divider orientation="vertical" flexItem />
-							{recipeData.prepTime && // Not all recipes have a prep time
+							<Divider
+								orientation="vertical"
+								flexItem
+							/>
+							{recipeData.prepTime && ( // Not all recipes have a prep time
 								<div className="text-center">
-									<Typography variant="body1" color="text.dark">Cook time</Typography>
+									<Typography
+										variant="body1"
+										color="text.dark"
+									>
+										Cook time
+									</Typography>
 									{recipeData.prepTime} mins
 								</div>
-							}
-							<Divider orientation="vertical" flexItem />
+							)}
+							<Divider
+								orientation="vertical"
+								flexItem
+							/>
 							<div className="text-center">
-								<Typography variant="body1" color="text.dark">Serves</Typography>
+								<Typography
+									variant="body1"
+									color="text.dark"
+								>
+									Serves
+								</Typography>
 								{recipeData.serveCount}
 							</div>
 						</Grid>
@@ -146,65 +230,142 @@ function Recipe() {
 					<IngredientsList ingredients={recipeData.ingredients} />
 
 					{/* Steps */}
-					<Typography variant="h3" my={3}>Steps</Typography>
+					<Typography
+						variant="h3"
+						my={3}
+					>
+						Steps
+					</Typography>
 					<RecipeStepsList steps={recipeData.steps} />
 
 					{/* Recipe Print Card for desktop */}
 					{isTablet && <RecipePrintCard {...recipeData} />}
 
-					<Divider sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }} />
+					<Divider
+						sx={{ borderBottomWidth: 5, bgcolor: "primary.main", mt: 10, mb: 5 }}
+					/>
 
 					{/* Reviews */}
-					<Typography gutterBottom variant="h3">Reviews</Typography>
+					<Typography
+						gutterBottom
+						variant="h3"
+					>
+						Reviews
+					</Typography>
 					<Divider sx={{ mb: 2 }} />
 
-					{reviews?.map(review => <RecipeReviewRenderer key={review.id} {...review} />)}
-					<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>Load more</Button>
+					{reviews?.map((review) => (
+						<RecipeReviewRenderer
+							key={review.id}
+							{...review}
+						/>
+					))}
+					<Button
+						variant="outlined"
+						sx={{ textTransform: "capitalize", mb: 2 }}
+					>
+						Load more
+					</Button>
 
 					{/* Review Form*/}
-					<Typography variant="h5" my={1} fontWeight="bold">Rate this recipe and share your opinion</Typography>
+					<Typography
+						variant="h5"
+						my={1}
+						fontWeight="bold"
+					>
+						Rate this recipe and share your opinion
+					</Typography>
 					<ReviewForm />
 
 					{/* You might like */}
-					<Typography variant="h4" fontWeight="bold" my={3}>You might like</Typography>
-					<Grid container gap={2}>
-						{youMightLikeRecipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
+					<Typography
+						variant="h4"
+						fontWeight="bold"
+						my={3}
+					>
+						You might like
+					</Typography>
+					<Grid
+						container
+						gap={2}
+					>
+						{youMightLikeRecipes.map((recipe) => (
+							<RecipeCard
+								key={recipe.id}
+								{...recipe}
+							/>
+						))}
 					</Grid>
 
 					{/* Hide some content from the bottom so we can show it to the right of the main content */}
-					{!isTablet && <>
-						<NutritionalValuesBox />
-						<NewsletterBox />
-						<Typography variant="h3" gutterBottom fontWeight="bold">Tags</Typography>
-						<Grid container gap={1} mb={6}>
-							{recipeData.tags.map(tag => <TagButton key={tag} tag={tag} />)}
-						</Grid>
-					</>
-					}
-
+					{!isTablet && (
+						<>
+							<NutritionalValuesBox />
+							<NewsletterBox />
+							<Typography
+								variant="h3"
+								gutterBottom
+								fontWeight="bold"
+							>
+								Tags
+							</Typography>
+							<Grid
+								container
+								gap={1}
+								mb={6}
+							>
+								{recipeData.tags.map((tag) => (
+									<TagButton
+										key={tag}
+										tag={tag}
+									/>
+								))}
+							</Grid>
+						</>
+					)}
 				</Grid>
 				{/* Show more content on the right side on larger screens*/}
-				{isTablet &&
-					<Grid item md={4}>
+				{isTablet && (
+					<Grid
+						item
+						md={4}
+					>
 						<div className="ml-12">
 							<NutritionalValuesBox />
 							<NewsletterBoxSmall />
-							<Typography variant="h4" gutterBottom fontWeight="bold">Tags</Typography>
-							<Grid container gap={0.5} mb={6}>
-								{recipeData.tags.map(tag => <TagButton key={tag} tag={tag} />)}
+							<Typography
+								variant="h4"
+								gutterBottom
+								fontWeight="bold"
+							>
+								Tags
+							</Typography>
+							<Grid
+								container
+								gap={0.5}
+								mb={6}
+							>
+								{recipeData.tags.map((tag) => (
+									<TagButton
+										key={tag}
+										tag={tag}
+									/>
+								))}
 							</Grid>
 						</div>
 					</Grid>
-				}
+				)}
 			</Grid>
 		</Container>
 	);
 }
 
 function TagButton(props: any) {
-
 	return (
-		<Button variant="outlined" sx={{ textTransform: "none", color: "gray", p: 1 }}>
+		<Button
+			variant="outlined"
+			sx={{ textTransform: "none", color: "gray", p: 1 }}
+		>
 			#{props.tag}
 		</Button>
 	);

@@ -17,11 +17,26 @@ export default function ReviewForm() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<Rating value={rating} onChange={(_event, newValue) => setRating(newValue)} />
-			<TextField multiline fullWidth minRows={3} value={review} placeholder="Write here"
-								 onChange={(e) => setReview(e.target.value)} />
+			<Rating
+				value={rating}
+				onChange={(_event, newValue) => setRating(newValue)}
+			/>
+			<TextField
+				multiline
+				fullWidth
+				minRows={3}
+				value={review}
+				placeholder="Write here"
+				onChange={(e) => setReview(e.target.value)}
+			/>
 			<div className="text-right my-2">
-				<Button type="submit" variant="contained" sx={{ textTransform: "capitalize", px: 4 }}>Post</Button>
+				<Button
+					type="submit"
+					variant="contained"
+					sx={{ textTransform: "capitalize", px: 4 }}
+				>
+					Post
+				</Button>
 			</div>
 		</form>
 	);
