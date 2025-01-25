@@ -1,5 +1,5 @@
 import { Button, Divider, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { FormEvent, useState } from "react";
@@ -70,8 +70,8 @@ export default function SignupForm() {
 		if (firstName !== "" && validateEmail(email) && isPasswordValid) {
 			Api.signUpWithEmailAndPassword(firstName, email, lastName)
 			.then(newUser => {
-			dispatch(login(newUser));
-			addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName || "", "success");
+				dispatch(login(newUser));
+				addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName || "", "success");
 			})
 			.catch(_ => {
 				setEmailError("Email already in use");
@@ -149,41 +149,44 @@ export default function SignupForm() {
 					Sign up
 				</Button>
 			</form>
-			<Link
+			<NavLink
 				to="/login"
 				className="mt-4 text-primary hover:text-accent hover:underline"
 			>
 				Already have an account? Sign in
-			</Link>
+			</NavLink>
 			<Divider
 				flexItem
 				sx={{ p: 1, color: "primary.main" }}
 			>
 				OR
 			</Divider>
-			<Typography color="primary">Sign Up with:</Typography>
-			<div className="flex w-full justify-center mt-4">
-				<button className="mx-2 login-icon">
-					<FontAwesomeIcon
-						icon={["fab", "google"]}
-						size="2x"
-					/>
-				</button>
-				<a
-					href="#"
-					className="mx-2 login-icon"
-				>
-					<FontAwesomeIcon
-						icon={["fab", "apple"]}
-						size="2x"
-					/>
-				</a>
-				<button className="mx-2 login-icon">
-					<FontAwesomeIcon
-						icon={["fab", "facebook"]}
-						size="2x"
-					/>
-				</button>
+			<Typography color="primary">Sign up with:</Typography>
+			<SocialSignInLinks />
+		</div>
+	);
+}
+
+function SocialSignInLinks() {
+	return <div className="flex w-full justify-center mt-4">
+		<button className="mx-2 login-icon">
+			<FontAwesomeIcon
+				icon={["fab", "google"]}
+				size="2x" />
+		</button>
+		<a
+			href="#"
+			className="mx-2 login-icon"
+		>
+			<FontAwesomeIcon
+				icon={["fab", "apple"]}
+				size="2x" />
+		</a>
+		<button className="mx-2 login-icon">
+			<FontAwesomeIcon
+				icon={["fab", "facebook"]}
+				size="2x" />
+		</button>
 	</div>;
 }
 
