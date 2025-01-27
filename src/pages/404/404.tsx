@@ -11,7 +11,7 @@ const PageNotFound = () => {
 				Ooops! It looks like you have taken a detour to while searching for you next
 				meal.
 				<br />
-				Fear not! We have plenty of recipes to choose from. Let's get you back on
+				Fear not! We have plenty of recipes to choose from. Let&apos;s get you back on
 				track.
 			</p>
 			<button

@@ -19,6 +19,7 @@ import burgir from "@/assets/burgir.jpeg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { formatDate } from "@/lib/utils.ts";
 import { IngredientsList } from "@/pages/Recipe/IngredientsList.tsx";
+import { ReactNode } from "react";
 
 export default function RecipePrintCard(props: RecipeData) {
 	return (
@@ -149,7 +150,7 @@ export default function RecipePrintCard(props: RecipeData) {
 	);
 }
 
-function ListItem({ children }: any) {
+function ListItem({ children }: { children: ReactNode}) {
 	return (
 		<div className="flex">
 			<Box
