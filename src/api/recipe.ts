@@ -1,30 +1,35 @@
-import { recipeData, recipesMeta, recipesYouMightLike, reviews } from "./mock-data/recipes"
+import {
+	recipeData,
+	recipesMeta,
+	recipesYouMightLike,
+	reviews,
+} from "./mock-data/recipes";
 
 const getRecipes = async () => {
-  // This is to get all recipes
-  return recipesYouMightLike;
-}
+	// This is to get all recipes
+	return recipesYouMightLike;
+};
 
 const getRecipeData = async () => {
-  return recipeData;
-}
+	return recipeData;
+};
 
 const getRecipeReviews = async () => {
-  return reviews;
-}
+	return reviews;
+};
 
 const getYouMightLikeRecipes = async () => {
-  return recipesYouMightLike;
-}
+	return recipesYouMightLike;
+};
 
 const getRecipesMeta = async () => {
-  return recipesMeta;
-}
+	return recipesMeta;
+};
 
 export {
-  getRecipes,
-  getRecipeData,
-  getRecipeReviews,
-  getYouMightLikeRecipes,
-  getRecipesMeta
+	getRecipes,
+	getRecipeData,
+	getRecipeReviews,
+	getYouMightLikeRecipes,
+	getRecipesMeta,
 };

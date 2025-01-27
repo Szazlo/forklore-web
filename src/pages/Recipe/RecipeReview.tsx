@@ -16,32 +16,66 @@ export default function RecipeReview(review: RecipeReview) {
 			<div className="ml-2 w-full">
 				<div className="flex justify-between">
 					<div className="flex items-center">
-						<Typography variant="h5" mr={1}>{review.reviewer.firstName} {review.reviewer.lastName?.at(0)}.</Typography>
-						<Rating size="small" readOnly value={review.rating} />
+						<Typography
+							variant="h5"
+							mr={1}
+						>
+							{review.reviewer.firstName} {review.reviewer.lastName?.at(0)}.
+						</Typography>
+						<Rating
+							size="small"
+							readOnly
+							value={review.rating}
+						/>
 					</div>
 					<IconButton sx={{ py: 0 }}>
 						<MoreVertIcon />
 					</IconButton>
 				</div>
 
-				<Typography variant="body2" color="text.dark"
-										gutterBottom>@{review.reviewer.username} - {timeAgo(review.reviewedAt)}</Typography>
+				<Typography
+					variant="body2"
+					color="text.dark"
+					gutterBottom
+				>
+					@{review.reviewer.username} - {timeAgo(review.reviewedAt)}
+				</Typography>
 				<Typography gutterBottom>{review.body}</Typography>
 
 				<div className="flex items-center">
-					<IconButton color="primary" sx={{ px: 0.5 }} onClick={toggleLiked}>
+					<IconButton
+						color="primary"
+						sx={{ px: 0.5 }}
+						onClick={toggleLiked}
+					>
 						{liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
 					</IconButton>
-					<Typography variant="body2" color="primary">{review.likes}</Typography>
-					<Button variant="text" sx={{ textTransform: "capitalize" }}>Reply</Button>
+					<Typography
+						variant="body2"
+						color="primary"
+					>
+						{review.likes}
+					</Typography>
+					<Button
+						variant="text"
+						sx={{ textTransform: "capitalize" }}
+					>
+						Reply
+					</Button>
 				</div>
 
-				{review.numReplies > 0 &&
-					<Button variant="contained" size="small" sx={{ textTransform: "capitalize" }} onClick={toggleRepliesOpen}>
-						{repliesOpen ? "Hide" : "Show"} {review.numReplies} {review.numReplies > 1 ? "replies" : "reply"}
+				{review.numReplies > 0 && (
+					<Button
+						variant="contained"
+						size="small"
+						sx={{ textTransform: "capitalize" }}
+						onClick={toggleRepliesOpen}
+					>
+						{repliesOpen ? "Hide" : "Show"} {review.numReplies}{" "}
+						{review.numReplies > 1 ? "replies" : "reply"}
 					</Button>
-				}
-			{/*	TODO: Add review replies */}
+				)}
+				{/*	TODO: Add review replies */}
 			</div>
 		</div>
 	);

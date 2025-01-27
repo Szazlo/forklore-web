@@ -23,30 +23,52 @@ const recipeData: RecipeData = {
 		{ id: "5", name: "70g minced pork" },
 		{ id: "6", name: "100g beef lard/tallow" },
 	],
-	about: "This recipe features a vibrant and refreshing salad made with a medley of mixed greens, accompanied by a flavorful sun-dried tomato dressing.",
+	about:
+		"This recipe features a vibrant and refreshing salad made with a medley of mixed greens, accompanied by a flavorful sun-dried tomato dressing.",
 	steps: [
-		{ stepNumber: 1, content: "Preheat the oven to 180 degrees", hasImage: false },
-		{ stepNumber: 2, content: "Mix the flour, sugar, and milk in a bowl", hasImage: false },
+		{
+			stepNumber: 1,
+			content: "Preheat the oven to 180 degrees",
+			hasImage: false,
+		},
+		{
+			stepNumber: 2,
+			content: "Mix the flour, sugar, and milk in a bowl",
+			hasImage: false,
+		},
 		{ stepNumber: 3, content: "Add water and mix until sticky", hasImage: false },
-		{ stepNumber: 4, content: "Pour the mixture into a baking tray", hasImage: false },
+		{
+			stepNumber: 4,
+			content: "Pour the mixture into a baking tray",
+			hasImage: false,
+		},
 		{
 			stepNumber: 5,
-			content: "Chop the fresh herbs, tomato, and onions and toss them with the salad greens. Add additional veggies as desired",
+			content:
+				"Chop the fresh herbs, tomato, and onions and toss them with the salad greens. Add additional veggies as desired",
 			hasImage: false,
 		},
 		{
 			stepNumber: 6,
-			content: "Juice the lemon and combine in a high-powered blender with the sun dried tomato mixture and garlic until smooth. Pour over the salad and toss together well. Top with brazil nuts and enjoy!",
+			content:
+				"Juice the lemon and combine in a high-powered blender with the sun dried tomato mixture and garlic until smooth. Pour over the salad and toss together well. Top with brazil nuts and enjoy!",
 			hasImage: false,
 		},
 	],
-	tags: ["Dessert", "Baking", "FoodBlog", "CheesecakeRecipe", "DeliciousDesserts"]
+	tags: [
+		"Dessert",
+		"Baking",
+		"FoodBlog",
+		"CheesecakeRecipe",
+		"DeliciousDesserts",
+	],
 };
 
 const reviews: RecipeReview[] = [
 	{
 		id: "1",
-		body: "Wow, this mixed Greens with Sun-dried tomato dressing recipe is a flavour explosion in my mouth! Very delicious.",
+		body:
+			"Wow, this mixed Greens with Sun-dried tomato dressing recipe is a flavour explosion in my mouth! Very delicious.",
 		recipeId: "123",
 		reviewer: {
 			username: "sarajson",
@@ -70,7 +92,7 @@ const reviews: RecipeReview[] = [
 		rating: 4,
 		likes: 1,
 		numReplies: 0,
-		reviewedAt: new Date()
+		reviewedAt: new Date(),
 	},
 ];
 
@@ -110,141 +132,141 @@ const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 type RecipeWithImage = RecipeCardData & { image: string };
 
 const recipesMeta: RecipeWithImage[] = [
-    {
-        id: "gourmet_cheeseburger_davwilson",
-        title: "Gourmet Cheeseburger",
-        publisher: {
-            username: "davwilson",
-            firstName: "David",
-            lastName: "Wilson",
-        },
-        cookingTime: 20,
-        serveCount: 5,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson1",
-        title: "Prawn Pil Pil",
-        publisher: {
-            username: "laplace",
-            firstName: "Lauri",
-            lastName: "Kiukkonen",
-        },
-        cookingTime: 10,
-        serveCount: 5,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson2",
-        title: "Halal Fried Chicken",
-        publisher: {
-            username: "laplace",
-            firstName: "Daithi",
-            lastName: "Williamson",
-        },
-        cookingTime: 135,
-        serveCount: 5,
-        averageRating: 5.0,
-        difficulty: "Michelin Chef",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson3",
-        title: "Gourmet Cheeseburger",
-        publisher: {
-            username: "davwilson",
-            firstName: "David",
-            lastName: "Wilson",
-        },
-        cookingTime: 20,
-        serveCount: 5,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson4",
-        title: "Prawn Pil Pil",
-        publisher: {
-            username: "laplace",
-            firstName: "Lauri",
-            lastName: "Kiukkonen",
-        },
-        cookingTime: 10,
-        serveCount: 5,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson5",
-        title: "Halal Fried Chicken",
-        publisher: {
-            username: "laplace",
-            firstName: "Daithi",
-            lastName: "Williamson",
-        },
-        cookingTime: 135,
-        serveCount: 5,
-        averageRating: 5.0,
-        difficulty: "Michelin Chef",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson6",
-        title: "Gourmet Cheeseburger",
-        publisher: {
-            username: "davwilson",
-            firstName: "David",
-            lastName: "Wilson",
-        },
-        cookingTime: 20,
-        serveCount: 5,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson7",
-        title: "Prawn Pil Pil",
-        publisher: {
-            username: "laplace",
-            firstName: "Lauri",
-            lastName: "Kiukkonen",
-        },
-        cookingTime: 10,
-        serveCount: 5,
-        averageRating: 4.7,
-        difficulty: "easy",
-        createdAt: new Date(),
-        image: burgir
-    },
-    {
-        id: "gourmet_cheeseburger_davwilson8",
-        title: "Halal Fried Chicken",
-        publisher: {
-            username: "laplace",
-            firstName: "Daithi",
-            lastName: "Williamson",
-        },
-        cookingTime: 135,
-        serveCount: 5,
-        averageRating: 5.0,
-        difficulty: "Michelin Chef",
-        createdAt: new Date(),
-        image: burgir
-    }
+	{
+		id: "gourmet_cheeseburger_davwilson",
+		title: "Gourmet Cheeseburger",
+		publisher: {
+			username: "davwilson",
+			firstName: "David",
+			lastName: "Wilson",
+		},
+		cookingTime: 20,
+		serveCount: 5,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson1",
+		title: "Prawn Pil Pil",
+		publisher: {
+			username: "laplace",
+			firstName: "Lauri",
+			lastName: "Kiukkonen",
+		},
+		cookingTime: 10,
+		serveCount: 5,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson2",
+		title: "Halal Fried Chicken",
+		publisher: {
+			username: "laplace",
+			firstName: "Daithi",
+			lastName: "Williamson",
+		},
+		cookingTime: 135,
+		serveCount: 5,
+		averageRating: 5.0,
+		difficulty: "Michelin Chef",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson3",
+		title: "Gourmet Cheeseburger",
+		publisher: {
+			username: "davwilson",
+			firstName: "David",
+			lastName: "Wilson",
+		},
+		cookingTime: 20,
+		serveCount: 5,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson4",
+		title: "Prawn Pil Pil",
+		publisher: {
+			username: "laplace",
+			firstName: "Lauri",
+			lastName: "Kiukkonen",
+		},
+		cookingTime: 10,
+		serveCount: 5,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson5",
+		title: "Halal Fried Chicken",
+		publisher: {
+			username: "laplace",
+			firstName: "Daithi",
+			lastName: "Williamson",
+		},
+		cookingTime: 135,
+		serveCount: 5,
+		averageRating: 5.0,
+		difficulty: "Michelin Chef",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson6",
+		title: "Gourmet Cheeseburger",
+		publisher: {
+			username: "davwilson",
+			firstName: "David",
+			lastName: "Wilson",
+		},
+		cookingTime: 20,
+		serveCount: 5,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson7",
+		title: "Prawn Pil Pil",
+		publisher: {
+			username: "laplace",
+			firstName: "Lauri",
+			lastName: "Kiukkonen",
+		},
+		cookingTime: 10,
+		serveCount: 5,
+		averageRating: 4.7,
+		difficulty: "easy",
+		createdAt: new Date(),
+		image: burgir,
+	},
+	{
+		id: "gourmet_cheeseburger_davwilson8",
+		title: "Halal Fried Chicken",
+		publisher: {
+			username: "laplace",
+			firstName: "Daithi",
+			lastName: "Williamson",
+		},
+		cookingTime: 135,
+		serveCount: 5,
+		averageRating: 5.0,
+		difficulty: "Michelin Chef",
+		createdAt: new Date(),
+		image: burgir,
+	},
 ];
 
-export {recipeData, recipesYouMightLike, reviews, recipesMeta};
+export { recipeData, recipesYouMightLike, reviews, recipesMeta };
