@@ -73,7 +73,7 @@ export default function SignupForm() {
 				dispatch(login(newUser));
 				addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName || "", "success");
 			})
-			.catch(_ => {
+			.catch(() => {
 				setEmailError("Email already in use");
 			});
 		}

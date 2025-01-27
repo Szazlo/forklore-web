@@ -66,7 +66,7 @@ export default function BlogSection() {
 }
 
 function BlogComponent({ id, title, intro }: BlogCardData) {
-	const [image, setImage] = useState("");
+	const [image, ] = useState("");
 
 	useEffect(() => {
 		console.log("Blogcomponent: Get image not implemented");

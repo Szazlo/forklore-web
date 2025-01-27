@@ -140,7 +140,7 @@ const FooterLogo = () => {
 				/>
 				<p className="mt-2 max-w-md text-left">
 					The purpose of lorem ipsum is to create a natural looking block of text
-					(sentence, paragraph, page, etc.) that doesn't distract from the layout.
+					(sentence, paragraph, page, etc.) that doesn&apos;t distract from the layout.
 				</p>
 			</div>
 		</div>

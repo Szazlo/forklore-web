@@ -3,24 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "@/store/auth/authSlice";
-import { Link, useNavigate } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { login } from "@/store/auth/authSlice";
+import { Link, /* useNavigate */ } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import signinImage from "@/assets/signin_img.png";
 import useSnack from "@/context/SnackbarProvider";
-import { selectUser } from "@/store";
+// import { selectUser } from "@/store";
 
 library.add(fab);
 
 function LoginForm() {
-	const user = useSelector(selectUser);
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	// const user = useSelector(selectUser);
+	// const dispatch = useDispatch();
+	// const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [errorMessage, setErrorMessage] = useState("");
+	const [errorMessage, ] = useState("");
 	const { addSnack } = useSnack();
 
 	// Signs the user in with google
@@ -42,7 +42,7 @@ function LoginForm() {
 		// 		}
 		// 	});
 		if (email !== "" && password != "") {
-			Api;
+			// Api;
 		} else {
 			addSnack("Invalid Credentials. Please try again", "error");
 		}
@@ -118,7 +118,7 @@ function LoginForm() {
 							to="/signup"
 							className="mt-4 text-primary hover:text-accent hover:underline"
 						>
-							Don't have an account? Sign up
+							Don&apos;t have an account? Sign up
 						</Link>
 						<div className="flex justify-center items-center w-full mt-4">
 							<hr className="w-1/4 border-t border-secondary" />
