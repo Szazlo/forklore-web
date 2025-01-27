@@ -1,15 +1,25 @@
 import { selectUser } from "@/store";
+import { logout } from "@/store/auth/authSlice";
 import Logout from "@mui/icons-material/Logout";
-import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
+import {
+	Avatar,
+	Divider,
+	IconButton,
+	ListItemIcon,
+	Menu,
+	MenuItem,
+	Tooltip,
+} from "@mui/material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-// import useSnack from "@/context/SnackbarProvider";
+import { useSelector, useDispatch } from "react-redux";
+import useSnack from "@/context/SnackbarProvider";
 
 export default function HeaderProfileButton() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
-  const user = useSelector(selectUser);
-	// const { addSnack } = useSnack();
+	const user = useSelector(selectUser);
+	const dispatch = useDispatch();
+	const { addSnack } = useSnack();
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -19,19 +29,23 @@ export default function HeaderProfileButton() {
 		setAnchorEl(null);
 	};
 
-  const handleSignOut = () => {
-		console.log("Not yet implemented");
-    handleClose();
-  }
+	const handleSignOut = () => {
+		dispatch(logout());
+		addSnack("Signed out", "success");
+		handleClose();
+	};
 
-  return (
-    <>
-      <Tooltip title="Account settings">
-        <IconButton onClick={handleClick}>
-          <Avatar src={user?.photoUrl || ""} alt={"Profile Image"}></Avatar>
-        </IconButton>
-      </Tooltip>
-      <Menu
+	return (
+		<>
+			<Tooltip title="Account settings">
+				<IconButton onClick={handleClick}>
+					<Avatar
+						src={user?.photoUrl || ""}
+						alt={"Profile Image"}
+					></Avatar>
+				</IconButton>
+			</Tooltip>
+			<Menu
 				anchorEl={anchorEl}
 				id="account-menu"
 				open={open}
@@ -80,6 +94,6 @@ export default function HeaderProfileButton() {
 					Logout
 				</MenuItem>
 			</Menu>
-    </>
-  )
+		</>
+	);
 }

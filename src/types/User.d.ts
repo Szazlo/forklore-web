@@ -1,15 +1,13 @@
 export interface ForkloreUserMeta {
-  username: string;
-  firstName?: string;
-  lastName?: string;
-  photoUrl?: string;
+	id: string;
+	firstName: string;
+	lastName?: string;
+	photoUrl?: string;
 }
 
-// TODO: Add more fields
-export interface ForkloreUser extends ForkloreUserMeta{
-  type?: string,
-  gender?: number,
-  country?: string,
-  email: string;
-  // Omitted city and pfp path as pfp path can be implied from username
+export interface ForkloreUser extends ForkloreUserMeta {
+	type?: string;
+	gender?: number;
+	country?: string;
+	email: string;
 }
