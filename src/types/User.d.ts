@@ -3,6 +3,7 @@ export interface ForkloreUserMeta {
 	firstName: string;
 	lastName?: string;
 	photoUrl?: string;
+	username?: string;
 }
 
 export interface ForkloreUser extends ForkloreUserMeta {

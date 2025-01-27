@@ -23,13 +23,16 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@/store";
 // import StarIcon from '@mui/icons-material/Star';
 import Blob from "@/components/HomeBlob.tsx";
+import { v4 as uuidv4 } from "uuid";
+
 
 // TODO: Remove image attr
-const recipes: RecipeCardData[] & any = [
+const recipes: (RecipeCardData & { image: string })[] = [
 	{
 		id: "gourmet_cheeseburger_davwilson",
 		title: "Gourmet Cheeseburger",
 		publisher: {
+			id: uuidv4(),
 			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
@@ -37,13 +40,15 @@ const recipes: RecipeCardData[] & any = [
 		cookingTime: 20,
 		averageRating: 4.7,
 		difficulty: "easy",
-		createdAt: Date.now(),
+		createdAt: new Date(),
 		image: burgir,
+		serveCount: 4,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson1",
 		title: "Prawn Pil Pil",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
@@ -51,13 +56,15 @@ const recipes: RecipeCardData[] & any = [
 		cookingTime: 10,
 		averageRating: 4.7,
 		difficulty: "easy",
-		createdAt: Date.now(),
+		createdAt: new Date(),
 		image: prawnPilPil,
+		serveCount: 4,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson2",
 		title: "Halal Fried Chicken",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Daithi",
 			lastName: "Williamson",
@@ -65,8 +72,9 @@ const recipes: RecipeCardData[] & any = [
 		cookingTime: 135,
 		averageRating: 5.0,
 		difficulty: "Michelin Chef",
-		createdAt: Date.now(),
+		createdAt: new Date(),
 		image: prawnPilPil,
+		serveCount: 4,
 	},
 ];
 
@@ -77,7 +85,7 @@ function Home() {
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 	const { addSnack } = useSnack();
 
-	const recipeCards = recipes.map((recipeData: RecipeCardData) => (
+	const recipeCards = recipes.map((recipeData) => (
 		<RecipeCard
 			key={recipeData.id}
 			{...recipeData}

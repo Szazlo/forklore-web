@@ -360,7 +360,7 @@ function Recipe() {
 	);
 }
 
-function TagButton(props: any) {
+function TagButton(props: { tag: string }) {
 	return (
 		<Button
 			variant="outlined"

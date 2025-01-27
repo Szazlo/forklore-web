@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 async function signUpWithEmailAndPassword(
 	firstName: string,
 	email: string,
-	password: string,
+	// password: string,
 	lastName?: string,
 ): Promise<ForkloreUser> {
 	return new Promise<ForkloreUser>((resolve, reject) => {
@@ -19,7 +19,7 @@ async function signUpWithEmailAndPassword(
 
 async function signInWithEmailAndPassword(
 	email: string,
-	password: string,
+	// password: string,
 ): Promise<ForkloreUser> {
 	return { id: uuidv4(), firstName: "Moglio", email };
 }

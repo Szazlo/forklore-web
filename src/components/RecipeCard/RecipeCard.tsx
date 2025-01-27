@@ -15,7 +15,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Star as StarIcon } from "lucide-react";
 
-export default function RecipeCard(props: RecipeCardData & any) {
+export default function RecipeCard(props: RecipeCardData & { image?: string }) {
 	const [bookmarked, setBookmarked] = useState(false);
 
 	function handleBookmarkToggle(event: MouseEvent) {

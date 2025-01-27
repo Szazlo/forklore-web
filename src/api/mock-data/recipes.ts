@@ -1,10 +1,12 @@
 import { RecipeCardData, RecipeData, RecipeReview } from "@/types/recipe";
 import burgir from "@/assets/burgir.jpeg";
+import { v4 as uuidv4 } from "uuid";
 
 const recipeData: RecipeData = {
 	id: "dfasfsa12we",
 	title: "Mici cu mustar",
 	publisher: {
+		id: uuidv4(),
 		username: "marioc14",
 		firstName: "Mario",
 		lastName: "Caval",
@@ -71,6 +73,7 @@ const reviews: RecipeReview[] = [
 			"Wow, this mixed Greens with Sun-dried tomato dressing recipe is a flavour explosion in my mouth! Very delicious.",
 		recipeId: "123",
 		reviewer: {
+			id: uuidv4(),
 			username: "sarajson",
 			firstName: "Sara",
 			lastName: "Johnson",
@@ -85,6 +88,7 @@ const reviews: RecipeReview[] = [
 		body: "Bloody lovely mate",
 		recipeId: "123",
 		reviewer: {
+			id: uuidv4(),
 			username: "dntB_a_knt",
 			firstName: "Billy",
 			lastName: "Butcher",
@@ -101,6 +105,7 @@ const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 		id: "gourmet_cheeseburger_davwilson",
 		title: "Gourmet Cheeseburger",
 		publisher: {
+			id: uuidv4(),
 			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
@@ -116,6 +121,7 @@ const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 		id: "gourmet_cheeseburger_davwilson1",
 		title: "Prawn Pil Pil",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
@@ -136,6 +142,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson",
 		title: "Gourmet Cheeseburger",
 		publisher: {
+			id: uuidv4(),
 			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
@@ -151,6 +158,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson1",
 		title: "Prawn Pil Pil",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
@@ -166,6 +174,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson2",
 		title: "Halal Fried Chicken",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Daithi",
 			lastName: "Williamson",
@@ -181,6 +190,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson3",
 		title: "Gourmet Cheeseburger",
 		publisher: {
+			id: uuidv4(),
 			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
@@ -196,6 +206,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson4",
 		title: "Prawn Pil Pil",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
@@ -211,6 +222,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson5",
 		title: "Halal Fried Chicken",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Daithi",
 			lastName: "Williamson",
@@ -226,6 +238,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson6",
 		title: "Gourmet Cheeseburger",
 		publisher: {
+			id: uuidv4(),
 			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
@@ -241,6 +254,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson7",
 		title: "Prawn Pil Pil",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
@@ -256,6 +270,7 @@ const recipesMeta: RecipeWithImage[] = [
 		id: "gourmet_cheeseburger_davwilson8",
 		title: "Halal Fried Chicken",
 		publisher: {
+			id: uuidv4(),
 			username: "laplace",
 			firstName: "Daithi",
 			lastName: "Williamson",

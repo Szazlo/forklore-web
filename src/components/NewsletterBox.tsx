@@ -26,7 +26,7 @@ export default function NewsletterBox() {
 					gutterBottom
 					fontWeight="bold"
 				>
-					Let's stay in touch!
+					Let&apos;s stay in touch!
 				</Typography>
 				<Container maxWidth="sm">
 					<Typography

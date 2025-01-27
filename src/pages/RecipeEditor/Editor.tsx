@@ -361,12 +361,13 @@ function RecipeEditor() {
 						onChange={handleCuisineChange}
 						disableCloseOnSelect
 						renderTags={(value: string[], getTagProps) =>
-							value.map((option: string, index: number) => (
+							value.map((option: string, index) => 
 								<Chip
 									label={option}
 									{...getTagProps({ index })}
+									key={index}
 								/>
-							))
+							)
 						}
 						renderInput={(params) => (
 							<TextField
@@ -388,10 +389,11 @@ function RecipeEditor() {
 						onChange={handleAddTag}
 						disableCloseOnSelect
 						renderTags={(value: string[], getTagProps) =>
-							value.map((option: string, index: number) => (
+							value.map((option: string, index) => (
 								<Chip
 									label={option}
 									{...getTagProps({ index })}
+									key={index}
 								/>
 							))
 						}

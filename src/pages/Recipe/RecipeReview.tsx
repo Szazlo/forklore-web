@@ -38,7 +38,7 @@ export default function RecipeReview(review: RecipeReview) {
 					color="text.dark"
 					gutterBottom
 				>
-					@{review.reviewer.username} - {timeAgo(review.reviewedAt)}
+					@{review.reviewer?.username} - {timeAgo(review.reviewedAt)}
 				</Typography>
 				<Typography gutterBottom>{review.body}</Typography>
 
