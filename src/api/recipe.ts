@@ -10,7 +10,10 @@ const getRecipes = async () => {
 	return recipesYouMightLike;
 };
 
-const getRecipeData = async () => {
+const getRecipeData = async (id?: string) => {
+	if (id !== recipeData.id) {
+		throw new Error("Recipe could not be found");
+	}
 	return recipeData;
 };
 

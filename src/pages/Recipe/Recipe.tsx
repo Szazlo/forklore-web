@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import type { RecipeReview } from "@/types/recipe";
 import { RecipeCardData, RecipeData } from "@/types/recipe";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import burgir from "@/assets/burgir.jpeg";
 import RecipeReviewRenderer from "@/pages/Recipe/RecipeReview.tsx";
@@ -35,10 +35,13 @@ import RecipeStepsList from "@/pages/Recipe/RecipeStepsList.tsx";
 import { useEffect, useState } from "react";
 import Api from "@/api";
 import useSnack from "@/context/SnackbarProvider";
+import PageNotFound from "../404";
 
-function Recipe() {
-	const [recipeData, setRecipeData] = useState<RecipeData | null>(null);
+function RecipePage() {
+	const { id } = useParams();
+	const [recipeData, setRecipeData] = useState<RecipeData>();
 	const [reviews, setReviews] = useState<RecipeReview[]>([]);
+	const [loading, setLoading] = useState(true);
 	const [youMightLikeRecipes, setYouMightLikeRecipes] = useState<
 		(RecipeCardData & { image: string })[]
 	>([]);
@@ -46,14 +49,15 @@ function Recipe() {
 	const isTablet = useMediaQuery(theme.breakpoints.up("md"));
 	const { addSnack } = useSnack();
 
-	// Initial loading
 	useEffect(() => {
-		Api.getRecipeData()
+		setLoading(true);
+		Api.getRecipeData(id)
 			.then((data) => setRecipeData(data))
 			.catch((e) => {
 				console.error("Recipe Data error.", e);
 				addSnack("There was an error getting this recipe", "error");
-			});
+			})
+			.finally(() => setLoading(false));
 		Api.getRecipeReviews()
 			.then((reviews) => setReviews(reviews))
 			.catch((e) => {
@@ -68,8 +72,10 @@ function Recipe() {
 			});
 	}, []);
 
-	if (recipeData === null) {
+	if (!recipeData && loading) {
 		return <Skeleton>Loading</Skeleton>;
+	} else if (!recipeData) {
+		return <PageNotFound />;
 	}
 
 	return (
@@ -371,4 +377,4 @@ function TagButton(props: { tag: string }) {
 	);
 }
 
-export default Recipe;
+export default RecipePage;
