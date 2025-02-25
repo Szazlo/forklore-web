@@ -3,7 +3,7 @@ import burgir from "@/assets/burgir.jpeg";
 import { v4 as uuidv4 } from "uuid";
 
 const recipeData: RecipeData = {
-	id: "dfasfsa12we",
+	id: "0",
 	title: "Mici cu mustar",
 	publisher: {
 		id: uuidv4(),
