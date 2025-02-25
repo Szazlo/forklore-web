@@ -14,7 +14,6 @@ import burgir from "@/assets/burgir.jpeg";
 import prawnPilPil from "@/assets/prawnpilpil.jpeg";
 import landingImage from "@/assets/landing.png";
 import landingImage1 from "@/assets/landingImg1.png";
-import BlogSection from "./BlogSection";
 import RecipeCard from "@/components/RecipeCard";
 // import Blob from "./Blob";
 import NewsletterBox from "@/components/NewsletterBox.tsx";
@@ -228,8 +227,6 @@ function Home() {
 				>
 					{recipeCards}
 				</Grid>
-
-				<BlogSection />
 
 				<Typography
 					variant="h3"
