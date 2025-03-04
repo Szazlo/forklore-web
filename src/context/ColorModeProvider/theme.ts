@@ -5,7 +5,19 @@ import {
 	alpha,
 } from "@mui/material";
 
-export const fontTheme = responsiveFontSizes(createTheme());
+export const fontTheme = responsiveFontSizes(
+	createTheme({
+		components: {
+			MuiButton: {
+				styleOverrides: {
+					root: {
+						textTransform: "none",
+					},
+				},
+			},
+		},
+	}),
+);
 
 export const getDesignTokens = (mode: PaletteMode) => ({
 	palette: {
