@@ -1,6 +1,5 @@
 import { Button, Divider, TextField, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { FormEvent, useState } from "react";
 import Api from "@/api";
@@ -8,6 +7,7 @@ import { login } from "@/store/auth/authSlice";
 import useSnack from "@/context/SnackbarProvider";
 import PasswordField from "@/components/PasswordField";
 import { validateEmail, validatePassword } from "@/lib/utils";
+import SignInWithGoogleButton from "@/components/SignInWithGoogle";
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
@@ -85,17 +85,8 @@ export default function SignupForm() {
 
 	return (
 		<div className="text-center px-4 m-auto xs:3/5 sm:w-4/5">
-			<Typography
-				variant="h4"
-				gutterBottom
-				color="primary"
-			>
-				Sign up
-			</Typography>
-			<form
-				onSubmit={handleSubmit}
-				className="text-center mb-4"
-			>
+			<Typography variant="h4" gutterBottom color="primary">Sign up</Typography>
+			<form onSubmit={handleSubmit} className="text-center mb-4">
 				<div className="flex w-full gap-2">
 					<TextField
 						required
@@ -140,54 +131,15 @@ export default function SignupForm() {
 					value={confirmPassword} 
 					onChange={handlePasswordConfirmChange} 
 					/>
-				<Button
-					type="submit"
-					variant="contained"
-					onClick={handleSubmit}
-					sx={{ width: 0.5, m: 1 }}
-				>
-					Sign up
-				</Button>
+				<Button type="submit" variant="contained" onClick={handleSubmit} sx={{ width: 0.5, m: 1 }}>Sign up</Button>
 			</form>
-			<NavLink
-				to="/login"
-				className="mt-4 text-primary hover:text-accent hover:underline"
-			>
+			<NavLink to="/login" className="mt-4 text-primary hover:text-accent hover:underline">
 				Already have an account? Sign in
 			</NavLink>
-			<Divider
-				flexItem
-				sx={{ p: 1, color: "primary.main" }}
-			>
-				OR
-			</Divider>
-			<Typography color="primary">Sign up with:</Typography>
-			<SocialSignInLinks />
+			<Divider variant="middle" sx={{ my: 2 }} className="text-primary my-4">OR</Divider>
+			<SignInWithGoogleButton />
 		</div>
 	);
-}
-
-function SocialSignInLinks() {
-	return <div className="flex w-full justify-center mt-4">
-		<button className="mx-2 login-icon">
-			<FontAwesomeIcon
-				icon={["fab", "google"]}
-				size="2x" />
-		</button>
-		<a
-			href="#"
-			className="mx-2 login-icon"
-		>
-			<FontAwesomeIcon
-				icon={["fab", "apple"]}
-				size="2x" />
-		</a>
-		<button className="mx-2 login-icon">
-			<FontAwesomeIcon
-				icon={["fab", "facebook"]}
-				size="2x" />
-		</button>
-	</div>;
 }
 
 function PasswordErrorMessagesList({ messages }: { messages: string[] }) {
