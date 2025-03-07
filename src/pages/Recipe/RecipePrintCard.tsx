@@ -15,7 +15,6 @@ import {
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import burgir from "@/assets/burgir.jpeg";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { formatDate } from "@/lib/utils.ts";
 import { IngredientsList } from "@/pages/Recipe/IngredientsList.tsx";
@@ -27,7 +26,7 @@ export default function RecipePrintCard(props: RecipeData) {
 			<div className="flex">
 				<div>
 					<img
-						src={burgir}
+						src="/public/burgir.jpeg"
 						alt="burgir"
 						className="rounded"
 					/>

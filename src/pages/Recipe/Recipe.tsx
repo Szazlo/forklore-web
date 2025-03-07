@@ -18,7 +18,6 @@ import type { RecipeReview } from "@/types/recipe";
 import { RecipeCardData, RecipeData } from "@/types/recipe";
 import { Link, useParams } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import burgir from "@/assets/burgir.jpeg";
 import RecipeReviewRenderer from "@/pages/Recipe/RecipeReview.tsx";
 import ReviewForm from "@/pages/Recipe/ReviewForm.tsx";
 import RecipeCard from "@/components/RecipeCard";
@@ -177,8 +176,8 @@ function RecipePage() {
 						my={2}
 					>
 						<img
-							src={burgir}
-							alt={"burgir"}
+							src="/public/burgir.jpeg"
+							alt="burgir"
 							className="w-full rounded"
 						/>
 					</Box>

@@ -8,7 +8,6 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { Link, /* useNavigate */ } from "react-router-dom";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
-import signinImage from "@/assets/signin_img.png";
 import useSnack from "@/context/SnackbarProvider";
 // import { selectUser } from "@/store";
 
@@ -56,7 +55,7 @@ function LoginForm() {
 			<Box className="border flex py-4 drop-shadow-lg rounded">
 				<div className="flex-1 hidden lg:block lg:w-1/2 items-start justify-start px-4">
 					<img
-						src={signinImage}
+						src="/public/signin_img.png"
 						alt="Photo of person taking a photo of food"
 						className="rounded object-contain"
 					/>

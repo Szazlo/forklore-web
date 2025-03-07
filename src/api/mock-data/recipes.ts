@@ -1,5 +1,4 @@
 import { RecipeCardData, RecipeData, RecipeReview } from "@/types/recipe";
-import burgir from "@/assets/burgir.jpeg";
 import { v4 as uuidv4 } from "uuid";
 
 const recipeData: RecipeData = {
@@ -100,6 +99,8 @@ const reviews: RecipeReview[] = [
 	},
 ];
 
+const image = "/public/burgir.jpeg";
+
 const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 	{
 		id: "gourmet_cheeseburger_davwilson",
@@ -114,7 +115,7 @@ const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 		serveCount: 2,
 	},
 	{
@@ -130,7 +131,7 @@ const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 		serveCount: 2,
 	},
 ];
@@ -152,7 +153,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson1",
@@ -168,7 +169,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson2",
@@ -184,7 +185,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 5.0,
 		difficulty: "Michelin Chef",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson3",
@@ -200,7 +201,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson4",
@@ -216,7 +217,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson5",
@@ -232,7 +233,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 5.0,
 		difficulty: "Michelin Chef",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson6",
@@ -248,7 +249,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson7",
@@ -264,7 +265,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 4.7,
 		difficulty: "easy",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 	{
 		id: "gourmet_cheeseburger_davwilson8",
@@ -280,7 +281,7 @@ const recipesMeta: RecipeWithImage[] = [
 		averageRating: 5.0,
 		difficulty: "Michelin Chef",
 		createdAt: new Date(),
-		image: burgir,
+		image,
 	},
 ];
 

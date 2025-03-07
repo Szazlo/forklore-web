@@ -1,4 +1,3 @@
-import "@/main.css";
 import { RecipeCardData } from "@/types/recipe";
 import {
 	Box,
@@ -10,20 +9,21 @@ import {
 	useTheme,
 } from "@mui/material";
 import useSnack from "@/context/SnackbarProvider";
-import burgir from "@/assets/burgir.jpeg";
-import prawnPilPil from "@/assets/prawnpilpil.jpeg";
-import landingImage from "@/assets/landing.png";
-import landingImage1 from "@/assets/landingImg1.png";
 import RecipeCard from "@/components/RecipeCard";
 // import Blob from "./Blob";
 import NewsletterBox from "@/components/NewsletterBox.tsx";
-import LunchImage from "@/assets/landing0.png";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/store";
 // import StarIcon from '@mui/icons-material/Star';
 import Blob from "@/components/HomeBlob.tsx";
 import { v4 as uuidv4 } from "uuid";
 
+// TODO: Remove these mock urls, mainly the first 2 below
+const burgir = "/public/burgir.jpeg";
+const prawnPilPil = "/public/prawnpilpil.jpeg";
+const landingImage = "/public/landing.png";
+const landingImage1 = "/public/landingImg1.png";
+const LunchImage = "/public/landing0.png";
 
 // TODO: Remove image attr
 const recipes: (RecipeCardData & { image: string })[] = [

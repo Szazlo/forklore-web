@@ -1,5 +1,4 @@
 import "@/main.css";
-import signupImage from "@/assets/signup_img.png";
 import { selectUser } from "@/store";
 import { useSelector } from "react-redux";
 import { Box, Container } from "@mui/material";
@@ -21,7 +20,7 @@ function SignUpPage() {
 			<Box className="lg:border flex py-4 drop-shadow-lg rounded">
 				<div className="flex-1 hidden lg:block lg:w-1/2 items-start justify-start px-4">
 					<img
-						src={signupImage}
+						src="/public/signup_img.png"
 						alt="Photo of person taking a photo of food"
 						className="rounded"
 					/>
