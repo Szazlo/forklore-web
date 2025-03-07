@@ -36,11 +36,8 @@ const Navbar = () => {
 					sx={{ px: 0.5 }}
 				>
 					<div className={"flex items-center"}>
-						{isMobile && <LinksDrawer />}
-						<Link
-							className="mr-10"
-							to="/"
-						>
+						{isMobile && <MobileNavMenu />}
+						<NavLink className="mr-10" to="/">
 							{isMobile ? (
 								<LogoShort />
 							) : (
