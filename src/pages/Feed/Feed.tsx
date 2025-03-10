@@ -1,5 +1,5 @@
 import "@/main.css";
-import { RecipeCardData } from "@/types/recipe";
+import { RecipeMeta } from "@/types/recipe";
 import { Container } from "@mui/material";
 import RecipeCard from "@/components/RecipeCard";
 import { useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import Api from "@/api";
 import useSnack from "@/context/SnackbarProvider";
 
 function Recipe() {
-	const [recipesMeta, setRecipesMeta] = useState<RecipeCardData[]>([]);
+	const [recipesMeta, setRecipesMeta] = useState<RecipeMeta[]>([]);
 	const { addSnack } = useSnack();
 
 	const recipeCards = recipesMeta.map((recipeData) => (

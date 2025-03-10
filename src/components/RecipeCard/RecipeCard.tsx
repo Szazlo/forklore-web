@@ -1,4 +1,4 @@
-import { RecipeCardData } from "@/types/recipe";
+import { RecipeMeta } from "@/types/recipe";
 import {
 	Box,
 	Card,
@@ -15,7 +15,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Star as StarIcon } from "lucide-react";
 
-export default function RecipeCard(props: RecipeCardData & { image?: string }) {
+export default function RecipeCard(props: RecipeMeta & { image?: string }) {
 	const [bookmarked, setBookmarked] = useState(false);
 
 	function handleBookmarkToggle(event: MouseEvent) {
@@ -88,7 +88,7 @@ export default function RecipeCard(props: RecipeCardData & { image?: string }) {
 								variant="body2"
 								color="primary"
 							>
-								{props.cookingTime}
+								{10}
 							</Typography>
 							<Typography
 								textAlign="center"
@@ -135,7 +135,7 @@ export default function RecipeCard(props: RecipeCardData & { image?: string }) {
 								variant="body2"
 								sx={{ ml: 0.5 }}
 							>
-								{props.averageRating}
+								{5}
 							</Typography>
 						</Box>
 					</Box>

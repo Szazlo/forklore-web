@@ -1,5 +1,5 @@
 import "@/main.css";
-import { RecipeCardData } from "@/types/recipe";
+import { RecipeMeta } from "@/types/recipe";
 import {
 	Box,
 	Button,
@@ -20,60 +20,51 @@ import NewsletterBox from "@/components/NewsletterBox.tsx";
 import LunchImage from "@/assets/landing0.png";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/store";
-// import StarIcon from '@mui/icons-material/Star';
 import Blob from "@/components/HomeBlob.tsx";
 import { v4 as uuidv4 } from "uuid";
 
 
 // TODO: Remove image attr
-const recipes: (RecipeCardData & { image: string })[] = [
+const recipes: (RecipeMeta & { image: string })[] = [
 	{
-		id: "gourmet_cheeseburger_davwilson",
+		id: 8,
 		title: "Gourmet Cheeseburger",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
 		},
-		cookingTime: 20,
-		averageRating: 4.7,
-		difficulty: "easy",
 		createdAt: new Date(),
 		image: burgir,
-		serveCount: 4,
 	},
 	{
-		id: "gourmet_cheeseburger_davwilson1",
+		id: 9,
 		title: "Prawn Pil Pil",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
 		},
-		cookingTime: 10,
-		averageRating: 4.7,
-		difficulty: "easy",
+		
 		createdAt: new Date(),
 		image: prawnPilPil,
-		serveCount: 4,
 	},
 	{
-		id: "gourmet_cheeseburger_davwilson2",
+		id: 10,
 		title: "Halal Fried Chicken",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "laplace",
 			firstName: "Daithi",
 			lastName: "Williamson",
 		},
-		cookingTime: 135,
-		averageRating: 5.0,
-		difficulty: "Michelin Chef",
 		createdAt: new Date(),
 		image: prawnPilPil,
-		serveCount: 4,
 	},
 ];
 

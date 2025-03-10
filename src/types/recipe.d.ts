@@ -1,22 +1,16 @@
 import { ForkloreUserMeta } from "./User";
 
-export interface RecipeCardData {
-	id: string;
+export interface RecipeMeta {
+	id: number;
 	title: string;
 	publisher: ForkloreUserMeta;
-	serveCount: number;
-	prepTime?: number;
-	cookingTime: number;
-	difficulty: string;
-	averageRating: number;
+	description: string;
+	category: string;
 	createdAt: Date;
 }
 
-export interface RecipeData extends RecipeCardData {
-	ingredients: Ingredient[];
-	about: string;
-	steps: RecipeInstruction[];
-	tags: string[];
+export interface RecipeData extends RecipeMeta {
+	content: string;
 }
 
 export interface RecipeReview {

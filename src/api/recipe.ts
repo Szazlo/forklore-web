@@ -11,7 +11,7 @@ const getRecipes = async () => {
 };
 
 const getRecipeData = async (id?: string) => {
-	if (id !== recipeData.id) {
+	if (id !== recipeData.id.toString()) {
 		throw new Error("Recipe could not be found");
 	}
 	return recipeData;

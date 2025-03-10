@@ -1,69 +1,20 @@
-import { RecipeCardData, RecipeData, RecipeReview } from "@/types/recipe";
+import { RecipeMeta, RecipeData, RecipeReview } from "@/types/recipe";
 import burgir from "@/assets/burgir.jpeg";
 import { v4 as uuidv4 } from "uuid";
 
 const recipeData: RecipeData = {
-	id: "0",
+	id: 0,
 	title: "Mici cu mustar",
+	category: "Vegan",
 	publisher: {
 		id: uuidv4(),
-		username: "marioc14",
 		firstName: "Mario",
 		lastName: "Caval",
 	},
-	serveCount: 4,
-	prepTime: 5,
-	cookingTime: 20,
-	difficulty: "easy",
-	averageRating: 4.3,
 	createdAt: new Date(),
-	ingredients: [
-		{ id: "1", name: "1g flour" },
-		{ id: "2", name: "70g sugar" },
-		{ id: "3", name: "20ml milk" },
-		{ id: "4", name: "200ml water" },
-		{ id: "5", name: "70g minced pork" },
-		{ id: "6", name: "100g beef lard/tallow" },
-	],
-	about:
+	description:
 		"This recipe features a vibrant and refreshing salad made with a medley of mixed greens, accompanied by a flavorful sun-dried tomato dressing.",
-	steps: [
-		{
-			stepNumber: 1,
-			content: "Preheat the oven to 180 degrees",
-			hasImage: false,
-		},
-		{
-			stepNumber: 2,
-			content: "Mix the flour, sugar, and milk in a bowl",
-			hasImage: false,
-		},
-		{ stepNumber: 3, content: "Add water and mix until sticky", hasImage: false },
-		{
-			stepNumber: 4,
-			content: "Pour the mixture into a baking tray",
-			hasImage: false,
-		},
-		{
-			stepNumber: 5,
-			content:
-				"Chop the fresh herbs, tomato, and onions and toss them with the salad greens. Add additional veggies as desired",
-			hasImage: false,
-		},
-		{
-			stepNumber: 6,
-			content:
-				"Juice the lemon and combine in a high-powered blender with the sun dried tomato mixture and garlic until smooth. Pour over the salad and toss together well. Top with brazil nuts and enjoy!",
-			hasImage: false,
-		},
-	],
-	tags: [
-		"Dessert",
-		"Baking",
-		"FoodBlog",
-		"CheesecakeRecipe",
-		"DeliciousDesserts",
-	],
+	content: "This is the content of the recipe",
 };
 
 const reviews: RecipeReview[] = [
@@ -74,7 +25,6 @@ const reviews: RecipeReview[] = [
 		recipeId: "123",
 		reviewer: {
 			id: uuidv4(),
-			username: "sarajson",
 			firstName: "Sara",
 			lastName: "Johnson",
 		},
@@ -89,7 +39,6 @@ const reviews: RecipeReview[] = [
 		recipeId: "123",
 		reviewer: {
 			id: uuidv4(),
-			username: "dntB_a_knt",
 			firstName: "Billy",
 			lastName: "Butcher",
 		},
@@ -100,185 +49,87 @@ const reviews: RecipeReview[] = [
 	},
 ];
 
-const recipesYouMightLike: (RecipeCardData & { image: string })[] = [
+const recipesYouMightLike: (RecipeMeta & { image: string })[] = [
 	{
-		id: "gourmet_cheeseburger_davwilson",
+		id: 2,
 		title: "Gourmet Cheeseburger",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
 		},
-		cookingTime: 20,
-		averageRating: 4.7,
-		difficulty: "easy",
 		createdAt: new Date(),
 		image: burgir,
-		serveCount: 2,
 	},
 	{
-		id: "gourmet_cheeseburger_davwilson1",
+		id: 3,
 		title: "Prawn Pil Pil",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
 		},
-		cookingTime: 10,
-		averageRating: 4.7,
-		difficulty: "easy",
 		createdAt: new Date(),
 		image: burgir,
-		serveCount: 2,
 	},
 ];
 
-type RecipeWithImage = RecipeCardData & { image: string };
+type RecipeWithImage = RecipeMeta & { image: string };
 
 const recipesMeta: RecipeWithImage[] = [
 	{
-		id: "gourmet_cheeseburger_davwilson",
+		id: 4,
 		title: "Gourmet Cheeseburger",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
 		},
-		cookingTime: 20,
-		serveCount: 5,
-		averageRating: 4.7,
-		difficulty: "easy",
 		createdAt: new Date(),
 		image: burgir,
 	},
 	{
-		id: "gourmet_cheeseburger_davwilson1",
+		id: 5,
 		title: "Prawn Pil Pil",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "laplace",
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
 		},
-		cookingTime: 10,
-		serveCount: 5,
-		averageRating: 4.7,
-		difficulty: "easy",
 		createdAt: new Date(),
 		image: burgir,
 	},
 	{
-		id: "gourmet_cheeseburger_davwilson2",
+		id: 6,
 		title: "Halal Fried Chicken",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "laplace",
 			firstName: "Daithi",
 			lastName: "Williamson",
 		},
-		cookingTime: 135,
-		serveCount: 5,
-		averageRating: 5.0,
-		difficulty: "Michelin Chef",
 		createdAt: new Date(),
 		image: burgir,
 	},
 	{
-		id: "gourmet_cheeseburger_davwilson3",
+		id: 7,
 		title: "Gourmet Cheeseburger",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
 		publisher: {
 			id: uuidv4(),
-			username: "davwilson",
 			firstName: "David",
 			lastName: "Wilson",
 		},
-		cookingTime: 20,
-		serveCount: 5,
-		averageRating: 4.7,
-		difficulty: "easy",
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: "gourmet_cheeseburger_davwilson4",
-		title: "Prawn Pil Pil",
-		publisher: {
-			id: uuidv4(),
-			username: "laplace",
-			firstName: "Lauri",
-			lastName: "Kiukkonen",
-		},
-		cookingTime: 10,
-		serveCount: 5,
-		averageRating: 4.7,
-		difficulty: "easy",
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: "gourmet_cheeseburger_davwilson5",
-		title: "Halal Fried Chicken",
-		publisher: {
-			id: uuidv4(),
-			username: "laplace",
-			firstName: "Daithi",
-			lastName: "Williamson",
-		},
-		cookingTime: 135,
-		serveCount: 5,
-		averageRating: 5.0,
-		difficulty: "Michelin Chef",
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: "gourmet_cheeseburger_davwilson6",
-		title: "Gourmet Cheeseburger",
-		publisher: {
-			id: uuidv4(),
-			username: "davwilson",
-			firstName: "David",
-			lastName: "Wilson",
-		},
-		cookingTime: 20,
-		serveCount: 5,
-		averageRating: 4.7,
-		difficulty: "easy",
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: "gourmet_cheeseburger_davwilson7",
-		title: "Prawn Pil Pil",
-		publisher: {
-			id: uuidv4(),
-			username: "laplace",
-			firstName: "Lauri",
-			lastName: "Kiukkonen",
-		},
-		cookingTime: 10,
-		serveCount: 5,
-		averageRating: 4.7,
-		difficulty: "easy",
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: "gourmet_cheeseburger_davwilson8",
-		title: "Halal Fried Chicken",
-		publisher: {
-			id: uuidv4(),
-			username: "laplace",
-			firstName: "Daithi",
-			lastName: "Williamson",
-		},
-		cookingTime: 135,
-		serveCount: 5,
-		averageRating: 5.0,
-		difficulty: "Michelin Chef",
 		createdAt: new Date(),
 		image: burgir,
 	},
