@@ -30,11 +30,7 @@ export default function ReviewForm() {
 				onChange={(e) => setReview(e.target.value)}
 			/>
 			<div className="text-right my-2">
-				<Button
-					type="submit"
-					variant="contained"
-					sx={{ textTransform: "capitalize", px: 4 }}
-				>
+				<Button type="submit" variant="contained" sx={{ px: 4 }}>
 					Post
 				</Button>
 			</div>

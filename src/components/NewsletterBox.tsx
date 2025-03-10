@@ -50,7 +50,6 @@ export default function NewsletterBox() {
 								fullWidth
 								className="flex-1"
 								variant="contained"
-								sx={{ textTransform: "capitalize" }}
 							>
 								Subscribe
 							</Button>

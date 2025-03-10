@@ -38,7 +38,7 @@ export default function RecipeReview(review: RecipeReview) {
 					<Typography variant="body2" color="primary">
 						{review.likes}
 					</Typography>
-					<Button variant="text" sx={{ textTransform: "capitalize" }}>
+					<Button variant="text">
 						Reply
 					</Button>
 				</div>
@@ -47,7 +47,6 @@ export default function RecipeReview(review: RecipeReview) {
 					<Button
 						variant="contained"
 						size="small"
-						sx={{ textTransform: "capitalize" }}
 						onClick={toggleRepliesOpen}
 					>
 						{repliesOpen ? "Hide" : "Show"} {review.numReplies}{" "}

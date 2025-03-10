@@ -189,7 +189,7 @@ function RecipePage() {
 					{reviews?.map((review) => (
 						<RecipeReviewRenderer key={review.id} {...review} />
 					))}
-					<Button variant="outlined" sx={{ textTransform: "capitalize", mb: 2 }}>
+					<Button variant="outlined" sx={{ mb: 2 }}>
 						Load more
 					</Button>
 

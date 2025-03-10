@@ -125,7 +125,7 @@ function Home() {
 				</Typography>
 				<div className="w-full text-right">
 					{!isMobile && (
-						<Button variant="text" sx={{ textTransform: "none" }} type="button">
+						<Button variant="text">
 							View more
 						</Button>
 					)}
@@ -138,11 +138,7 @@ function Home() {
 					Explore
 				</Typography>
 				<div className="w-full text-right">
-					{!isMobile && (
-						<Button variant="text" sx={{ textTransform: "none" }} type="button">
-							View more
-						</Button>
-					)}
+					{!isMobile && <Button variant="text">View more</Button>}
 				</div>
 				<Grid container spacing={3}>
 					{recipeCards}
@@ -156,11 +152,7 @@ function Home() {
 					Popular Categories
 				</Typography>
 				<div className="w-full text-right">
-					{!isMobile && (
-						<Button variant="text" sx={{ textTransform: "none" }} type="button">
-							View more
-						</Button>
-					)}
+					{!isMobile && <Button variant="text">View more</Button>}
 				</div>
 				<Grid container spacing={2}>
 					<Grid item xs={6} sm={4}>
