@@ -16,7 +16,6 @@ import useSnack from "@/context/SnackbarProvider";
 
 export default function HeaderProfileButton() {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	const { addSnack } = useSnack();
@@ -42,7 +41,35 @@ export default function HeaderProfileButton() {
 					<Avatar src={""} alt={"Profile Image"}></Avatar>
 				</IconButton>
 			</Tooltip>
-			<Menu
+			<ProfileMenu anchorEl={anchorEl} handleClose={handleClose}>
+				<MenuItem onClick={handleClose}>
+					<Avatar /> {user?.firstName || user?.email}
+				</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<Avatar /> My account
+				</MenuItem>
+				<Divider />
+				<MenuItem onClick={handleSignOut}>
+					<ListItemIcon>
+						<Logout fontSize="small" />
+					</ListItemIcon>
+					Logout
+				</MenuItem>
+			</ProfileMenu>
+		</>
+	);
+}
+
+interface ProfileMenuProps {
+	children: React.ReactNode;
+	anchorEl: HTMLElement | null;
+	handleClose: () => void;
+}
+
+function ProfileMenu({ children, anchorEl, handleClose }: ProfileMenuProps) {
+	const open = Boolean(anchorEl);
+	return (
+		<Menu
 				anchorEl={anchorEl}
 				id="account-menu"
 				open={open}
@@ -77,20 +104,7 @@ export default function HeaderProfileButton() {
 				transformOrigin={{ horizontal: "right", vertical: "top" }}
 				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 			>
-				<MenuItem onClick={handleClose}>
-					<Avatar /> {user?.firstName || user?.email}
-				</MenuItem>
-				<MenuItem onClick={handleClose}>
-					<Avatar /> My account
-				</MenuItem>
-				<Divider />
-				<MenuItem onClick={handleSignOut}>
-					<ListItemIcon>
-						<Logout fontSize="small" />
-					</ListItemIcon>
-					Logout
-				</MenuItem>
-			</Menu>
-		</>
+				{children}
+				</Menu>
 	);
 }
