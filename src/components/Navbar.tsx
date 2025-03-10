@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "@/main.css";
 import { selectUser } from "@/store";
 import { useSelector } from "react-redux";
@@ -25,7 +25,6 @@ const links = [
 
 const Navbar = () => {
 	const theme = useTheme();
-	const navigate = useNavigate();
 	const user = useSelector(selectUser);
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -35,20 +34,18 @@ const Navbar = () => {
 				<Toolbar className="flex justify-between" sx={{ px: 0.5 }}>
 					<div className={"flex items-center"}>
 						{isMobile && <MobileNavMenu />}
-						<NavLink className="mr-10" to="/">
+						<Link className="mr-10" to="/">
 							{isMobile ? (
 								<LogoShort />
 							) : (
 								<img src="/logo.png" alt="Forklore logo" className="h-8" />
 							)}
-						</NavLink>
+						</Link>
 						{/* Navbar links */}
 						{!isMobile && (
 							<Box sx={{ flexGrow: 1, display: "flex" }}>
 								{links.map((link) => (
-									<Button key={link.to} sx={{ color: "text.primary" }}>
-										<NavLink to={link.to}>{link.label}</NavLink>
-									</Button>
+									<Button key={link.to} href={link.to} sx={{ color: "text.primary" }}>{link.label}</Button>
 								))}
 							</Box>
 						)}
@@ -63,12 +60,8 @@ const Navbar = () => {
 						{user ? (
 							<HeaderProfileButton />
 						) : (
-							<Button
-								variant="outlined"
-								sx={{ fontWeight: "bold" }}
-								onClick={() => navigate("/signup")}
-							>
-								Sign up
+							<Button href="/signup" variant="outlined" sx={{ fontWeight: "bold" }}>
+								Signup
 							</Button>
 						)}
 					</Box>

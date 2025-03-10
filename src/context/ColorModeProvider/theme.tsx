@@ -4,6 +4,19 @@ import {
 	responsiveFontSizes,
 	alpha,
 } from "@mui/material";
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router';
+import { LinkProps } from '@mui/material/Link';
+import { forwardRef } from "react";
+
+/** Used for allowing MUI buttons to act as router links */
+const LinkBehavior = forwardRef<
+  HTMLAnchorElement,
+  Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  return <RouterLink ref={ref} to={href} {...other} />;
+});
+LinkBehavior.displayName = 'LinkBehavior';
 
 export const fontTheme = responsiveFontSizes(
 	createTheme({
@@ -15,6 +28,16 @@ export const fontTheme = responsiveFontSizes(
 					},
 				},
 			},
+			MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      } as LinkProps,
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
+    },
 		},
 	}),
 );
