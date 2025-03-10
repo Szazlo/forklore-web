@@ -76,6 +76,19 @@ const recipesYouMightLike: (RecipeMeta & { image: string })[] = [
 		createdAt: new Date(),
 		image: burgir,
 	},
+	{
+		id: 6,
+		title: "Halal Fried Chicken",
+		description: "A delicious cheeseburger with a gourmet twist.",
+		category: "Vegan",
+		publisher: {
+			id: uuidv4(),
+			firstName: "Daithi",
+			lastName: "Williamson",
+		},
+		createdAt: new Date(),
+		image: burgir,
+	},
 ];
 
 type RecipeWithImage = RecipeMeta & { image: string };
@@ -103,19 +116,6 @@ const recipesMeta: RecipeWithImage[] = [
 			id: uuidv4(),
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
-		},
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: 6,
-		title: "Halal Fried Chicken",
-		description: "A delicious cheeseburger with a gourmet twist.",
-		category: "Vegan",
-		publisher: {
-			id: uuidv4(),
-			firstName: "Daithi",
-			lastName: "Williamson",
 		},
 		createdAt: new Date(),
 		image: burgir,

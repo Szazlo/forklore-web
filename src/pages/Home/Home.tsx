@@ -10,8 +10,6 @@ import {
 	useTheme,
 } from "@mui/material";
 import useSnack from "@/context/SnackbarProvider";
-import burgir from "@/assets/burgir.jpeg";
-import prawnPilPil from "@/assets/prawnpilpil.jpeg";
 import landingImage from "@/assets/landing.png";
 import landingImage1 from "@/assets/landingImg1.png";
 import RecipeCard from "@/components/RecipeCard";
@@ -21,51 +19,8 @@ import LunchImage from "@/assets/landing0.png";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/store";
 import Blob from "@/components/HomeBlob.tsx";
-import { v4 as uuidv4 } from "uuid";
-
-// TODO: Remove image attr
-const recipes: (RecipeMeta & { image: string })[] = [
-	{
-		id: 8,
-		title: "Gourmet Cheeseburger",
-		description: "A delicious cheeseburger with a gourmet twist.",
-		category: "Vegan",
-		publisher: {
-			id: uuidv4(),
-			firstName: "David",
-			lastName: "Wilson",
-		},
-		createdAt: new Date(),
-		image: burgir,
-	},
-	{
-		id: 9,
-		title: "Prawn Pil Pil",
-		description: "A delicious cheeseburger with a gourmet twist.",
-		category: "Vegan",
-		publisher: {
-			id: uuidv4(),
-			firstName: "Lauri",
-			lastName: "Kiukkonen",
-		},
-
-		createdAt: new Date(),
-		image: prawnPilPil,
-	},
-	{
-		id: 10,
-		title: "Halal Fried Chicken",
-		description: "A delicious cheeseburger with a gourmet twist.",
-		category: "Vegan",
-		publisher: {
-			id: uuidv4(),
-			firstName: "Daithi",
-			lastName: "Williamson",
-		},
-		createdAt: new Date(),
-		image: prawnPilPil,
-	},
-];
+import { useEffect, useState } from "react";
+import Api from "@/api";
 
 function Home() {
 	const user = useSelector(selectUser);
@@ -73,6 +28,12 @@ function Home() {
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 	const { addSnack } = useSnack();
+
+	const [recipes, setRecipes] = useState<RecipeMeta[]>([]);
+
+	useEffect(() => {
+		Api.getRecipes().then((data) => setRecipes(data));
+	}, []);
 
 	const recipeCards = recipes.map((recipeData) => (
 		<RecipeCard key={recipeData.id} {...recipeData} />
