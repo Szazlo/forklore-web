@@ -11,10 +11,7 @@ function Recipe() {
 	const { addSnack } = useSnack();
 
 	const recipeCards = recipesMeta.map((recipeData) => (
-		<RecipeCard
-			key={recipeData.id}
-			{...recipeData}
-		/>
+		<RecipeCard key={recipeData.id} {...recipeData} />
 	));
 
 	useEffect(() => {

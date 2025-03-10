@@ -29,7 +29,7 @@ export default function SignupForm() {
 			setEmailError("");
 		}
 		setEmail(event.target.value);
-	}
+	};
 
 	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value);
@@ -39,53 +39,62 @@ export default function SignupForm() {
 		} else {
 			setPasswordErrors([]);
 		}
-	}
+	};
 
-	const handlePasswordConfirmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handlePasswordConfirmChange = (
+		event: React.ChangeEvent<HTMLInputElement>,
+	) => {
 		setConfirmPassword(event.target.value);
 		if (password !== event.target.value) {
 			setConfirmPasswordError("Passwords do not match");
 		} else {
 			setConfirmPasswordError("");
 		}
-	}
+	};
 
 	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
-		
+
 		if (!validateEmail(email)) {
 			setEmailError("Invalid email");
 			return;
 		}
 
-		const { valid: isPasswordValid, messages: passwordErrorMessages } = validatePassword(password);
+		const { valid: isPasswordValid, messages: passwordErrorMessages } =
+			validatePassword(password);
 		if (!isPasswordValid) {
 			setPasswordErrors(passwordErrorMessages);
 			return;
-		}if (password !== confirmPassword) {
+		}
+		if (password !== confirmPassword) {
 			setConfirmPasswordError("Passwords do not match");
 			return;
 		}
 
 		if (firstName !== "" && validateEmail(email) && isPasswordValid) {
 			Api.signUpWithEmailAndPassword(firstName, email, lastName)
-			.then(newUser => {
-				dispatch(login(newUser));
-				addSnack("Signed in as " + newUser.firstName +" "+ newUser?.lastName || "", "success");
-			})
-			.catch(() => {
-				setEmailError("Email already in use");
-			});
+				.then((newUser) => {
+					dispatch(login(newUser));
+					addSnack(
+						"Signed in as " + newUser.firstName + " " + newUser?.lastName || "",
+						"success",
+					);
+				})
+				.catch(() => {
+					setEmailError("Email already in use");
+				});
 		}
 	};
 
-	const passwordErrorMessages = confirmPasswordError ? 
-		[...passwordErrors, confirmPasswordError] 
+	const passwordErrorMessages = confirmPasswordError
+		? [...passwordErrors, confirmPasswordError]
 		: passwordErrors;
 
 	return (
 		<div className="text-center px-4 m-auto xs:3/5 sm:w-4/5">
-			<Typography variant="h4" gutterBottom color="primary">Sign up</Typography>
+			<Typography variant="h4" gutterBottom color="primary">
+				Sign up
+			</Typography>
 			<form onSubmit={handleSubmit} className="text-center mb-4">
 				<div className="flex w-full gap-2">
 					<TextField
@@ -119,24 +128,36 @@ export default function SignupForm() {
 					error={emailError !== ""}
 					helperText={emailError}
 				/>
-				<PasswordField 
-					label="Password" 
-					value={password} 
-					onChange={handlePasswordChange} 
-					error={passwordErrors.length !== 0} 
-					/>
+				<PasswordField
+					label="Password"
+					value={password}
+					onChange={handlePasswordChange}
+					error={passwordErrors.length !== 0}
+				/>
 				<PasswordErrorMessagesList messages={passwordErrorMessages} />
 				<PasswordField
-					label="Confirm Password" 
-					value={confirmPassword} 
-					onChange={handlePasswordConfirmChange} 
-					/>
-				<Button type="submit" variant="contained" onClick={handleSubmit} sx={{ width: 0.5, m: 1 }}>Sign up</Button>
+					label="Confirm Password"
+					value={confirmPassword}
+					onChange={handlePasswordConfirmChange}
+				/>
+				<Button
+					type="submit"
+					variant="contained"
+					onClick={handleSubmit}
+					sx={{ width: 0.5, m: 1 }}
+				>
+					Sign up
+				</Button>
 			</form>
-			<NavLink to="/login" className="mt-4 text-primary hover:text-accent hover:underline">
+			<NavLink
+				to="/login"
+				className="mt-4 text-primary hover:text-accent hover:underline"
+			>
 				Already have an account? Sign in
 			</NavLink>
-			<Divider variant="middle" sx={{ my: 2 }} className="text-primary my-4">OR</Divider>
+			<Divider variant="middle" sx={{ my: 2 }} className="text-primary my-4">
+				OR
+			</Divider>
 			<SignInWithGoogleButton />
 		</div>
 	);
@@ -145,13 +166,13 @@ export default function SignupForm() {
 function PasswordErrorMessagesList({ messages }: { messages: string[] }) {
 	return (
 		<>
-			{messages.length > 0 &&
+			{messages.length > 0 && (
 				<ul className="text-left text-red-500 text-sm list-disc ml-10 mb-2">
 					{messages.map((message, index) => (
 						<li key={index}>{message}</li>
 					))}
 				</ul>
-			}
+			)}
 		</>
 	);
 }

@@ -10,25 +10,13 @@ import { EmailOutlined } from "@mui/icons-material";
 
 export default function NewsletterBoxSmall() {
 	return (
-		<Box
-			width={1}
-			bgcolor="background.light"
-			py={3}
-			my={8}
-		>
+		<Box width={1} bgcolor="background.light" py={3} my={8}>
 			<Container sx={{ textAlign: "center" }}>
-				<Typography
-					variant="h5"
-					gutterBottom
-					fontWeight="bold"
-				>
+				<Typography variant="h5" gutterBottom fontWeight="bold">
 					Stay connected
 				</Typography>
 				<Container>
-					<Typography
-						color="text.dark"
-						gutterBottom
-					>
+					<Typography color="text.dark" gutterBottom>
 						for the latest health tips and delicious recipes!
 					</Typography>
 				</Container>

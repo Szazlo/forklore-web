@@ -11,36 +11,17 @@ import { EmailOutlined } from "@mui/icons-material";
 
 export default function NewsletterBox() {
 	return (
-		<Box
-			width={1}
-			bgcolor="background.light"
-			py={5}
-			my={8}
-		>
-			<Container
-				maxWidth="md"
-				sx={{ textAlign: "center" }}
-			>
-				<Typography
-					variant="h3"
-					gutterBottom
-					fontWeight="bold"
-				>
+		<Box width={1} bgcolor="background.light" py={5} my={8}>
+			<Container maxWidth="md" sx={{ textAlign: "center" }}>
+				<Typography variant="h3" gutterBottom fontWeight="bold">
 					Let&apos;s stay in touch!
 				</Typography>
 				<Container maxWidth="sm">
-					<Typography
-						variant="h6"
-						color="text.dark"
-						gutterBottom
-					>
+					<Typography variant="h6" color="text.dark" gutterBottom>
 						Join our newsletter, so we can reach out to you with our news and offers.
 					</Typography>
 				</Container>
-				<Container
-					maxWidth="sm"
-					sx={{ my: 2 }}
-				>
+				<Container maxWidth="sm" sx={{ my: 2 }}>
 					<Grid
 						container
 						width={1}
@@ -49,11 +30,7 @@ export default function NewsletterBox() {
 						px={3}
 						spacing={1}
 					>
-						<Grid
-							item
-							xs={12}
-							sm={9}
-						>
+						<Grid item xs={12} sm={9}>
 							<TextField
 								InputProps={{
 									startAdornment: (
@@ -68,11 +45,7 @@ export default function NewsletterBox() {
 								placeholder="Enter your email"
 							/>
 						</Grid>
-						<Grid
-							item
-							xs={12}
-							sm={3}
-						>
+						<Grid item xs={12} sm={3}>
 							<Button
 								fullWidth
 								className="flex-1"

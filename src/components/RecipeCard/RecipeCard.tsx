@@ -25,13 +25,7 @@ export default function RecipeCard(props: RecipeMeta & { image?: string }) {
 	}
 
 	return (
-		<Grid
-			item
-			xs={12}
-			sm={6}
-			md={4}
-			lg={4}
-		>
+		<Grid item xs={12} sm={6} md={4} lg={4}>
 			<Card sx={{ borderRadius: 3, position: "relative" }}>
 				<CardActionArea>
 					<CardMedia
@@ -54,23 +48,13 @@ export default function RecipeCard(props: RecipeMeta & { image?: string }) {
 						}}
 					>
 						<Box sx={{ flex: 2 }}>
-							<Typography
-								variant="body1"
-								color="text.primary"
-								fontWeight={"bold"}
-							>
+							<Typography variant="body1" color="text.primary" fontWeight={"bold"}>
 								{props.title}
 							</Typography>
-							<Typography
-								variant="body2"
-								color="text.secondary"
-							>
+							<Typography variant="body2" color="text.secondary">
 								Description
 							</Typography>
-							<Typography
-								variant="body2"
-								color="text.secondary"
-							>
+							<Typography variant="body2" color="text.secondary">
 								{props.publisher.firstName} {props.publisher.lastName}
 							</Typography>
 						</Box>
@@ -83,18 +67,10 @@ export default function RecipeCard(props: RecipeMeta & { image?: string }) {
 								marginLeft: 2,
 							}}
 						>
-							<Typography
-								textAlign="center"
-								variant="body2"
-								color="primary"
-							>
+							<Typography textAlign="center" variant="body2" color="primary">
 								{10}
 							</Typography>
-							<Typography
-								textAlign="center"
-								variant="body2"
-								color="primary"
-							>
+							<Typography textAlign="center" variant="body2" color="primary">
 								min
 							</Typography>
 						</Box>
@@ -108,51 +84,21 @@ export default function RecipeCard(props: RecipeMeta & { image?: string }) {
 						}}
 					>
 						<Box>
-							<Chip
-								variant="outlined"
-								size="small"
-								label="Indian"
-								sx={{ mr: 1 }}
-							/>
-							<Chip
-								variant="outlined"
-								size="small"
-								label="African"
-								sx={{ mr: 1 }}
-							/>
-							<Chip
-								variant="outlined"
-								size="small"
-								label="Fusion"
-							/>
+							<Chip variant="outlined" size="small" label="Indian" sx={{ mr: 1 }} />
+							<Chip variant="outlined" size="small" label="African" sx={{ mr: 1 }} />
+							<Chip variant="outlined" size="small" label="Fusion" />
 						</Box>
 						<Box sx={{ display: "flex", alignItems: "center" }}>
-							<StarIcon
-								size={16}
-								color="gold"
-							/>
-							<Typography
-								variant="body2"
-								sx={{ ml: 0.5 }}
-							>
+							<StarIcon size={16} color="gold" />
+							<Typography variant="body2" sx={{ ml: 0.5 }}>
 								{5}
 							</Typography>
 						</Box>
 					</Box>
 				</CardActionArea>
 
-				<Box
-					position="absolute"
-					top={4}
-					right={4}
-					bgcolor="white"
-					borderRadius={3}
-				>
-					<IconButton
-						onClick={handleBookmarkToggle}
-						color="primary"
-						sx={{ p: 0.8 }}
-					>
+				<Box position="absolute" top={4} right={4} bgcolor="white" borderRadius={3}>
+					<IconButton onClick={handleBookmarkToggle} color="primary" sx={{ p: 0.8 }}>
 						{bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
 					</IconButton>
 				</Box>

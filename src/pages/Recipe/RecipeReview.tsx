@@ -16,50 +16,29 @@ export default function RecipeReview(review: RecipeReview) {
 			<div className="ml-2 w-full">
 				<div className="flex justify-between">
 					<div className="flex items-center">
-						<Typography
-							variant="h5"
-							mr={1}
-						>
+						<Typography variant="h5" mr={1}>
 							{review.reviewer.firstName} {review.reviewer.lastName?.at(0)}.
 						</Typography>
-						<Rating
-							size="small"
-							readOnly
-							value={review.rating}
-						/>
+						<Rating size="small" readOnly value={review.rating} />
 					</div>
 					<IconButton sx={{ py: 0 }}>
 						<MoreVertIcon />
 					</IconButton>
 				</div>
 
-				<Typography
-					variant="body2"
-					color="text.dark"
-					gutterBottom
-				>
+				<Typography variant="body2" color="text.dark" gutterBottom>
 					@{review.reviewer?.username} - {timeAgo(review.reviewedAt)}
 				</Typography>
 				<Typography gutterBottom>{review.body}</Typography>
 
 				<div className="flex items-center">
-					<IconButton
-						color="primary"
-						sx={{ px: 0.5 }}
-						onClick={toggleLiked}
-					>
+					<IconButton color="primary" sx={{ px: 0.5 }} onClick={toggleLiked}>
 						{liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
 					</IconButton>
-					<Typography
-						variant="body2"
-						color="primary"
-					>
+					<Typography variant="body2" color="primary">
 						{review.likes}
 					</Typography>
-					<Button
-						variant="text"
-						sx={{ textTransform: "capitalize" }}
-					>
+					<Button variant="text" sx={{ textTransform: "capitalize" }}>
 						Reply
 					</Button>
 				</div>

@@ -14,11 +14,7 @@ const nutritionalValues = [
 export default function NutritionalValuesBox() {
 	return (
 		<Box className="bg-gray-200 my-6 py-5 px-5">
-			<Typography
-				variant="h5"
-				fontWeight="bold"
-				gutterBottom
-			>
+			<Typography variant="h5" fontWeight="bold" gutterBottom>
 				Nutrition Facts
 			</Typography>
 			<Stack spacing={1}>

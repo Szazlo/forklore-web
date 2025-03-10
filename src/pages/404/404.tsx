@@ -11,8 +11,8 @@ const PageNotFound = () => {
 				Ooops! It looks like you have taken a detour to while searching for you next
 				meal.
 				<br />
-				Fear not! We have plenty of recipes to choose from. Let&apos;s get you back on
-				track.
+				Fear not! We have plenty of recipes to choose from. Let&apos;s get you back
+				on track.
 			</p>
 			<button
 				className="btn bg-primary py-2 px-4 my-4 rounded hover:bg-accent text-white"

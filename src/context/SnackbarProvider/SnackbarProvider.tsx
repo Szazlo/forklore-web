@@ -36,15 +36,8 @@ export function SnackbarProvider({ children }: { children: ReactNode }) {
 
 	return (
 		<SnackbarContext.Provider value={value}>
-			<Snackbar
-				autoHideDuration={4000}
-				open={open}
-				onClose={handleClose}
-			>
-				<Alert
-					severity={snack.severity}
-					onClose={handleClose}
-				>
+			<Snackbar autoHideDuration={4000} open={open} onClose={handleClose}>
+				<Alert severity={snack.severity} onClose={handleClose}>
 					{snack.message}
 				</Alert>
 			</Snackbar>

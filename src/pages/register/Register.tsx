@@ -14,10 +14,7 @@ function SignUpPage() {
 	}
 
 	return (
-		<Container
-			maxWidth="lg"
-			sx={{ py: 8 }}
-		>
+		<Container maxWidth="lg" sx={{ py: 8 }}>
 			<Box className="lg:border flex py-4 drop-shadow-lg rounded">
 				<div className="flex-1 hidden lg:block lg:w-1/2 items-start justify-start px-4">
 					<img

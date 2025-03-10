@@ -11,10 +11,7 @@ export default function RecipeStepsList({
 	return (
 		<Stack gap={3}>
 			{steps.map((step) => (
-				<RecipeStep
-					step={step}
-					key={step.stepNumber}
-				/>
+				<RecipeStep step={step} key={step.stepNumber} />
 			))}
 		</Stack>
 	);

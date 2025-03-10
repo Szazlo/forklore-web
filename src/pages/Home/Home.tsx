@@ -23,7 +23,6 @@ import { selectUser } from "@/store";
 import Blob from "@/components/HomeBlob.tsx";
 import { v4 as uuidv4 } from "uuid";
 
-
 // TODO: Remove image attr
 const recipes: (RecipeMeta & { image: string })[] = [
 	{
@@ -49,7 +48,7 @@ const recipes: (RecipeMeta & { image: string })[] = [
 			firstName: "Lauri",
 			lastName: "Kiukkonen",
 		},
-		
+
 		createdAt: new Date(),
 		image: prawnPilPil,
 	},
@@ -76,10 +75,7 @@ function Home() {
 	const { addSnack } = useSnack();
 
 	const recipeCards = recipes.map((recipeData) => (
-		<RecipeCard
-			key={recipeData.id}
-			{...recipeData}
-		/>
+		<RecipeCard key={recipeData.id} {...recipeData} />
 	));
 
 	return (
@@ -88,23 +84,12 @@ function Home() {
 				<Blob />
 				<Container sx={{ textAlign: isTablet ? "center" : "left", my: 10 }}>
 					<Grid container>
-						<Grid
-							item
-							xs={12}
-							md={6}
-						>
-							<Typography
-								variant="h2"
-								fontWeight="bold"
-							>
+						<Grid item xs={12} md={6}>
+							<Typography variant="h2" fontWeight="bold">
 								{" "}
 								Your Daily Dish
 							</Typography>
-							<Typography
-								variant="h2"
-								fontWeight="bold"
-								gutterBottom
-							>
+							<Typography variant="h2" fontWeight="bold" gutterBottom>
 								{" "}
 								A{" "}
 								<Typography
@@ -118,10 +103,7 @@ function Home() {
 								Journey
 							</Typography>
 							<Box maxWidth="sm">
-								<Typography
-									color="text.secondary"
-									sx={{ mb: 3 }}
-								>
+								<Typography color="text.secondary" sx={{ mb: 3 }}>
 									A place to share your favourite recipes. What shall we cook today?{" "}
 								</Typography>
 							</Box>
@@ -145,24 +127,14 @@ function Home() {
 							)}
 						</Grid>
 						{!isTablet && (
-							<Grid
-								item
-								md={6}
-							>
-								<img
-									src={landingImage}
-									alt="image of a dish with a review beside it"
-								/>
+							<Grid item md={6}>
+								<img src={landingImage} alt="image of a dish with a review beside it" />
 							</Grid>
 						)}
 					</Grid>
 				</Container>
 
-				<Box
-					display="flex"
-					flexWrap="wrap"
-					mb={8}
-				>
+				<Box display="flex" flexWrap="wrap" mb={8}>
 					<div className="flex-2 md:flex-1">
 						<img
 							className="rounded-xl"
@@ -174,18 +146,11 @@ function Home() {
 						maxWidth="lg"
 						sx={{ flex: isTablet ? 1 : 1.5, textAlign: "center", m: "auto" }}
 					>
-						<Typography
-							variant="h4"
-							my={2}
-							fontWeight="bold"
-						>
+						<Typography variant="h4" my={2} fontWeight="bold">
 							Share Your Recipes
 						</Typography>
 						<Container maxWidth="sm">
-							<Typography
-								my={2}
-								color="text.secondary"
-							>
+							<Typography my={2} color="text.secondary">
 								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat
 								accusantium nobis officiis, quia quam commodi quae.
 							</Typography>
@@ -194,154 +159,70 @@ function Home() {
 					</Container>
 				</Box>
 
-				<Typography
-					variant="h3"
-					gutterBottom={isMobile}
-					fontWeight="bold"
-				>
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">
 					Trending
 				</Typography>
 				<div className="w-full text-right">
 					{!isMobile && (
-						<Button
-							variant="text"
-							sx={{ textTransform: "none" }}
-							type="button"
-						>
+						<Button variant="text" sx={{ textTransform: "none" }} type="button">
 							View more
 						</Button>
 					)}
 				</div>
-				<Grid
-					container
-					spacing={3}
-				>
+				<Grid container spacing={3}>
 					{recipeCards}
 				</Grid>
 
-				<Typography
-					variant="h3"
-					gutterBottom={isMobile}
-					fontWeight="bold"
-				>
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">
 					Explore
 				</Typography>
 				<div className="w-full text-right">
 					{!isMobile && (
-						<Button
-							variant="text"
-							sx={{ textTransform: "none" }}
-							type="button"
-						>
+						<Button variant="text" sx={{ textTransform: "none" }} type="button">
 							View more
 						</Button>
 					)}
 				</div>
-				<Grid
-					container
-					spacing={3}
-				>
+				<Grid container spacing={3}>
 					{recipeCards}
 				</Grid>
 			</Container>
 
 			<NewsletterBox />
 
-			<Container
-				maxWidth="lg"
-				sx={{ mb: 8 }}
-			>
-				<Typography
-					variant="h3"
-					gutterBottom={isMobile}
-					fontWeight="bold"
-				>
+			<Container maxWidth="lg" sx={{ mb: 8 }}>
+				<Typography variant="h3" gutterBottom={isMobile} fontWeight="bold">
 					Popular Categories
 				</Typography>
 				<div className="w-full text-right">
 					{!isMobile && (
-						<Button
-							variant="text"
-							sx={{ textTransform: "none" }}
-							type="button"
-						>
+						<Button variant="text" sx={{ textTransform: "none" }} type="button">
 							View more
 						</Button>
 					)}
 				</div>
-				<Grid
-					container
-					spacing={2}
-				>
-					<Grid
-						item
-						xs={6}
-						sm={4}
-					>
-						<img
-							src={LunchImage}
-							alt={"Spaghette"}
-							className="rounded-full"
-						/>
-						<Typography
-							fontWeight="bold"
-							my={2}
-							textAlign="center"
-						>
+				<Grid container spacing={2}>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full" />
+						<Typography fontWeight="bold" my={2} textAlign="center">
 							Lunch
 						</Typography>
 					</Grid>
-					<Grid
-						item
-						xs={6}
-						sm={4}
-					>
-						<img
-							src={LunchImage}
-							alt={"Spaghette"}
-							className="rounded-full"
-						/>
-						<Typography
-							fontWeight="bold"
-							my={2}
-							textAlign="center"
-						>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full" />
+						<Typography fontWeight="bold" my={2} textAlign="center">
 							Dinner
 						</Typography>
 					</Grid>
-					<Grid
-						item
-						xs={6}
-						sm={4}
-					>
-						<img
-							src={LunchImage}
-							alt={"Spaghette"}
-							className="rounded-full"
-						/>
-						<Typography
-							fontWeight="bold"
-							my={2}
-							textAlign="center"
-						>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full" />
+						<Typography fontWeight="bold" my={2} textAlign="center">
 							Pizza
 						</Typography>
 					</Grid>
-					<Grid
-						item
-						xs={6}
-						sm={4}
-					>
-						<img
-							src={LunchImage}
-							alt={"Spaghette"}
-							className="rounded-full"
-						/>
-						<Typography
-							fontWeight="bold"
-							my={2}
-							textAlign="center"
-						>
+					<Grid item xs={6} sm={4}>
+						<img src={LunchImage} alt={"Spaghette"} className="rounded-full" />
+						<Typography fontWeight="bold" my={2} textAlign="center">
 							Smoothie
 						</Typography>
 					</Grid>

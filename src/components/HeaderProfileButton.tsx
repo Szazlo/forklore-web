@@ -39,10 +39,7 @@ export default function HeaderProfileButton() {
 		<>
 			<Tooltip title="Account settings">
 				<IconButton onClick={handleClick}>
-					<Avatar
-						src={user?.photoUrl || ""}
-						alt={"Profile Image"}
-					></Avatar>
+					<Avatar src={""} alt={"Profile Image"}></Avatar>
 				</IconButton>
 			</Tooltip>
 			<Menu

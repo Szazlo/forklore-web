@@ -20,12 +20,10 @@ export default function RecipePrintCard(props: RecipeData) {
 		<Container className="bg-gray-200 p-4 my-10">
 			<div className="flex">
 				<div>
-					<img src={burgir} alt={props.title + " image"} className="rounded"/>
+					<img src={burgir} alt={props.title + " image"} className="rounded" />
 					<div className="flex items-center gap-2 my-2">
 						<Rating readOnly value={5} size="small" />
-						<Typography color="text.dark">
-							{9} / 10 reviews
-						</Typography>
+						<Typography color="text.dark">{9} / 10 reviews</Typography>
 					</div>
 				</div>
 				<div className="ml-4">
@@ -38,7 +36,7 @@ export default function RecipePrintCard(props: RecipeData) {
 							</Typography>
 						</div>
 						<div className="flex items-center gap-2">
-							<CalendarMonthIcon color="primary" fontSize="small"/>
+							<CalendarMonthIcon color="primary" fontSize="small" />
 							<Typography variant="body2">{formatDate(props.createdAt)}</Typography>
 						</div>
 						{/*	TODO: Add category*/}
@@ -62,9 +60,7 @@ export default function RecipePrintCard(props: RecipeData) {
 				</Button>
 			</Grid>
 
-			<Box>
-				Todo: Add content below
-			</Box>
+			<Box>Todo: Add content below</Box>
 		</Container>
 	);
 }

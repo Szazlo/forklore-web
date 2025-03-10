@@ -167,10 +167,7 @@ function RecipeEditor() {
 					<label className="block text-gray-700 mb-2">Ingredients:</label>
 					<div className="space-y-2">
 						{ingredients.map((ingredient, index) => (
-							<div
-								key={index}
-								className="flex items-center space-x-2"
-							>
+							<div key={index} className="flex items-center space-x-2">
 								<TextField
 									className="bg-white flex-1"
 									size="small"
@@ -200,10 +197,7 @@ function RecipeEditor() {
 					<label className="block text-gray-700 mb-2">Instructions:</label>
 					<div className="space-y-4">
 						{steps.map((step, index) => (
-							<div
-								key={index}
-								className="flex items-start space-x-2"
-							>
+							<div key={index} className="flex items-start space-x-2">
 								<span className="text-gray-500">Step {index + 1}</span>
 								<TextField
 									className="bg-white flex-1"
@@ -254,17 +248,11 @@ function RecipeEditor() {
 								size="small"
 								inputProps={{ "aria-label": "Hours" }}
 							>
-								<MenuItem
-									value=""
-									disabled
-								>
+								<MenuItem value="" disabled>
 									Hours
 								</MenuItem>
 								{numbersHours.map((number) => (
-									<MenuItem
-										key={number}
-										value={number}
-									>
+									<MenuItem key={number} value={number}>
 										{number + "h"}
 									</MenuItem>
 								))}
@@ -278,17 +266,11 @@ function RecipeEditor() {
 								size="small"
 								inputProps={{ "aria-label": "Minutes" }}
 							>
-								<MenuItem
-									value=""
-									disabled
-								>
+								<MenuItem value="" disabled>
 									Minutes
 								</MenuItem>
 								{numbersMinutes.map((number) => (
-									<MenuItem
-										key={number}
-										value={number}
-									>
+									<MenuItem key={number} value={number}>
 										{number + "m"}
 									</MenuItem>
 								))}
@@ -308,17 +290,11 @@ function RecipeEditor() {
 								size="small"
 								inputProps={{ "aria-label": "Hours" }}
 							>
-								<MenuItem
-									value=""
-									disabled
-								>
+								<MenuItem value="" disabled>
 									Hours
 								</MenuItem>
 								{numbersHours.map((number) => (
-									<MenuItem
-										key={number}
-										value={number}
-									>
+									<MenuItem key={number} value={number}>
 										{number + "h"}
 									</MenuItem>
 								))}
@@ -332,17 +308,11 @@ function RecipeEditor() {
 								size="small"
 								inputProps={{ "aria-label": "Minutes" }}
 							>
-								<MenuItem
-									value=""
-									disabled
-								>
+								<MenuItem value="" disabled>
 									Minutes
 								</MenuItem>
 								{numbersMinutes.map((number) => (
-									<MenuItem
-										key={number}
-										value={number}
-									>
+									<MenuItem key={number} value={number}>
 										{number + "m"}
 									</MenuItem>
 								))}
@@ -361,20 +331,12 @@ function RecipeEditor() {
 						onChange={handleCuisineChange}
 						disableCloseOnSelect
 						renderTags={(value: string[], getTagProps) =>
-							value.map((option: string, index) => 
-								<Chip
-									label={option}
-									{...getTagProps({ index })}
-									key={index}
-								/>
-							)
+							value.map((option: string, index) => (
+								<Chip label={option} {...getTagProps({ index })} key={index} />
+							))
 						}
 						renderInput={(params) => (
-							<TextField
-								{...params}
-								variant="standard"
-								placeholder="Select Cuisine"
-							/>
+							<TextField {...params} variant="standard" placeholder="Select Cuisine" />
 						)}
 					/>
 				</div>
@@ -390,19 +352,11 @@ function RecipeEditor() {
 						disableCloseOnSelect
 						renderTags={(value: string[], getTagProps) =>
 							value.map((option: string, index) => (
-								<Chip
-									label={option}
-									{...getTagProps({ index })}
-									key={index}
-								/>
+								<Chip label={option} {...getTagProps({ index })} key={index} />
 							))
 						}
 						renderInput={(params) => (
-							<TextField
-								{...params}
-								variant="standard"
-								placeholder="Add tags"
-							/>
+							<TextField {...params} variant="standard" placeholder="Add tags" />
 						)}
 					/>
 				</div>

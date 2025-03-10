@@ -21,7 +21,7 @@ const links = [
 	{ label: "Feed", to: "/" },
 	{ label: "Recipes", to: "/recipes" },
 	{ label: "Cooking Tips", to: "/tips" },
-]
+];
 
 const Navbar = () => {
 	const theme = useTheme();
